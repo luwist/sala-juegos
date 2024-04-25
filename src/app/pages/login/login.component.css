@@ -1,0 +1,22 @@
+.main {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 250px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.button {
+    width: 100%;
+    margin-top: 40px;
+}

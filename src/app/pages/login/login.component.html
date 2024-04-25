@@ -1,0 +1,17 @@
+<main class="main">
+    <form class="form" (submit)="login()">
+        <h1>Iniciar Sesion</h1>
+
+        <div class="form-field">
+            <label>Correo Electronico</label>
+            <input pInputText [(ngModel)]="email" name="email" />
+        </div>
+
+        <div class="form-field">
+            <label>Contraseña</label>
+            <p-password [(ngModel)]="password" name="password"></p-password>
+        </div>
+
+        <button pButton label="Ingresar" class="button" type="submit"></button>
+    </form>
+</main>
