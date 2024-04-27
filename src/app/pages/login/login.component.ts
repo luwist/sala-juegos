@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
         ButtonModule
     ],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.css'
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
     email: string = '';

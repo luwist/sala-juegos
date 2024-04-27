@@ -10,7 +10,7 @@ import { AvatarModule } from 'primeng/avatar';
         AvatarModule
     ],
     templateUrl: './about.component.html',
-    styleUrl: './about.component.css'
+    styleUrl: './about.component.scss'
 })
 export class AboutComponent {
 
