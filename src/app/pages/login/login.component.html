@@ -32,13 +32,24 @@
     </p-dropdown>
 
     <div class="form-field">
-      <label>Correo Electronico</label>
-      <input pInputText [(ngModel)]="email" name="email" />
+      <label class="label">Correo Electronico</label>
+      <input
+        pInputText
+        class="input"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Correo Electronico"
+      />
     </div>
 
     <div class="form-field">
-      <label>Contraseña</label>
-      <p-password [(ngModel)]="password" name="password"></p-password>
+      <label class="label">Contraseña</label>
+      <p-password
+        [(ngModel)]="password"
+        class="input"
+        placeholder="Contraseña"
+        name="password"
+      ></p-password>
     </div>
 
     <button pButton label="Ingresar" class="button" type="submit"></button>

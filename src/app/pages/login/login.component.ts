@@ -63,8 +63,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log('AAAAAAA Login');
-
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('/');
   }
 }

@@ -1,31 +1,61 @@
 <header class="header">
-  <a routerLink="/" class="logo">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 640 512"
-      fill="#3EA2FD"
-    >
-      <path
-        d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"
-      />
-    </svg>
-  </a>
+  <div class="right">
+    <a routerLink="/" class="logo">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 640 512"
+        fill="#3EA2FD"
+      >
+        <path
+          d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"
+        />
+      </svg>
+    </a>
 
-  <ul class="menu">
-    <li class="menu-item">
-      <a routerLink="/" class="menu-link">Inicio</a>
-    </li>
-    <li class="menu-item">
-      <a routerLink="/quien-soy" class="menu-link">Quien Soy</a>
-    </li>
-    <li class="menu-item">
-      <a routerLink="/chat" class="menu-link">Chat</a>
-    </li>
-  </ul>
+    <ul class="menu">
+      <li class="menu-item">
+        <a routerLink="/" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a routerLink="/quien-soy" class="menu-link">Quien Soy</a>
+      </li>
+      <li class="menu-item">
+        <a routerLink="/chat" class="menu-link">Chat</a>
+      </li>
+    </ul>
+  </div>
 
-  <button type="button" pButton>Ingresar</button>
+  <p-menu #menu [model]="items" [popup]="true">
+    <ng-template pTemplate="item" let-item>
+      @if (!item?.url) {
+      <a
+        [attr.tabindex]="-1"
+        [attr.href]="item.url"
+        [routerLink]="item.routerLink"
+      >
+        <div [attr.tabindex]="-1" class="item">
+          <span [class]="item.icon"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      </a>
+      } @if (item?.url) {
+      <a [attr.tabindex]="-1" [attr.href]="item.url">
+        <div class="item">
+          <span [class]="item.icon"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      </a>
+      }
+    </ng-template>
+  </p-menu>
 
-  <!-- <button type="button" class="avatar">
+  <button type="button" class="avatar" (click)="menu.toggle($event)">
     <img src="assets/images/robot.png" alt="" />
-  </button> -->
+    <div class="content">
+      <p class="username">Luwist</p>
+      <p class="role">Administrador</p>
+    </div>
+
+    <i class="pi pi-chevron-down" style="font-size: 16px"></i>
+  </button>
 </header>
