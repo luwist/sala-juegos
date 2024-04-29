@@ -1,17 +1,46 @@
 <main class="main">
-    <form class="form" (submit)="login()">
-        <h1>Iniciar Sesion</h1>
+  <form class="form" (submit)="login()">
+    <h1>Iniciar Sesion</h1>
 
-        <div class="form-field">
-            <label>Correo Electronico</label>
-            <input pInputText [(ngModel)]="email" name="email" />
+    <p-dropdown
+      [options]="users"
+      [(ngModel)]="selectedUser"
+      optionLabel="name"
+      name="user"
+      placeholder="Seleccionar usuario"
+    >
+      <ng-template pTemplate="selectedItem">
+        @if (selectedUser) {
+        <div class="user">
+          <img src="{{ selectedUser.avatar }}" class="avatar" />
+          <div class="content">
+            <p class="username">{{ selectedUser.username }}</p>
+            <p class="role">{{ selectedUser.role }}</p>
+          </div>
         </div>
-
-        <div class="form-field">
-            <label>Contraseña</label>
-            <p-password [(ngModel)]="password" name="password"></p-password>
+        }
+      </ng-template>
+      <ng-template let-user pTemplate="user">
+        <div class="user">
+          <img src="{{ user.avatar }}" class="avatar" />
+          <div class="content">
+            <p class="username">{{ user.username }}</p>
+            <p class="role">{{ user.role }}</p>
+          </div>
         </div>
+      </ng-template>
+    </p-dropdown>
 
-        <button pButton label="Ingresar" class="button" type="submit"></button>
-    </form>
+    <div class="form-field">
+      <label>Correo Electronico</label>
+      <input pInputText [(ngModel)]="email" name="email" />
+    </div>
+
+    <div class="form-field">
+      <label>Contraseña</label>
+      <p-password [(ngModel)]="password" name="password"></p-password>
+    </div>
+
+    <button pButton label="Ingresar" class="button" type="submit"></button>
+  </form>
 </main>

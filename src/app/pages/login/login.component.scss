@@ -1,22 +1,49 @@
 .main {
-    height: 100vh;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
-    width: 250px;
+  width: 400px;
 }
 
 .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .button {
-    width: 100%;
-    margin-top: 40px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.user {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .avatar {
+    background-color: transparent;
+    border: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .content {
+    .username {
+      line-height: 12px;
+      color: #121212;
+      font-size: 14px;
+    }
+
+    .role {
+      color: #b6b6b6;
+      font-size: 10px;
+    }
+  }
 }
