@@ -1,13 +1,15 @@
 <main class="main">
   <form class="form" (submit)="login()">
-    <h1>Iniciar Sesion</h1>
+    <h1 class="title">Iniciar Sesion</h1>
 
     <p-dropdown
       [options]="users"
       [(ngModel)]="selectedUser"
       optionLabel="name"
       name="user"
+      (onClick)="selectUser()"
       placeholder="Seleccionar usuario"
+      class="custom-dropdown"
     >
       <ng-template pTemplate="selectedItem">
         @if (selectedUser) {
@@ -21,7 +23,7 @@
         }
       </ng-template>
       <ng-template let-user pTemplate="user">
-        <div class="user">
+        <div class="user" style="padding: 12px">
           <img src="{{ user.avatar }}" class="avatar" />
           <div class="content">
             <p class="username">{{ user.username }}</p>
@@ -31,12 +33,16 @@
       </ng-template>
     </p-dropdown>
 
+    <p-divider align="center" type="solid">
+      <b>O</b>
+    </p-divider>
+
     <div class="form-field">
       <label class="label">Correo Electronico</label>
       <input
         pInputText
         class="input"
-        [(ngModel)]="email"
+        [(ngModel)]="loginForm.email"
         name="email"
         placeholder="Correo Electronico"
       />
@@ -45,8 +51,9 @@
     <div class="form-field">
       <label class="label">Contraseña</label>
       <p-password
-        [(ngModel)]="password"
-        class="input"
+        [(ngModel)]="loginForm.password"
+        [feedback]="false"
+        class="custom-password"
         placeholder="Contraseña"
         name="password"
       ></p-password>

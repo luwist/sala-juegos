@@ -8,3 +8,19 @@
   margin: 0;
   padding: 0;
 }
+
+p-password.custom-password .p-password.p-component.p-inputwrapper {
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+
+  .p-inputtext.p-component.p-element.p-password-input {
+    padding: 0 20px;
+    width: 100%;
+  }
+}
+
+p-divider
+  .p-divider.p-component.p-divider-horizontal.p-divider-solid.p-divider-center {
+  margin: 20px 0;
+}
