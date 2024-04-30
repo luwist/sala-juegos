@@ -1,12 +1,131 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-hangman',
   standalone: true,
   imports: [],
   templateUrl: './hangman.component.html',
-  styleUrl: './hangman.component.scss'
+  styleUrl: './hangman.component.scss',
 })
-export class HangmanComponent {
+export class HangmanComponent implements OnInit {
+  answer = '';
 
+  keys = [
+    'Q',
+    'W',
+    'E',
+    'R',
+    'T',
+    'Y',
+    'U',
+    'I',
+    'O',
+    'P',
+    'A',
+    'S',
+    'D',
+    'F',
+    'G',
+    'H',
+    'J',
+    'K',
+    'L',
+    'Ñ',
+    'Z',
+    'X',
+    'C',
+    'V',
+    'B',
+    'N',
+    'M',
+  ];
+
+  @ViewChild('gallow') gallowElement!: ElementRef;
+  @ViewChild('game') gameElement!: ElementRef;
+
+  lives: number = 0;
+  text: any = [];
+
+  answers = [
+    'avion',
+    'camion',
+    'hospital',
+    'radar',
+    'gato',
+    'taxi',
+    'elefante',
+    'policia',
+    'escuela',
+    'medico',
+    'arbol',
+    'manzana',
+  ];
+
+  ngOnInit(): void {
+    const random = Math.random() * (this.answers.length - 0) + 0;
+    const index = Math.floor(random);
+
+    this.answer = this.answers[index];
+    this.textInit();
+  }
+
+  textInit(): void {
+    for (let i = 0; i < this.answer.length; i++) {
+      this.text.push({
+        letter: this.answer[i],
+        show: false,
+      });
+    }
+  }
+
+  keyPressed(e: any): void {
+    if (e.target.nodeName === 'BUTTON') {
+      const target = e.target;
+      const letter = target.outerText.toLowerCase();
+
+      if (this.answer.toLowerCase().includes(letter)) {
+        target.childNodes[1].classList.add('right');
+
+        for (let i = 0; i < this.text.length; i++) {
+          if (this.text[i].letter.toLowerCase() === letter) {
+            this.text[i] = {
+              letter: letter.toUpperCase(),
+              show: true,
+            };
+          }
+        }
+      } else {
+        target.childNodes[1].classList.add('wrong');
+
+        const element = this.gallowElement.nativeElement;
+        const gallow = element.childNodes[this.lives];
+
+        gallow.classList.add('show');
+
+        this.lives++;
+      }
+
+      if (this.isWinner()) {
+        const element = this.gameElement.nativeElement;
+        element.classList.add('show');
+      }
+    }
+  }
+
+  isWinner() {
+    let winner = false;
+    let count = 0;
+
+    for (let i = 0; i < this.text.length; i++) {
+      if (this.text[i].show == true) {
+        count++;
+      }
+    }
+
+    if (this.answer.length == count) {
+      winner = true;
+    }
+
+    return winner;
+  }
 }

@@ -1,125 +1,29 @@
 <main class="main">
   <div class="game">
+    <div #game class="end"></div>
     <div class="left">
-      <div class="keyboard">
-        <div class="row">
-          <button class="key">
-            q
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            w
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            e
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            r
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            t
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            y
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            u
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            i
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            o
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            p
-            <span class="status"></span>
-          </button>
+      <div class="container">
+        <div class="answer">
+          @for (item of text; track $index) {
+          <div class="letter">
+            @if (item.show) {
+            {{ item.letter }}
+            }
+          </div>
+          }
         </div>
-        <div class="row">
+        <div class="keyboard" (click)="keyPressed($event)">
+          @for (key of keys; track $index) {
           <button class="key">
-            a
+            {{ key }}
             <span class="status"></span>
           </button>
-          <button class="key">
-            s
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            d
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            f
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            g
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            h
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            j
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            k
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            l
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            ñ
-            <span class="status"></span>
-          </button>
-        </div>
-        <div class="row">
-          <button class="key">
-            z
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            x
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            c
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            v
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            b
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            n
-            <span class="status"></span>
-          </button>
-          <button class="key">
-            m
-            <span class="status"></span>
-          </button>
+          }
         </div>
       </div>
     </div>
     <div class="right">
-      <div class="gallow">
+      <div #gallow class="gallow">
         <div class="rope"></div>
         <div class="head"></div>
         <div class="body"></div>

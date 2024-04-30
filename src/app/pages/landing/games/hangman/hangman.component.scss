@@ -9,12 +9,37 @@
 }
 
 .game {
+  position: relative;
   background-image: url("./assets/general_background_horizontal.png");
   border-radius: 16px;
 
   width: 80%;
   height: 80%;
   display: flex;
+}
+
+.end {
+  &.show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    z-index: 100;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    animation: endAnimation 1s ease forwards;
+  }
+}
+
+@keyframes endAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  0% {
+    opacity: 1;
+  }
 }
 
 .play {
@@ -36,16 +61,24 @@
   width: 50%;
 }
 
-.right {
+.right,
+.left {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.keyboard {
+.container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  justify-content: center;
+  gap: 12px;
 }
 
 .row {
@@ -61,7 +94,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 50px;
+  font-size: 32px;
+  font-weight: 800;
   border: 0;
   background-color: transparent;
   font-family: "Caveat", cursive;
@@ -70,23 +104,42 @@
   .status {
     &.right {
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 10;
-      background-image: url("./assets/gameplay_letter_right.png");
+      background: url("./assets/gameplay_letter_right.png") no-repeat 0 0%;
     }
 
     &.wrong {
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 10;
-      background-image: url("./assets/gameplay_letter_wrong.png");
+      background: url("./assets/gameplay_letter_wrong.png") no-repeat 0 0%;
     }
+  }
+}
+
+.answer {
+  margin-bottom: 40px;
+  display: flex;
+  gap: 12px;
+
+  .letter {
+    font-size: 40px;
+    display: flex;
+    font-family: "Caveat", cursive;
+    font-weight: 800;
+    color: #268aff;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: url("./assets/answer_sheet.png") no-repeat 0 100%;
   }
 }
 
@@ -103,8 +156,13 @@
   top: 8px;
   width: 8px;
   height: 47px;
-  background: url("./assets/animation_rope.png") no-repeat 0 0%;
-  animation: ropeSprite 1s steps(2) forwards;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_rope.png") no-repeat 0 0%;
+    animation: ropeSprite 1s steps(2) forwards;
+  }
 }
 
 @keyframes ropeSprite {
@@ -119,8 +177,13 @@
   left: 54%;
   width: 47px;
   height: 48px;
-  background: url("./assets/animation_head.png") no-repeat 0 0%;
-  animation: headSprite 1s steps(2) forwards;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_head.png") no-repeat 0 0%;
+    animation: headSprite 1s steps(2) forwards;
+  }
 }
 
 @keyframes headSprite {
@@ -135,8 +198,13 @@
   left: 60%;
   width: 9px;
   height: 88px;
-  background: url("./assets/animation_body.png") no-repeat 0 0%;
-  animation: bodySprite 1s steps(2) forwards;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_body.png") no-repeat 0 0%;
+    animation: bodySprite 1s steps(2) forwards;
+  }
 }
 
 @keyframes bodySprite {
@@ -148,11 +216,16 @@
 .hand-left {
   position: absolute;
   top: calc(47px + 48px);
-  left: 60%;
+  left: 61%;
   width: 40px;
   height: 39px;
-  background: url("./assets/animation_hand_left.png") no-repeat 0 0%;
-  animation: handLeftSprite 1s steps(2) forwards;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_hand_left.png") no-repeat 0 0%;
+    animation: handLeftSprite 1s steps(2) forwards;
+  }
 }
 
 @keyframes handLeftSprite {
@@ -167,12 +240,59 @@
   left: 50%;
   width: 40px;
   height: 39px;
-  background: url("./assets/animation_hand_right.png") no-repeat 0 0%;
-  animation: handLeftSprite 1s steps(2) forwards;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_hand_right.png") no-repeat 0 0%;
+    animation: handLeftSprite 1s steps(2) forwards;
+  }
 }
 
 @keyframes handLeftSprite {
   to {
     background-position: -80px 0;
+  }
+}
+
+.leg-right {
+  position: absolute;
+  top: 174px;
+  left: 50%;
+  width: 36px;
+  height: 60px;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_leg_right.png") no-repeat 0 0%;
+    animation: legRightSprite 1s steps(2) forwards;
+  }
+}
+
+@keyframes legRightSprite {
+  to {
+    background-position: -76px 0;
+  }
+}
+
+.leg-left {
+  position: absolute;
+  top: 174px;
+  left: 60%;
+  width: 36px;
+  height: 60px;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    background: url("./assets/animation_leg_left.png") no-repeat 0 0%;
+    animation: legLeftSprite 1s steps(2) forwards;
+  }
+}
+
+@keyframes legLeftSprite {
+  to {
+    background-position: -76px 0;
   }
 }

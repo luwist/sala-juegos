@@ -29,14 +29,11 @@ export class AuthService {
     );
 
     const users = collection(this._firebase, 'users');
-    const col = collectionData(users);
+    const q = query(users, where('email', '==', credentials.email));
+    const querySnapshot = await getDocs(q);
 
-    col.subscribe((data) => {
-      data.forEach((user: any) => {
-        if (user.email == credentials.email) {
-          this._userService.user = user;
-        }
-      });
+    querySnapshot.forEach((doc) => {
+      this._userService.updateUser(doc.data());
     });
   }
 }

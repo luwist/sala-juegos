@@ -52,8 +52,8 @@
   <button type="button" class="avatar" (click)="menu.toggle($event)">
     <img src="assets/images/robot.png" alt="" />
     <div class="content">
-      <p class="username">Luwist</p>
-      <p class="role">Administrador</p>
+      <p class="username">{{ user.username }}</p>
+      <p class="role">{{ user.role }}</p>
     </div>
 
     <i class="pi pi-chevron-down" style="font-size: 16px"></i>

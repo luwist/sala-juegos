@@ -12,12 +12,13 @@ import { MenuModule } from 'primeng/menu';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
+  user!: any;
   items!: Array<any>;
 
   constructor(private _userService: UserService) {}
 
   ngOnInit(): void {
-    console.log(this._userService.user);
+    this.user = this._userService.user;
 
     this.items = [
       {

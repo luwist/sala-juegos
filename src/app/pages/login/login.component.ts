@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       this._messageService.add({
         severity: 'error',
-        summary: 'Error',
+        summary: '',
         detail:
           'Correo Electronico o Contraseña incorrecta. Intentelo de nuevo',
       });
