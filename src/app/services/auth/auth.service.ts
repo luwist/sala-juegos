@@ -3,17 +3,23 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import {
   Firestore,
   collection,
+  collectionData,
   getDocs,
   query,
   where,
 } from '@angular/fire/firestore';
-import { Credentials } from '@app/models';
+import { Credentials, User } from '@app/models';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _auth: Auth, private _firebase: Firestore) {}
+  constructor(
+    private _auth: Auth,
+    private _firebase: Firestore,
+    private _userService: UserService
+  ) {}
 
   async login(credentials: Credentials) {
     await signInWithEmailAndPassword(
@@ -23,12 +29,14 @@ export class AuthService {
     );
 
     const users = collection(this._firebase, 'users');
-    const q = query(users, where('email', '==', credentials.email));
+    const col = collectionData(users);
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, ' => ', doc.data());
+    col.subscribe((data) => {
+      data.forEach((user: any) => {
+        if (user.email == credentials.email) {
+          this._userService.user = user;
+        }
+      });
     });
   }
 }

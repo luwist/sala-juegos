@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UserService } from '@app/services/user/user.service';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 
@@ -13,7 +14,11 @@ import { MenuModule } from 'primeng/menu';
 export class NavbarComponent implements OnInit {
   items!: Array<any>;
 
+  constructor(private _userService: UserService) {}
+
   ngOnInit(): void {
+    console.log(this._userService.user);
+
     this.items = [
       {
         label: 'Mi Perfil',

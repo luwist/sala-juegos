@@ -7,10 +7,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 import { Credentials, User } from '@app/models';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Firestore, doc, query, where } from '@angular/fire/firestore';
-import { collection } from '@firebase/firestore';
 import { AuthService } from '@app/services';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +21,11 @@ import { AuthService } from '@app/services';
     ButtonModule,
     DropdownModule,
     DividerModule,
+    ToastModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   users: Array<User> = [];
@@ -39,7 +40,11 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private _authService: AuthService) {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    private _messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.users = [
@@ -85,8 +90,15 @@ export class LoginComponent implements OnInit {
   async login(): Promise<void> {
     try {
       await this._authService.login(this.loginForm);
+
+      this._router.navigateByUrl('/');
     } catch (error) {
-      console.log('Mostrar Toast', error);
+      this._messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail:
+          'Correo Electronico o Contraseña incorrecta. Intentelo de nuevo',
+      });
     }
   }
 }
