@@ -1,1 +1,23 @@
-<p>chat works!</p>
+<main class="main">
+  <div class="chat">
+    <div class="content">
+      <div class="message">Este es un mensaje de prueba</div>
+      <div class="message my-message">Este es un mensaje de prueba</div>
+      <div class="message">Este es un mensaje de prueba</div>
+    </div>
+    <div class="box">
+      <div class="box-message">
+        <textarea
+          name=""
+          placeholder="Escribe un mensaje"
+          [(ngModel)]="message"
+          (keyup)="getKey($event)"
+        ></textarea>
+      </div>
+
+      <button type="button" class="button" (click)="sendMessage()">
+        <i class="pi pi-send" style="font-size: 16px; color: white"></i>
+      </button>
+    </div>
+  </div>
+</main>
