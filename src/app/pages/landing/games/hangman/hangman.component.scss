@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Caveat", cursive;
 }
 
 .game {
@@ -27,6 +28,32 @@
     z-index: 100;
     background-color: hsla(0, 0%, 0%, 0.5);
     animation: endAnimation 1s ease forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 500px;
+      height: 295px;
+
+      &.welldone {
+        background-image: url("./assets/welldone_background.png");
+        background-repeat: no-repeat;
+      }
+
+      &.gameover {
+        background-image: url("./assets/gameover_background.png");
+        background-repeat: no-repeat;
+      }
+
+      .text {
+        font-size: 60px;
+        font-weight: 700;
+      }
+    }
   }
 }
 

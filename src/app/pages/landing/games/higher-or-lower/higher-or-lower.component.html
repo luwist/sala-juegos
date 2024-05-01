@@ -1,12 +1,19 @@
 <main class="main">
   <div class="game">
+    <div #game class="end">
+      <div class="background">
+        <span class="text"></span>
+      </div>
+    </div>
     <div>
       <div class="container-card">
-        <div class="card"></div>
+        <div #card class="card"></div>
         <div class="card-back"></div>
       </div>
-      <button class="button higher">Mayor</button>
-      <button class="button lower">Menor</button>
+      <div class="container-buttons">
+        <button class="button higher" (click)="higherSelected()">Mayor</button>
+        <button class="button lower" (click)="lowerSelected()">Menor</button>
+      </div>
     </div>
   </div>
 </main>

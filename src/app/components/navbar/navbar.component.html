@@ -50,7 +50,7 @@
   </p-menu>
 
   <button type="button" class="avatar" (click)="menu.toggle($event)">
-    <img src="assets/images/robot.png" alt="" />
+    <img src="{{ user.avatar }}" alt="" />
     <div class="content">
       <p class="username">{{ user.username }}</p>
       <p class="role">{{ user.role }}</p>

@@ -45,6 +45,7 @@ export class HangmanComponent implements OnInit {
 
   lives: number = 0;
   text: any = [];
+  live: number = 7;
 
   answers = [
     'avion',
@@ -103,11 +104,21 @@ export class HangmanComponent implements OnInit {
         gallow.classList.add('show');
 
         this.lives++;
+        this.live--;
       }
 
       if (this.isWinner()) {
         const element = this.gameElement.nativeElement;
         element.classList.add('show');
+        element.childNodes[0].classList.add('welldone');
+        element.childNodes[0].childNodes[0].innerText = '¡Ganaste!';
+      }
+
+      if (this.isLoser()) {
+        const element = this.gameElement.nativeElement;
+        element.classList.add('show');
+        element.childNodes[0].classList.add('gameover');
+        element.childNodes[0].childNodes[0].innerText = 'Perdiste :c';
       }
     }
   }
@@ -127,5 +138,15 @@ export class HangmanComponent implements OnInit {
     }
 
     return winner;
+  }
+
+  isLoser() {
+    let loser = false;
+
+    if (this.live == 0) {
+      loser = true;
+    }
+
+    return loser;
   }
 }

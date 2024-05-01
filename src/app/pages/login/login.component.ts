@@ -49,28 +49,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.users = [
       {
-        avatar: 'assets/images/robot.png',
+        avatar: 'assets/images/avatar-luwist.png',
         username: 'Luwist',
         role: 'Administrador',
         email: 'luwist@test.com',
         password: 'admin123',
       },
       {
-        avatar: 'assets/images/robot.png',
+        avatar: 'assets/images/avatar-strogebest.png',
         username: 'StrogeBest',
         role: 'Usuario',
         email: 'strogebest@test.com',
         password: 'strogebest',
       },
       {
-        avatar: 'assets/images/robot.png',
+        avatar: 'assets/images/avatar-kwess.png',
         username: 'Kwess',
         role: 'Usuario',
         email: 'kwess@test.com',
         password: 'qwerty123456',
       },
       {
-        avatar: 'assets/images/robot.png',
+        avatar: 'assets/images/avatar-chesseto.png',
         username: 'ChesseTo',
         role: 'Tester',
         email: 'chesseto@test.com',
