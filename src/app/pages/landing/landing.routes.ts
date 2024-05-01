@@ -28,6 +28,13 @@ export const routes: Routes = [
             (m) => m.HangmanComponent
           ),
       },
+      {
+        path: 'games/higher-or-lower',
+        loadComponent: () =>
+          import('./games/higher-or-lower/higher-or-lower.component').then(
+            (m) => m.HigherOrLowerComponent
+          ),
+      },
     ],
   },
 ];
