@@ -1,16 +1,29 @@
 <main class="main">
   <div class="chat">
     <div class="content">
-      <div class="message">Este es un mensaje de prueba</div>
-      <div class="message my-message">Este es un mensaje de prueba</div>
-      <div class="message">Este es un mensaje de prueba</div>
+      @for (item of chats$ | async; track $index) {
+      <div
+        class="message"
+        [ngClass]="{ 'my-message': currentUser.username == item.username }"
+      >
+        <img src="{{ item.avatar }}" alt="" />
+        <div>
+          <div class="box-top">
+            {{ item.username }}
+          </div>
+          <p class="message-content">
+            {{ item.message }}
+          </p>
+        </div>
+      </div>
+      }
     </div>
     <div class="box">
       <div class="box-message">
         <textarea
           name=""
           placeholder="Escribe un mensaje"
-          [(ngModel)]="message"
+          [(ngModel)]="lastMessage"
           (keyup)="getKey($event)"
         ></textarea>
       </div>

@@ -1,19 +1,52 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+} from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '@app/services/user/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })
-export class ChatComponent {
-  message: string = '';
-  lastMessage!: string;
+export class ChatComponent implements OnInit {
+  chats$ = new Observable<any>();
 
-  sendMessage(): void {
-    console.log('Enviar mensahe', this.message);
+  lastMessage!: string;
+  currentUser!: any;
+
+  constructor(
+    private _userService: UserService,
+    private _firebase: Firestore
+  ) {}
+
+  ngOnInit(): void {
+    this.currentUser = this._userService.user;
+
+    const chats = collection(this._firebase, 'chats');
+    this.chats$ = collectionData(chats);
+  }
+
+  async sendMessage() {
+    const currentUser = this._userService.user;
+    const chats = collection(this._firebase, 'chats');
+
+    await addDoc(chats, {
+      username: currentUser.username,
+      avatar: currentUser.avatar,
+      message: this.lastMessage,
+    });
+
+    this.lastMessage = '';
   }
 
   getKey(e: any): void {

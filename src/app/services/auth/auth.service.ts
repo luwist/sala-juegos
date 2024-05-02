@@ -22,14 +22,22 @@ export class AuthService {
   ) {}
 
   async login(credentials: Credentials) {
-    await signInWithEmailAndPassword(
-      this._auth,
-      credentials.email,
-      credentials.password
-    );
+    try {
+      await signInWithEmailAndPassword(
+        this._auth,
+        credentials.email,
+        credentials.password
+      );
 
+      this.updateUserByEmail(credentials.email);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  private async updateUserByEmail(email: string): Promise<void> {
     const users = collection(this._firebase, 'users');
-    const q = query(users, where('email', '==', credentials.email));
+    const q = query(users, where('email', '==', email));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {

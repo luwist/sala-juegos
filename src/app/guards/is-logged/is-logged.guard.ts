@@ -6,11 +6,11 @@ export const isLoggedGuard: CanActivateFn = (route, state) => {
   const user = inject(UserService);
   const router = inject(Router);
 
-  console.log(user.user);
-
   if (user.user.email !== '') {
     return true;
   }
+
   router.navigateByUrl('/login');
+
   return false;
 };
