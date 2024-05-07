@@ -50,10 +50,10 @@
   </p-menu>
 
   <button type="button" class="avatar" (click)="menu.toggle($event)">
-    <img src="{{ user.avatar }}" alt="" />
+    <img src="{{ currentUser.avatar }}" alt="" />
     <div class="content">
-      <p class="username">{{ user.username }}</p>
-      <p class="role">{{ user.role }}</p>
+      <p class="username">{{ currentUser.username }}</p>
+      <p class="role">{{ currentUser.role }}</p>
     </div>
 
     <i class="pi pi-chevron-down" style="font-size: 16px"></i>

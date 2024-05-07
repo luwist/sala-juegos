@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
-import { Credentials, User } from '@app/models';
-import { AuthService } from '@app/services';
+import { Account, UserCredential } from '@app/models';
+import { AuthService, UserService } from '@app/services';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -22,74 +28,47 @@ import { MessageService } from 'primeng/api';
     DropdownModule,
     DividerModule,
     ToastModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
-  users: Array<User> = [];
+  accounts: Account[] = [];
 
-  selectedUser!: User;
+  selectedAccount!: Account;
 
-  loginForm: Credentials = {
-    email: '',
-    password: '',
-  };
-
-  email: string = '';
-  password: string = '';
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+  });
 
   constructor(
     private _authService: AuthService,
+    private _userService: UserService,
     private _router: Router,
     private _messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.users = [
-      {
-        avatar: 'assets/images/avatar-luwist.png',
-        username: 'Luwist',
-        role: 'Administrador',
-        email: 'luwist@test.com',
-        password: 'admin123',
-      },
-      {
-        avatar: 'assets/images/avatar-strogebest.png',
-        username: 'StrogeBest',
-        role: 'Usuario',
-        email: 'strogebest@test.com',
-        password: 'strogebest',
-      },
-      {
-        avatar: 'assets/images/avatar-kwess.png',
-        username: 'Kwess',
-        role: 'Usuario',
-        email: 'kwess@test.com',
-        password: 'qwerty123456',
-      },
-      {
-        avatar: 'assets/images/avatar-chesseto.png',
-        username: 'ChesseTo',
-        role: 'Tester',
-        email: 'chesseto@test.com',
-        password: 'contraseña',
-      },
-    ];
+    this.accounts = this._userService.accounts;
   }
 
-  selectUser(): void {
-    const user = this.selectedUser;
+  get controlEmail(): FormControl {
+    return this.loginForm.get('email') as FormControl;
+  }
 
-    if (user !== undefined) {
-      this.loginForm = user;
-    }
+  get controlPassword(): FormControl {
+    return this.loginForm.get('password') as FormControl;
   }
 
   async login(): Promise<void> {
     try {
-      await this._authService.login(this.loginForm);
+      await this._authService.login({
+        email: '',
+        password: '',
+      });
 
       this._router.navigateByUrl('/');
     } catch (error) {

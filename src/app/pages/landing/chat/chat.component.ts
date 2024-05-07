@@ -8,6 +8,7 @@ import {
   collectionData,
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { User } from '@app/models';
 import { UserService } from '@app/services/user/user.service';
 import { Observable } from 'rxjs';
 
@@ -22,7 +23,7 @@ export class ChatComponent implements OnInit {
   chats$ = new Observable<any>();
 
   lastMessage!: string;
-  currentUser!: any;
+  currentUser!: User;
 
   constructor(
     private _userService: UserService,
@@ -30,14 +31,14 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentUser = this._userService.user;
+    this.currentUser = this._userService.currentUser as User;
 
     const chats = collection(this._firebase, 'chats');
     this.chats$ = collectionData(chats);
   }
 
   async sendMessage() {
-    const currentUser = this._userService.user;
+    const currentUser = this._userService.currentUser as User;
     const chats = collection(this._firebase, 'chats');
 
     await addDoc(chats, {

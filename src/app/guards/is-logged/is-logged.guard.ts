@@ -3,10 +3,12 @@ import { CanActivateFn, Router } from '@angular/router';
 import { UserService } from '@app/services/user/user.service';
 
 export const isLoggedGuard: CanActivateFn = (route, state) => {
-  const user = inject(UserService);
+  const userService = inject(UserService);
   const router = inject(Router);
 
-  if (user.user.email !== '') {
+  const currentUser = userService.currentUser;
+
+  if (currentUser !== null && currentUser.email !== '') {
     return true;
   }
 

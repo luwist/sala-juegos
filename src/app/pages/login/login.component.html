@@ -1,24 +1,23 @@
 <main class="main">
   <p-toast position="top-center"></p-toast>
-  <form class="form" (submit)="login()">
+  <form class="form" (submit)="login()" [formGroup]="loginForm">
     <h1 class="title">Iniciar Sesion</h1>
 
     <p-dropdown
-      [options]="users"
-      [(ngModel)]="selectedUser"
+      [options]="accounts"
+      [(ngModel)]="selectedAccount"
       optionLabel="name"
       name="user"
-      (onClick)="selectUser()"
-      placeholder="Seleccionar usuario"
+      placeholder="Elige tu cuenta"
       class="custom-dropdown"
     >
       <ng-template pTemplate="selectedItem">
-        @if (selectedUser) {
+        @if (selectedAccount) {
         <div class="user">
-          <img src="{{ selectedUser.avatar }}" class="avatar" />
+          <img src="{{ selectedAccount.avatar }}" class="avatar" />
           <div class="content">
-            <p class="username">{{ selectedUser.username }}</p>
-            <p class="role">{{ selectedUser.role }}</p>
+            <p class="username">{{ selectedAccount.username }}</p>
+            <p class="role">{{ selectedAccount.role }}</p>
           </div>
         </div>
         }
@@ -43,21 +42,25 @@
       <input
         pInputText
         class="input"
-        [(ngModel)]="loginForm.email"
         name="email"
         placeholder="Correo Electronico"
+        formControlName="email"
       />
     </div>
 
     <div class="form-field">
       <label class="label">Contraseña</label>
       <p-password
-        [(ngModel)]="loginForm.password"
         [feedback]="false"
         class="custom-password"
         placeholder="Contraseña"
         name="password"
+        formControlName="password"
       ></p-password>
+
+      @if (controlPassword.getError('required')) {
+      <p>La contraseña no puede estar vacia</p>
+      }
     </div>
 
     <button pButton label="Ingresar" class="button" type="submit"></button>
