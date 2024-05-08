@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -14,25 +14,25 @@ import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 import { Account, UserCredential } from '@app/models';
 import { AuthService, UserService } from '@app/services';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ToastComponent } from '@app/components';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     DropdownModule,
     DividerModule,
-    ToastModule,
+    ToastComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   accounts: Account[] = [];
@@ -44,40 +44,70 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
+  buttonText: string = 'Ingresar';
+  showError: boolean = false;
+  messageError!: string;
+
   constructor(
     private _authService: AuthService,
     private _userService: UserService,
     private _router: Router,
-    private _messageService: MessageService
+    private _viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit(): void {
     this.accounts = this._userService.accounts;
   }
 
-  get controlEmail(): FormControl {
+  get emailControl(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }
 
-  get controlPassword(): FormControl {
+  get passwordControl(): FormControl {
     return this.loginForm.get('password') as FormControl;
   }
 
-  async login(): Promise<void> {
+  onSelectedAccount(): void {
+    const credential = this.selectedAccount as UserCredential;
+
+    this.loginForm.patchValue(credential);
+  }
+
+  async login(e: Event): Promise<void> {
     try {
-      await this._authService.login({
-        email: '',
-        password: '',
-      });
+      e.preventDefault();
+
+      this.loginForm.markAsPending();
+
+      const credentials = this.loginForm.getRawValue() as UserCredential;
+
+      this.buttonText = 'Cargando...';
+
+      console.log(credentials);
+
+      await this._authService.login(credentials);
 
       this._router.navigateByUrl('/');
-    } catch (error) {
-      this._messageService.add({
-        severity: 'error',
-        summary: '',
-        detail:
-          'Correo Electronico o Contraseña incorrecta. Intentelo de nuevo',
-      });
+    } catch (error: any) {
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          this.showToast(
+            'Correo electronico o contraseña incorrecta. Intentelo de nuevo'
+          );
+
+          break;
+      }
+      console.log(error.code);
+      console.log(error.message);
     }
+  }
+
+  showToast(message: string): void {
+    const dinamicComponent =
+      this._viewContainerRef.createComponent(ToastComponent);
+
+    dinamicComponent.instance.message = message;
+
+    this.buttonText = 'Ingresar';
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { UserCredential } from '@app/models';
-import { UserService } from '../user/user.service';
+import { UserService } from '../user';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +18,8 @@ export class AuthService {
       );
 
       await this._userService.updateCurrentUserByEmail(credential.password);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      throw error;
     }
   }
-}
-
-enum Error {
-  InvalidCredentials = 'Correo electronico o contraseña incorrecta. Intentelo de nuevo',
-  EmailNotExists = 'El email ingresado no existe',
 }

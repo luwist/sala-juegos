@@ -1,0 +1,44 @@
+.toast {
+  position: absolute;
+  top: 32px;
+  left: calc(50% - 300px);
+  width: 600px;
+  background-color: #fe8686;
+  border-radius: 8px;
+  text-align: center;
+  padding: 40px 0;
+  color: white;
+  font-weight: 800;
+
+  &.fade-in {
+    animation: 200ms ease forwards fadeIn;
+  }
+
+  &.fade-out {
+    animation: 200ms ease forwards fadeOut;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}

@@ -8,7 +8,13 @@ export const isLoggedGuard: CanActivateFn = (route, state) => {
 
   const currentUser = userService.currentUser;
 
-  if (currentUser !== null && currentUser.email !== '') {
+  console.log(currentUser);
+
+  if (
+    currentUser !== null &&
+    currentUser !== undefined &&
+    currentUser.email !== ''
+  ) {
     return true;
   }
 

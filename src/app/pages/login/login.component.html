@@ -1,13 +1,15 @@
 <main class="main">
-  <p-toast position="top-center"></p-toast>
-  <form class="form" (submit)="login()" [formGroup]="loginForm">
+  @if (showError) {
+  <app-toast message="{{ messageError }}" />
+  }
+  <div>
     <h1 class="title">Iniciar Sesion</h1>
-
     <p-dropdown
       [options]="accounts"
       [(ngModel)]="selectedAccount"
       optionLabel="name"
       name="user"
+      (click)="onSelectedAccount()"
       placeholder="Elige tu cuenta"
       class="custom-dropdown"
     >
@@ -36,33 +38,39 @@
     <p-divider align="center" type="solid">
       <b>O</b>
     </p-divider>
+    <form class="form" (submit)="login($event)" [formGroup]="loginForm">
+      <div class="form-field">
+        <label class="label">Correo Electronico</label>
+        <input placeholder="Correo Electronico" formControlName="email" />
+        @if (emailControl.invalid && (emailControl.touched ||
+        emailControl.dirty)) { @if (emailControl.hasError('required')) {
+        <p class="error">El correo electronico no puede estar vacio</p>
+        } @if (emailControl.hasError('email')) {
+        <p class="error">Ingrese un correo electronico valido</p>
+        } }
+      </div>
 
-    <div class="form-field">
-      <label class="label">Correo Electronico</label>
-      <input
-        pInputText
-        class="input"
-        name="email"
-        placeholder="Correo Electronico"
-        formControlName="email"
-      />
-    </div>
+      <div class="form-field">
+        <label class="label">Contraseña</label>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
 
-    <div class="form-field">
-      <label class="label">Contraseña</label>
-      <p-password
-        [feedback]="false"
-        class="custom-password"
-        placeholder="Contraseña"
-        name="password"
-        formControlName="password"
-      ></p-password>
+        @if (passwordControl.invalid && (passwordControl.touched ||
+        passwordControl.dirty)) {
+        <p class="error">La contraseña no puede estar vacia</p>
+        }
+      </div>
 
-      @if (controlPassword.getError('required')) {
-      <p>La contraseña no puede estar vacia</p>
-      }
-    </div>
-
-    <button pButton label="Ingresar" class="button" type="submit"></button>
-  </form>
+      <button
+        pButton
+        [disabled]="(loginForm.statusChanges | async) !== 'VALID'"
+        label="{{ buttonText }}"
+        class="button"
+        type="submit"
+      ></button>
+    </form>
+  </div>
 </main>

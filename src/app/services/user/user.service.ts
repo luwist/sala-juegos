@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  getDocs,
+  query,
+  where,
+} from '@angular/fire/firestore';
 import { Role } from '@app/enums';
 import { Account, User } from '@app/models';
 
@@ -40,9 +46,7 @@ export class UserService {
 
   private _currentUser!: User | null;
 
-  constructor(
-    private _firebase: Firestore
-  ) { }
+  constructor(private _firebase: Firestore) {}
 
   get currentUser() {
     return this._currentUser;
@@ -56,6 +60,8 @@ export class UserService {
     const user = await this.getUserByEmail(email);
 
     this._currentUser = user;
+
+    console.log(this._currentUser);
   }
 
   private async getUserByEmail(email: string): Promise<User | null> {
@@ -68,8 +74,19 @@ export class UserService {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      user = doc.data() as User;
+      const u = doc.data() as User;
+      console.log(doc);
+      console.log(u);
+
+      if (u.email == email) {
+        user = u;
+
+        console.log(user);
+        console.log(u);
+      }
     });
+
+    console.log(user);
 
     return user;
   }
