@@ -17,7 +17,7 @@ export class AuthService {
         credential.password
       );
 
-      await this._userService.updateCurrentUserByEmail(credential.password);
+      await this._userService.updateCurrentUserByEmail(credential.email);
     } catch (error: any) {
       throw error;
     }

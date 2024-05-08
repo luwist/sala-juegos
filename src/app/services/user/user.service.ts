@@ -60,8 +60,6 @@ export class UserService {
     const user = await this.getUserByEmail(email);
 
     this._currentUser = user;
-
-    console.log(this._currentUser);
   }
 
   private async getUserByEmail(email: string): Promise<User | null> {
@@ -75,18 +73,11 @@ export class UserService {
 
     querySnapshot.forEach((doc) => {
       const u = doc.data() as User;
-      console.log(doc);
-      console.log(u);
 
       if (u.email == email) {
         user = u;
-
-        console.log(user);
-        console.log(u);
       }
     });
-
-    console.log(user);
 
     return user;
   }

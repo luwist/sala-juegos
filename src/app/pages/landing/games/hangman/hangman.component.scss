@@ -7,14 +7,9 @@
   font-family: "Caveat", cursive;
 }
 
-.game {
-  position: relative;
-  background-image: url("./assets/general_background_horizontal.png");
-  border-radius: 16px;
-
+#game {
   width: 80%;
   height: 80%;
-  display: flex;
 }
 
 .end.show {

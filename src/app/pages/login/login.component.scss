@@ -38,16 +38,16 @@ input {
 
   &:focus {
     border: 1px solid transparent;
-    outline: 2px solid #2196f3;
-    background-color: #f0f8ff;
+    outline: 2px solid hsl(207, 90%, 54%);
+    background-color: hsl(225, 90%, 97%);
   }
 }
 
 .ng-touched.ng-invalid:is(input),
 .ng-dirty.ng-invalid:is(input) {
   border: 1px solid transparent;
-  outline: 2px solid #f32121;
-  background-color: #fff9f9;
+  outline: 2px solid hsl(0, 90%, 54%);
+  background-color: hsl(0, 90%, 97%);
 }
 
 :host ::ng-deep .p-password-panel {
