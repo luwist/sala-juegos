@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -18,8 +19,19 @@ import { GameplayController } from './controllers/gameplay.controller';
 export class HangmanComponent implements AfterViewInit {
   @ViewChild('game', { static: false }) canvas!: ElementRef;
 
+  position = {
+    x: 0,
+    y: 0,
+  };
+
+  @HostListener('mouseover', ['$event']) onMouseOver(e: Event): void {
+    console.log(e);
+  }
+
   ctx!: CanvasRenderingContext2D;
   buttonPlayBG = new Image();
+  bgLandscape = new Image();
+  title = new Image();
 
   constructor(
     private _mainMenuController: MainMenuController,
@@ -29,10 +41,43 @@ export class HangmanComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
 
-    this.buttonPlayBG.src = './assets/games/hangman/main_menu_play.png';
+    this.ctx.imageSmoothingEnabled = false;
 
-    this.ctx.drawImage(this.buttonPlayBG, 0, 0, 50, 50, 0, 0, 50, 50);
+    this._mainMenuController.draw();
+
+    this.title.onload = () => {
+      this.ctx.drawImage(this.title, this.alignHorizontal(418), 50);
+    };
+
+    this.title.src = './assets/games/hangman/general_logo_blue.png';
+
+    this.buttonPlayBG.onload = () => {
+      this.ctx.drawImage(
+        this.buttonPlayBG,
+        this.alignHorizontal(155),
+        this.alignVertical(159)
+      );
+    };
+
+    this.buttonPlayBG.src = './assets/games/hangman/main_menu_play.png';
   }
+
+  main(): void {
+    console.log('Click');
+  }
+
+  alignHorizontal(size: number): number {
+    const width = this.canvas.nativeElement.width;
+
+    return width / 2 - size / 2;
+  }
+
+  alignVertical(size: number): number {
+    const height = this.canvas.nativeElement.height;
+    return height / 2 - size / 2;
+  }
+
+  alignCenter(): void {}
 
   // answer = '';
 

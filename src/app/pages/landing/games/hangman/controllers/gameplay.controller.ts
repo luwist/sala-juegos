@@ -9,4 +9,12 @@ export class GameplayController {
   initGallow(): void {}
 
   initKeyboard(): void {}
+
+  isWin(): void {}
+
+  checkWin(): void {}
+
+  endGame(): void {}
+
+  draw(): void {}
 }

@@ -4,9 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MainMenuController {
-  buttonPlayBG = new Image();
+  bgLandscape: HTMLImageElement = new Image();
+  title: HTMLImageElement = new Image();
+  buttonPlayBG: HTMLImageElement = new Image();
 
-  init(): void {}
+  draw(): void {}
 
-  buttonPlay(): void {}
+  private init(): void {}
+
+  private buttonPlay(): void {}
+
+  private drawTitle(): void {
+    // this.bgLandscape.onload = () => {
+    //   this.ctx.drawImage(this.bgLandscape, 0, 0);
+    // };
+    // this.bgLandscape.src =
+    //   './assets/games/hangman/general_background_horizontal.png';
+  }
 }
