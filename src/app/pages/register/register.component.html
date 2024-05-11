@@ -1,0 +1,56 @@
+<main class="main">
+  @if (showError) {
+  <app-toast message="{{ messageError }}" />
+  }
+  <div>
+    <h1 class="title">Crear una cuenta</h1>
+    <form class="form" (submit)="login($event)" [formGroup]="registerForm">
+      <div class="form-field">
+        <label class="label">Usuario</label>
+        <input placeholder="Usuario" formControlName="username" />
+        @if (usernameControl.invalid && (usernameControl.touched ||
+        usernameControl.dirty)) {
+        <p class="error">El Usuario no puede estar vacio</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label class="label">Correo Electronico</label>
+        <input placeholder="Correo Electronico" formControlName="email" />
+        @if (emailControl.invalid && (emailControl.touched ||
+        emailControl.dirty)) { @if (emailControl.hasError('required')) {
+        <p class="error">El correo electronico no puede estar vacio</p>
+        } @if (emailControl.hasError('email')) {
+        <p class="error">Ingrese un correo electronico valido</p>
+        } }
+      </div>
+
+      <div class="form-field">
+        <label class="label">Contraseña</label>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+
+        @if (passwordControl.invalid && (passwordControl.touched ||
+        passwordControl.dirty)) {
+        <p class="error">La contraseña no puede estar vacia</p>
+        }
+      </div>
+
+      <button
+        pButton
+        [disabled]="(registerForm.statusChanges | async) !== 'VALID'"
+        class="button"
+        type="submit"
+      >
+        {{ buttonText }}
+      </button>
+
+      <p class="create-account">
+        ¿Ya tienes una cuenta? <a href="/login">Ingresar</a>
+      </p>
+    </form>
+  </div>
+</main>

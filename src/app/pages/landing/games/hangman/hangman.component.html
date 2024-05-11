@@ -1,41 +1,66 @@
-<main class="main">
-  <canvas #game width="960" height="540" id="game" (click)="main()">
-    <!-- <div #game class="end">
-      <div class="background">
-        <span class="text"></span>
-      </div>
-    </div>
-    <div class="left">
-      <div class="container">
-        <div class="answer">
-          @for (item of text; track $index) {
-          <div class="letter">
-            @if (item.show) {
-            {{ item.letter }}
-            }
+<div class="game">
+  <div #mainMenu class="main-menu">
+    <img src="assets/games/hangman/general_logo_blue.png" alt="" class="logo" />
+
+    <button class="button" (click)="buttonPlay()">
+      <img src="assets/games/hangman/main_menu_play.png" alt="" />
+    </button>
+  </div>
+
+  <div #gameplay class="gameplay">
+    @if (showPauseSettings) {
+    <div class="pause">
+      <div class="pause-background">
+        <img
+          src="assets/games/hangman/pause_settings_background.png"
+          alt=""
+          class="pause-image"
+        />
+
+        <div class="content">
+          <button
+            class="button button-close"
+            (click)="showPauseSettings = !showPauseSettings"
+          ></button>
+
+          <p class="title">Pausa</p>
+
+          <div class="pause-settings-buttons">
+            <button class="button" (click)="buttonHome()">
+              <img src="assets/games/hangman/general_home.png" alt="" />
+            </button>
+            <button class="button" (click)="buttonRestart()">
+              <img src="assets/games/hangman/general_restart.png" alt="" />
+            </button>
           </div>
-          }
-        </div>
-        <div class="keyboard" (click)="keyPressed($event)">
-          @for (key of keys; track $index) {
-          <button class="key">
-            {{ key }}
-            <span class="status"></span>
-          </button>
-          }
         </div>
       </div>
     </div>
-    <div class="right">
-      <div #gallow class="gallow">
-        <div class="rope"></div>
-        <div class="head"></div>
-        <div class="body"></div>
-        <div class="hand-left"></div>
-        <div class="hand-right"></div>
-        <div class="leg-left"></div>
-        <div class="leg-right"></div>
+    }
+
+    <div class="top-gameplay">
+      <span>
+        <img src="assets/games/hangman/gameplay_check.png" alt="" />
+      </span>
+
+      <button class="button button-pause" (click)="buttonPause()">
+        <img src="assets/games/hangman/gameplay_pause.png" alt="" />
+      </button>
+    </div>
+
+    <div class="game-content">
+      <div class="keyboard">
+        @for (item of keyboard; track $index) {
+        <div>
+          @for (key of item; track $index) {
+          <button class="button button-key">{{ key }}</button>
+          }
+        </div>
+        }
       </div>
-    </div> -->
-  </canvas>
-</main>
+      <div class="gallow">
+        <img src="assets/games/hangman/animation_gallow.png" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,32 +8,28 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        title: 'Inicio',
         loadComponent: () =>
           import('./home/home.component').then((m) => m.HomeComponent),
       },
       {
-        path: 'quien-soy',
+        path: 'who-i-am',
+        title: 'Quien Soy',
         loadComponent: () =>
-          import('./about/about.component').then((m) => m.AboutComponent),
+          import('./who-i-am/who-i-am.component').then(
+            (m) => m.WhoIAmComponent
+          ),
       },
       {
         path: 'chat',
+        title: 'Sala de Chat',
         loadComponent: () =>
           import('./chat/chat.component').then((m) => m.ChatComponent),
       },
       {
-        path: 'games/hangman',
-        loadComponent: () =>
-          import('./games/hangman/hangman.component').then(
-            (m) => m.HangmanComponent
-          ),
-      },
-      {
-        path: 'games/higher-or-lower',
-        loadComponent: () =>
-          import('./games/higher-or-lower/higher-or-lower.component').then(
-            (m) => m.HigherOrLowerComponent
-          ),
+        path: 'games',
+        loadChildren: () =>
+          import('./games/games.routes').then((m) => m.routes),
       },
     ],
   },

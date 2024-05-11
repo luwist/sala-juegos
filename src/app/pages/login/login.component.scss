@@ -114,6 +114,18 @@ input {
   }
 }
 
+.create-account {
+  text-align: center;
+  color: #121212;
+  font-size: 14px;
+  margin-top: 40px;
+
+  a {
+    color: hsl(207, 90%, 54%);
+    text-decoration: none;
+  }
+}
+
 :host ::ng-deep .custom-dropdown .p-dropdown {
   width: 100%;
   min-height: 48px;
