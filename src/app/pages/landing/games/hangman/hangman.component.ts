@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-hangman',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './hangman.component.html',
   styleUrl: './hangman.component.scss',
 })
@@ -13,6 +14,8 @@ export class HangmanComponent implements AfterViewInit {
   category = '';
   answer = '';
 
+  answerArray: any[] = [];
+
   answers = [
     {
       category: 'Animal',
@@ -20,7 +23,15 @@ export class HangmanComponent implements AfterViewInit {
     },
     {
       category: 'Pais',
-      answer: ['Estados Unidos', 'Francia', 'Japon', 'Australia', 'Brasil'],
+      answer: [
+        'Argentina',
+        'Francia',
+        'Japon',
+        'Australia',
+        'Brasil',
+        'Peru',
+        'Colombia',
+      ],
     },
     {
       category: 'Fruta',
@@ -68,8 +79,15 @@ export class HangmanComponent implements AfterViewInit {
     const mainMenu = this._mainMenu.nativeElement;
     const gameEnd = this._gameEnd.nativeElement;
 
+    const menu = this._menu.nativeElement;
+    const keyboard = this._keyboard.nativeElement;
+
+    menu.style.opacity = '1';
+    gameEnd.style.display = 'none';
+    keyboard.style.display = 'flex';
+
     this.category = this.randomCategory();
-    this.answer = this.randomAnswer();
+    this.answerArray = this.randomAnswer();
     this.resetKeyboardButton();
 
     mainMenu.style.display = 'none';
@@ -109,7 +127,7 @@ export class HangmanComponent implements AfterViewInit {
 
     this.randomIndex();
     this.category = this.randomCategory();
-    this.answer = this.randomAnswer();
+    this.answerArray = this.randomAnswer();
     this.resetKeyboardButton();
 
     const menu = this._menu.nativeElement;
@@ -123,20 +141,39 @@ export class HangmanComponent implements AfterViewInit {
     this.lives = 7;
   }
 
-  isWin(): void {}
-
-  checkWin(): void {}
-
   keyboardButton(e: any): void {
-    const letter = e.target.dataset.letter;
+    const letter: string = e.target.dataset.letter;
+    let isCorrect = false;
 
     if (letter !== undefined) {
-      const buttonKey = e.target;
+      const buttonElement = e.target as HTMLButtonElement;
+      const imageElement = buttonElement.children[0] as HTMLImageElement;
 
-      buttonKey.children[0].src =
-        'assets/games/hangman/gameplay_letter_wrong.png';
+      if (this.discoveredLetter(letter)) {
+        imageElement.src = 'assets/games/hangman/gameplay_letter_right.png';
+      } else {
+        imageElement.src = 'assets/games/hangman/gameplay_letter_wrong.png';
 
-      this.lives--;
+        this.lives--;
+      }
+
+      // if (this.discoveredLetter(letter)) {
+      //   buttonKey.children[0].src =
+      //   'assets/games/hangman/gameplay_letter_right.png';
+      // } else {
+      //   buttonKey.children[0].src =
+      //   'assets/games/hangman/gameplay_letter_wrong.png';
+      // }
+
+      if (this.checkWin()) {
+        const menu = this._menu.nativeElement;
+        const keyboard = this._keyboard.nativeElement;
+        const gameEnd = this._gameEnd.nativeElement;
+
+        menu.style.opacity = '0';
+        gameEnd.style.display = 'block';
+        keyboard.style.display = 'none';
+      }
 
       if (this.lives <= 0) {
         const menu = this._menu.nativeElement;
@@ -147,9 +184,62 @@ export class HangmanComponent implements AfterViewInit {
         gameEnd.style.display = 'block';
         keyboard.style.display = 'none';
 
+        this.showAnswer();
+
         this.lives = 7;
       }
     }
+  }
+
+  showAnswer(): void {
+    for (let i = 0; i < this.answerArray.length; i++) {
+      this.answerArray[i].show = true;
+    }
+  }
+
+  discoveredLetter(letter: string): boolean {
+    let discoveredLetter = false;
+
+    for (let i = 0; i < this.answerArray.length; i++) {
+      const letterKey: string = this.answerArray[i].letter;
+
+      if (letterKey.toLowerCase() == letter.toLowerCase()) {
+        this.answerArray[i].show = true;
+
+        discoveredLetter = true;
+      }
+    }
+
+    return discoveredLetter;
+  }
+
+  endGame(): boolean {
+
+
+    return false;
+  }
+
+  isWin(): boolean {
+    return false;
+  }
+
+  checkWin(): boolean {
+    let win = false;
+    let countLetter = 0;
+
+    for (let i = 0; i < this.answerArray.length; i++) {
+      const l: string = this.answerArray[i].show;
+
+      if (l) {
+        countLetter++;
+      }
+    }
+
+    if (this.answerArray.length == countLetter) {
+      win = true;
+    }
+
+    return win;
   }
 
   isLetterWrong(): void {}
@@ -161,37 +251,29 @@ export class HangmanComponent implements AfterViewInit {
       const row = keyboard.children[i];
 
       for (let j = 0; j < row.children.length; j++) {
-        console.log(row.children);
         const letter = row.children[j].children[0];
-        console.log(letter);
 
         letter.src = '';
       }
     }
-    console.log(this._keyboard);
-
-    // for (let i = 0; i < 28;i++) {
-    // }
-    // const letter = e.target.dataset.letter;
-
-    // if (letter !== undefined) {
-    //   const buttonKey = e.target;
-
-    //   buttonKey.children[0].src =
-    //     'assets/games/hangman/gameplay_letter_wrong.png';
-
-    //   console.log(letter);
-    //   console.log(e);
-    // }
   }
 
   randomCategory(): string {
     return this.answers[this.randomIndexAnswer].category;
   }
 
-  randomAnswer(): string {
+  randomAnswer(): any[] {
     const random = Math.floor(Math.random() * (this.answers.length - 0) + 0);
+    const ans = this.answers[this.randomIndexAnswer].answer[random];
+    const newArray: any[] = [];
 
-    return this.answers[this.randomIndexAnswer].answer[random];
+    for (let i = 0; i < ans.length; i++) {
+      newArray.push({
+        letter: ans[i],
+        show: false,
+      });
+    }
+
+    return newArray;
   }
 }

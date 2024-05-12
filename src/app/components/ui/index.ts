@@ -1,3 +1,4 @@
 export * from './dropdown';
-export * from './index';
+export * from './select';
 export * from './toast';
+export * from './index';

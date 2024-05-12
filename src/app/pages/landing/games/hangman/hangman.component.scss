@@ -74,7 +74,7 @@
 }
 
 .content-top {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -125,6 +125,14 @@
     font-size: 32px;
     text-align: center;
   }
+}
+
+.letter-hide {
+  opacity: 0;
+}
+
+.letter-show {
+  opacity: 1;
 }
 
 .answer {

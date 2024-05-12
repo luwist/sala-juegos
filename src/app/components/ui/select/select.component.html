@@ -1,0 +1,80 @@
+<div #dropdown class="dropdown">
+  <div #dropdownTrigger class="dropdown-trigger" (click)="toggle()">
+    Elige una cuenta
+    <input type="text" />
+
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995"
+        stroke="#484f56"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+
+  <div #dropdownMenu class="dropdown-menu">
+    <ul class="menu">
+      <li class="menu-item" (click)="selectedItem($event)">
+        <div class="user">
+          <img
+            src="assets/images/avatar-chesseto.png"
+            alt="ChesseTo Avatar"
+            class="avatar"
+          />
+          <div class="content">
+            <span class="username">ChesseTo</span>
+            <span class="role">Usuario</span>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item" (click)="selectedItem($event)">
+        <div class="user">
+          <img
+            src="assets/images/avatar-luwist.png"
+            alt="Luwist Avatar"
+            class="avatar"
+          />
+          <div class="content">
+            <span class="username">Luwist</span>
+            <span class="role">Administrador</span>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item" (click)="selectedItem($event)">
+        <div class="user">
+          <img
+            src="assets/images/avatar-strogebest.png"
+            alt="StrogeBest Avatar"
+            class="avatar"
+          />
+          <div class="content">
+            <span class="username">StrogeBest</span>
+            <span class="role">Tester</span>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item" (click)="selectedItem($event)">
+        <div class="user">
+          <img
+            src="assets/images/avatar-kwess.png"
+            alt="Kwess Avatar"
+            class="avatar"
+          />
+          <div class="content">
+            <span class="username">Kwess</span>
+            <span class="role">Usuario</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

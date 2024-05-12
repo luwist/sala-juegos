@@ -1,0 +1,22 @@
+.button {
+  display: block;
+  height: 48px;
+  width: 100%;
+  border: 0;
+  background-color: hsl(207, 90%, 54%);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 200ms ease;
+
+  &:hover {
+    background-color: hsl(207, 75%, 54%);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

@@ -5,9 +5,7 @@
   <div>
     <h1 class="title">Iniciar Sesion</h1>
 
-    <app-dropdown />
-
-    <!-- <p-dropdown
+    <p-dropdown
       [options]="accounts"
       [(ngModel)]="selectedAccount"
       optionLabel="name"
@@ -36,7 +34,7 @@
           </div>
         </div>
       </ng-template>
-    </p-dropdown> -->
+    </p-dropdown>
 
     <p-divider align="center" type="solid">
       <b>O</b>
@@ -68,12 +66,12 @@
       </div>
 
       <button
-        pButton
         [disabled]="(loginForm.statusChanges | async) !== 'VALID'"
-        label="{{ buttonText }}"
         class="button"
         type="submit"
-      ></button>
+      >
+        {{ buttonText }}
+      </button>
 
       <p class="create-account">
         ¿No tienes una cuenta? <a href="/register">Registrate</a>

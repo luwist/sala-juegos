@@ -60,9 +60,14 @@
           </div>
 
           <div class="answer">
-            @for (letter of answer; track $index) {
+            @for (item of answerArray; track $index) {
             <span class="letter">
-              {{ letter }}
+              <span
+                class="letter-hide"
+                [ngClass]="{ 'letter-show': item.show }"
+                >{{ item.letter }}</span
+              >
+
               <img src="assets/games/hangman/answer_sheet.png" alt="" />
             </span>
             }
