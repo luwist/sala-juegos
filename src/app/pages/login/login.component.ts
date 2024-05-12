@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 import { Account, UserCredential } from '@app/models';
 import { AuthService, UserService } from '@app/services';
-import { ToastComponent } from '@app/components';
+import { DropdownComponent, ToastComponent } from '@app/components';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
     DividerModule,
     ToastComponent,
     ReactiveFormsModule,
+    DropdownComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

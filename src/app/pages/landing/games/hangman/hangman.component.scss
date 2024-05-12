@@ -4,7 +4,7 @@
   height: 540px;
   background-color: #f5f5f5;
   font-family: "Caveat", cursive;
-  color: #4966c4;
+  color: #0568af;
   background-image: url("../../../../../assets/games/hangman/general_background_horizontal.png");
 }
 
@@ -73,6 +73,12 @@
   z-index: 1000;
 }
 
+.content-top {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .pause-settings-buttons {
   position: absolute;
   top: 0;
@@ -86,14 +92,62 @@
   gap: 40px;
 }
 
+.content-left {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  color: #0568af;
+  font-size: 50px;
+}
+
+.clueframe {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 284px;
+  height: 53px;
+  margin-bottom: 16px;
+
+  .text {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #0568af;
+    font-size: 32px;
+    text-align: center;
+  }
+}
+
+.answer {
+  display: flex;
+  gap: 12px;
+
+  .letter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 50px;
+    color: #0568af;
+    // background-image: url("../../../../../assets/games/hangman/answer_sheet.png");
+  }
+}
+
 .title {
   position: absolute;
   top: 80px;
   left: 0;
   right: 0;
   text-align: center;
-  font-weight: 700;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .game-content {
@@ -105,6 +159,7 @@
 }
 
 .keyboard {
+  margin-bottom: 68px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,11 +170,43 @@
     gap: 10px;
 
     .button-key {
+      position: relative;
       width: 46px;
       height: 52px;
       font-size: 32px;
+      color: #0568af;
       font-family: "Caveat", cursive;
       font-weight: 700;
+
+      .letter-right-wrong {
+        position: absolute;
+        top: 3px;
+        left: 4px;
+      }
+    }
+  }
+}
+
+.game-end {
+  position: relative;
+  width: 500px;
+  height: 295px;
+
+  .game-end-content {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .pause-settings-buttons {
+      position: static;
+      width: auto;
+      height: auto;
     }
   }
 }

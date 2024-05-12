@@ -1,0 +1,30 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+
+  .label {
+    font-size: 14px;
+    color: #121212;
+    font-weight: 700;
+  }
+
+  input {
+    display: block;
+    height: 48px;
+    width: 100%;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 8px;
+    border: 1px solid hsl(210, 14%, 83%);
+    color: hsl(210, 9%, 31%);
+    outline: 0;
+
+    &:focus {
+      border: 1px solid transparent;
+      outline: 2px solid hsl(207, 90%, 54%);
+      background-color: hsl(225, 90%, 97%);
+    }
+  }
+}

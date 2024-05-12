@@ -38,9 +38,11 @@
     </div>
     }
 
-    <div class="top-gameplay">
-      <span>
+    <div #menu class="top-gameplay">
+      <span class="check">
         <img src="assets/games/hangman/gameplay_check.png" alt="" />
+
+        0
       </span>
 
       <button class="button button-pause" (click)="buttonPause()">
@@ -49,15 +51,59 @@
     </div>
 
     <div class="game-content">
-      <div class="keyboard">
-        @for (item of keyboard; track $index) {
-        <div>
-          @for (key of item; track $index) {
-          <button class="button button-key">{{ key }}</button>
+      <div class="content-left">
+        <div class="content-top">
+          <div class="clueframe">
+            <img src="assets/games/hangman/gameplay_clueframe.png" alt="" />
+
+            <span class="text">{{ category }}</span>
+          </div>
+
+          <div class="answer">
+            @for (letter of answer; track $index) {
+            <span class="letter">
+              {{ letter }}
+              <img src="assets/games/hangman/answer_sheet.png" alt="" />
+            </span>
+            }
+          </div>
+        </div>
+
+        <div #keyboardd class="keyboard" (click)="keyboardButton($event)">
+          @for (item of keyboard; track $index) {
+          <div>
+            @for (key of item; track $index) {
+            <button class="button button-key" [attr.data-letter]="key">
+              {{ key }}
+              <img class="letter-right-wrong" src="" alt="" />
+            </button>
+            }
+          </div>
           }
         </div>
-        }
+
+        <div #gameEnd class="game-end">
+          <img src="assets/games/hangman/gameover_background.png" alt="" />
+
+          <div class="game-end-content">
+            <span class="check">
+              <img src="assets/games/hangman/gameplay_check.png" alt="" />
+
+              0
+            </span>
+
+            <div class="pause-settings-buttons">
+              <button class="button" (click)="buttonHome()">
+                <img src="assets/games/hangman/general_home.png" alt="" />
+              </button>
+              <button class="button" (click)="buttonRestart()">
+                <img src="assets/games/hangman/general_restart.png" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="gallow">
         <img src="assets/games/hangman/animation_gallow.png" alt="" />
       </div>

@@ -3,3 +3,4 @@ export * from './index';
 export * from './navbar';
 export * from './ui';
 export * from './ui/toast';
+export * from './ui/dropdown';

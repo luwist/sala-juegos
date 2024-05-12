@@ -1,26 +1,34 @@
-@import "./assets/theme/theme.scss";
-@import "primeicons/primeicons.css";
+// @import "./assets/theme/theme.scss";
+// @import "primeicons/primeicons.css";
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+// *,
+// *::after,
+// *::before {
+//   box-sizing: border-box;
+//   margin: 0;
+//   padding: 0;
+// }
 
-p-password.custom-password .p-password.p-component.p-inputwrapper {
-  width: 100%;
-  height: 48px;
-  border-radius: 8px;
+// p-password.custom-password .p-password.p-component.p-inputwrapper {
+//   width: 100%;
+//   height: 48px;
+//   border-radius: 8px;
 
-  .p-inputtext.p-component.p-element.p-password-input {
-    padding: 0 20px;
-    width: 100%;
-  }
-}
+//   .p-inputtext.p-component.p-element.p-password-input {
+//     padding: 0 20px;
+//     width: 100%;
+//   }
+// }
 
-p-divider
-  .p-divider.p-component.p-divider-horizontal.p-divider-solid.p-divider-center {
-  margin: 20px 0;
+// p-divider
+//   .p-divider.p-component.p-divider-horizontal.p-divider-solid.p-divider-center {
+//   margin: 20px 0;
+// }
+
+@forward "./scss/modern-normalize.scss";
+@forward "./scss/components/input.scss";
+@forward "./scss/components/dropdown.scss";
+
+html {
+  font-family: "Exo 2", sans-serif;
 }
