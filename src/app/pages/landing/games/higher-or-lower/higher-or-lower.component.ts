@@ -18,6 +18,9 @@ export class HigherOrLowerComponent implements AfterViewInit {
   @ViewChild('card') private _cardElement!: ElementRef;
   @ViewChild('game') private _gameElement!: ElementRef;
 
+  @ViewChild('gameplay') private _gameplay!: ElementRef;
+  @ViewChild('endgame') private _endgame!: ElementRef;
+
   private _currentCard!: number;
 
   ngAfterViewInit(): void {

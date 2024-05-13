@@ -13,6 +13,7 @@ export class HangmanComponent implements AfterViewInit {
   randomIndexAnswer!: number;
   category = '';
   answer = '';
+  score = 0;
 
   answerArray: any[] = [];
 
@@ -143,7 +144,6 @@ export class HangmanComponent implements AfterViewInit {
 
   keyboardButton(e: any): void {
     const letter: string = e.target.dataset.letter;
-    let isCorrect = false;
 
     if (letter !== undefined) {
       const buttonElement = e.target as HTMLButtonElement;
@@ -151,44 +151,42 @@ export class HangmanComponent implements AfterViewInit {
 
       if (this.discoveredLetter(letter)) {
         imageElement.src = 'assets/games/hangman/gameplay_letter_right.png';
+
+        this.score += 10;
       } else {
         imageElement.src = 'assets/games/hangman/gameplay_letter_wrong.png';
+
+        if (this.score > 0) {
+          this.score -= 10;
+        }
 
         this.lives--;
       }
 
-      // if (this.discoveredLetter(letter)) {
-      //   buttonKey.children[0].src =
-      //   'assets/games/hangman/gameplay_letter_right.png';
-      // } else {
-      //   buttonKey.children[0].src =
-      //   'assets/games/hangman/gameplay_letter_wrong.png';
-      // }
-
       if (this.checkWin()) {
-        const menu = this._menu.nativeElement;
-        const keyboard = this._keyboard.nativeElement;
-        const gameEnd = this._gameEnd.nativeElement;
+        const gameEnd = this._gameEnd.nativeElement as HTMLDivElement;
+        const gameEndBackground = gameEnd.children[0] as HTMLImageElement;
 
-        menu.style.opacity = '0';
-        gameEnd.style.display = 'block';
-        keyboard.style.display = 'none';
+        gameEndBackground.src = 'assets/games/hangman/welldone_background.png';
       }
 
       if (this.lives <= 0) {
-        const menu = this._menu.nativeElement;
-        const keyboard = this._keyboard.nativeElement;
-        const gameEnd = this._gameEnd.nativeElement;
-
-        menu.style.opacity = '0';
-        gameEnd.style.display = 'block';
-        keyboard.style.display = 'none';
-
+        this.showEndgameBackground();
         this.showAnswer();
 
         this.lives = 7;
       }
     }
+  }
+
+  showEndgameBackground(): void {
+    const menu = this._menu.nativeElement;
+    const keyboard = this._keyboard.nativeElement;
+    const gameEnd = this._gameEnd.nativeElement;
+
+    menu.style.opacity = '0';
+    gameEnd.style.display = 'block';
+    keyboard.style.display = 'none';
   }
 
   showAnswer(): void {
@@ -214,8 +212,6 @@ export class HangmanComponent implements AfterViewInit {
   }
 
   endGame(): boolean {
-
-
     return false;
   }
 
@@ -241,8 +237,6 @@ export class HangmanComponent implements AfterViewInit {
 
     return win;
   }
-
-  isLetterWrong(): void {}
 
   resetKeyboardButton(): void {
     const keyboard = this._keyboard.nativeElement;
