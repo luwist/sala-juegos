@@ -1,0 +1,29 @@
+<div class="game">
+  <div class="gameplay">
+    <header class="header">
+      <div #timeBar class="time-bar">
+        <img
+          src="assets/games/arithmetic/time_bar_outline.png"
+          alt=""
+          class="outline"
+        />
+        <img src="assets/games/arithmetic/time_bar.png" alt="" class="bar" />
+      </div>
+    </header>
+
+    <div class="question">{{ question.question }} = ?</div>
+
+    <div #containerOptions class="option-container">
+      @for (option of question.options; track $index) {
+      <span class="option" (click)="selectedNumber(option, $event)">
+        {{ option }}
+        <img
+          src="assets/games/arithmetic/cross.png"
+          alt=""
+          class="hidden cross"
+        />
+      </span>
+      }
+    </div>
+  </div>
+</div>

@@ -20,6 +20,22 @@ export const routes: Routes = [
             (m) => m.HigherOrLowerComponent
           ),
       },
+      {
+        path: 'trivia-quiz',
+        title: 'Preguntados',
+        loadComponent: () =>
+          import('./trivia-quiz/trivia-quiz.component').then(
+            (m) => m.TriviaQuizComponent
+          ),
+      },
+      {
+        path: 'arithmetic',
+        title: 'Aritmetica',
+        loadComponent: () =>
+          import('./arithmetic/arithmetic.component').then(
+            (m) => m.ArithmeticComponent
+          ),
+      },
     ],
   },
 ];
