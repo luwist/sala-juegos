@@ -1,5 +1,5 @@
 <div class="game">
-  <div class="gameplay">
+  <div #gameplay class="gameplay">
     <header class="header">
       <div #timeBar class="time-bar">
         <img
@@ -23,5 +23,12 @@
       </span>
       }
     </div>
+  </div>
+
+  <div #endgame class="endgame">
+    <h2>Game Over</h2>
+    <button type="button" (click)="tryAgain()">
+      <img src="assets/games/arithmetic/try_again.png" alt="" />
+    </button>
   </div>
 </div>

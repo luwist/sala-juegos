@@ -1,31 +1,7 @@
 <div class="game">
-  <div class="gameplay">
-    <div class="tv">
-      <img src="assets/games/trivia-quiz/game_tv.png" alt="" class="game-tv" />
-      <img
-        src="https://play-lh.googleusercontent.com/proxy/yUN1bb-QNudQPDsWHaVkw7NZEcPu6tx87xFBhjfwJSi84HAwPQaG3wfEK4562BSAPEG1NdL6f94fg_HkZEmFVoLOoT-EDhq9tZPBmNkGz87sM_oVxg=s1920-w1920-h1080"
-        alt=""
-        class="background-tv"
-      />
-    </div>
-    <div class="question">¿Como se llama esta pelicula?</div>
-    <div class="answers">
-      <button class="button button-answer">
-        <span class="option">A</span>
-        Toy Story
-      </button>
-      <button class="button button-answer">
-        <span class="option">B</span>
-        Buscando a Nemo
-      </button>
-      <button class="button button-answer">
-        <span class="option">C</span>
-        Ratatouille
-      </button>
-      <button class="button button-answer">
-        <span class="option">D</span>
-        Shrek
-      </button>
-    </div>
-  </div>
+  @if (showGameplay) {
+  <app-gameplay (playEventEmitter)="play($event)" />
+  } @else {
+  <app-main-menu (playEventEmitter)="play($event)" />
+  }
 </div>

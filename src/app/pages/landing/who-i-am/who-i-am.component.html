@@ -2,11 +2,11 @@
   <div>
     <div class="avatar">
       <p-avatar
-        image="assets/avatar.jpeg"
+        image="{{ (userGithub$ | async)?.avatar_url }}"
         styleClass="mr-2"
         size="xlarge"
       ></p-avatar>
-      <p class="name">Javier Vilchez</p>
+      <p class="name">{{ (userGithub$ | async)?.name }}</p>
       <p>4° A</p>
     </div>
 

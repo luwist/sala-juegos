@@ -34,6 +34,12 @@ p-divider
 // @forward "./scss/components/dropdown.scss";
 // @forward "./scss/components/input.scss";
 
+.game {
+  position: relative;
+  width: 960px;
+  height: 540px;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;

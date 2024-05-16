@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserGithub } from '@app/models';
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-who-i-am',
   standalone: true,
-  imports: [RouterLink, AvatarModule],
+  imports: [CommonModule, RouterLink, AvatarModule],
   templateUrl: './who-i-am.component.html',
   styleUrl: './who-i-am.component.scss',
 })
