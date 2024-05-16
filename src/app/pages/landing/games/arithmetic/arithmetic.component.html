@@ -11,17 +11,15 @@
       </div>
     </header>
 
-    <div class="question">{{ question.question }} = ?</div>
+    <div #questionDiv class="question">
+      {{ question.question }} = {{ answer }}
+    </div>
 
     <div #containerOptions class="option-container">
       @for (option of question.options; track $index) {
       <span class="option" (click)="selectedNumber(option, $event)">
         {{ option }}
-        <img
-          src="assets/games/arithmetic/cross.png"
-          alt=""
-          class="hidden cross"
-        />
+        <img src="" alt="" class="hidden" />
       </span>
       }
     </div>

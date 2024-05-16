@@ -16,11 +16,14 @@ import {
 export class ArithmeticComponent implements OnInit, AfterViewInit {
   @ViewChild('timeBar') private _timeBar!: ElementRef;
   @ViewChild('containerOptions') private _containerOptions!: ElementRef;
+  @ViewChild('questionDiv') private _questionDiv!: ElementRef;
 
   question: any;
   time: any;
 
   seconds: number = 20;
+  answer: string = '?';
+  left: number = 0;
 
   data = [
     {
@@ -158,10 +161,19 @@ export class ArithmeticComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const time = this._timeBar.nativeElement;
+
+    console.log(this._timeBar);
+
     this.time = setInterval(() => {
+      this.left -= 10;
+
+      this._timeBar.nativeElement.children[1].style.left = `${this.left}px`;
+
       this.seconds--;
 
-      console.log(this.seconds);
+      console.log(this.left);
+      console.log(this._timeBar.nativeElement.children[1].style.left);
 
       if (this.seconds <= 0) {
         clearInterval(this.time);
@@ -173,16 +185,34 @@ export class ArithmeticComponent implements OnInit, AfterViewInit {
   selectedNumber(number: number, e: any) {
     if (this.question.answer != number) {
       e.target.children[0].classList.remove('hidden');
+      e.target.children[0].classList.add('cross');
+      e.target.children[0].classList.remove('tick');
+      e.target.children[0].src = 'assets/games/arithmetic/cross.png';
     } else {
+      const questionDiv = this._questionDiv.nativeElement;
       let randomIndex = Math.floor(Math.random() * this.data.length - 0 + 0);
-
-      this.question = this.data[randomIndex];
-
       const containerOptions = this._containerOptions.nativeElement;
 
-      for (let i = 0; i < containerOptions.children.length; i++) {
-        containerOptions.children[i].children[0].classList.add('hidden');
-      }
+      e.target.children[0].classList.add('tick');
+      e.target.children[0].classList.remove('cross');
+      questionDiv.classList.add('right');
+      e.target.children[0].classList.remove('hidden');
+
+      this.answer = number.toString();
+
+      console.log(e);
+
+      e.target.children[0].src = 'assets/games/arithmetic/tick.png';
+
+      setTimeout(() => {
+        questionDiv.classList.remove('right');
+        this.question = this.data[randomIndex];
+        this.answer = '?';
+
+        for (let i = 0; i < containerOptions.children.length; i++) {
+          containerOptions.children[i].children[0].classList.add('hidden');
+        }
+      }, 500);
     }
   }
 }
