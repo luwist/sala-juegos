@@ -4,10 +4,10 @@
       <div class="question-number">
         <img src="assets/games/trivia-quiz/ban_questionnumber.png" alt="" />
 
-        <span class="text">Pregunta 15</span>
+        <span class="text">Pregunta {{ numberQuestion }}</span>
       </div>
 
-      <span class="number">15/15</span>
+      <span class="number">{{ numberQuestion }}/15</span>
     </div>
 
     <button type="button" class="button-home" (click)="home()">
@@ -17,29 +17,37 @@
 
   <div class="tv">
     <img src="assets/games/trivia-quiz/game_tv.png" alt="" class="game-tv" />
-    <img
-      src="https://play-lh.googleusercontent.com/proxy/yUN1bb-QNudQPDsWHaVkw7NZEcPu6tx87xFBhjfwJSi84HAwPQaG3wfEK4562BSAPEG1NdL6f94fg_HkZEmFVoLOoT-EDhq9tZPBmNkGz87sM_oVxg=s1920-w1920-h1080"
-      alt=""
-      class="background-tv"
-    />
+    <img src="{{ urlImage }}" alt="" class="background-tv" />
   </div>
-  <div class="question">¿Como se llama esta pelicula?</div>
-  <div class="answers">
-    <button class="button button-answer right">
+  <div class="question">{{ question.question }}</div>
+  <div #answersDiv class="answers">
+    <button
+      class="button button-answer"
+      (click)="answerClick($event, question.options[0])"
+    >
       <span class="option">A</span>
-      Toy Story
+      {{ question.options[0] }}
     </button>
-    <button class="button button-answer wrong">
+    <button
+      class="button button-answer"
+      (click)="answerClick($event, question.options[1])"
+    >
       <span class="option">B</span>
-      Buscando a Nemo
+      {{ question.options[1] }}
     </button>
-    <button class="button button-answer">
+    <button
+      class="button button-answer"
+      (click)="answerClick($event, question.options[2])"
+    >
       <span class="option">C</span>
-      Ratatouille
+      {{ question.options[2] }}
     </button>
-    <button class="button button-answer">
+    <button
+      class="button button-answer"
+      (click)="answerClick($event, question.options[3])"
+    >
       <span class="option">D</span>
-      Shrek
+      {{ question.options[3] }}
     </button>
   </div>
 </div>

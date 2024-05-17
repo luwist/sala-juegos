@@ -12,8 +12,13 @@ import { GameOverComponent } from './game-over/game-over.component';
 })
 export class TriviaQuizComponent {
   showGameplay: boolean = false;
+  showGameOver: boolean = false;
 
   play(e: boolean) {
     this.showGameplay = e;
+  }
+
+  gameOver(e: boolean) {
+    this.showGameOver = e;
   }
 }

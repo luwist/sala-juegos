@@ -1,7 +1,12 @@
 <div class="game">
-  @if (showGameplay) {
-  <app-gameplay (playEventEmitter)="play($event)" />
-  } @else {
+  @if (showGameplay && !showGameOver) {
+  <app-gameplay
+    (playEventEmitter)="play($event)"
+    (gameOverEventEmitter)="gameOver($event)"
+  />
+  } @if(!showGameplay && !showGameOver) {
   <app-main-menu (playEventEmitter)="play($event)" />
+  } @if (showGameOver) {
+  <app-game-over />
   }
 </div>
