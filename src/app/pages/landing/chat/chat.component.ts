@@ -38,21 +38,19 @@ export class ChatComponent implements OnInit {
   }
 
   async sendMessage() {
-    const currentUser = this._userService.currentUser as User;
-    const chats = collection(this._firebase, 'chats');
-
-    await addDoc(chats, {
-      username: currentUser.username,
-      avatar: currentUser.avatar,
-      message: this.lastMessage,
-    });
-
-    this.lastMessage = '';
+    // const currentUser = this._userService.currentUser as User;
+    // const chats = collection(this._firebase, 'chats');
+    // await addDoc(chats, {
+    //   username: currentUser.username,
+    //   avatar: currentUser.avatar,
+    //   message: this.lastMessage,
+    // });
+    // this.lastMessage = '';
   }
 
   getKey(e: any): void {
-    if (e.key === 'Enter') {
-      this.sendMessage();
-    }
+    // if (e.key === 'Enter') {
+    //   this.sendMessage();
+    // }
   }
 }

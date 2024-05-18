@@ -2,16 +2,30 @@ import { Injectable } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
-import { UserCredential } from '@app/models';
+import { User, UserCredential } from '@app/models';
 import { UserService } from '../user';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  doc,
+  setDoc,
+} from '@angular/fire/firestore';
+import { UserRepository } from '@app/repositories';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _auth: Auth, private _userService: UserService) {}
+  constructor(
+    private _auth: Auth,
+    private _userService: UserService,
+    private _userRepository: UserRepository,
+    private _firebase: Firestore
+  ) {}
 
   async login(credential: UserCredential): Promise<void> {
     await signInWithEmailAndPassword(
@@ -20,18 +34,23 @@ export class AuthService {
       credential.password
     );
 
-    await this._userService.updateCurrentUserByEmail(credential.email);
+    onAuthStateChanged(this._auth, (user) => {
+      console.log(user);
+    });
   }
 
-  async register(credential: UserCredential): Promise<void> {
-    try {
-      await createUserWithEmailAndPassword(
-        this._auth,
-        credential.email,
-        credential.password
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  async register(credential: UserCredential, userAcc: User): Promise<void> {
+    await createUserWithEmailAndPassword(
+      this._auth,
+      credential.email,
+      credential.password
+    );
+
+    onAuthStateChanged(this._auth, async (user) => {
+      const uid = user?.uid as string;
+      const userRef = await doc(this._firebase, 'users', uid);
+
+      await setDoc(userRef, userAcc);
+    });
   }
 }

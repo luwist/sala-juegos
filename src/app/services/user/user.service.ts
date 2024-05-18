@@ -65,19 +65,19 @@ export class UserService {
   private async getUserByEmail(email: string): Promise<User | null> {
     let user = null;
 
-    const q = query(
-      collection(this._firebase, 'users'),
-      where('email', '==', email)
-    );
-    const querySnapshot = await getDocs(q);
+    // const q = query(
+    //   collection(this._firebase, 'users'),
+    //   where('email', '==', email)
+    // );
+    // const querySnapshot = await getDocs(q);
 
-    querySnapshot.forEach((doc) => {
-      const u = doc.data() as User;
+    // querySnapshot.forEach((doc) => {
+    //   const u = doc.data() as User;
 
-      if (u.email == email) {
-        user = u;
-      }
-    });
+    //   if (u.email == email) {
+    //     user = u;
+    //   }
+    // });
 
     return user;
   }

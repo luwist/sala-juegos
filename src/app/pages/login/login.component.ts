@@ -91,16 +91,15 @@ export class LoginComponent implements OnInit {
 
       await this._authService.login(credentials);
 
-      this._router.navigateByUrl('/');
+      // this._router.navigateByUrl('/');
     } catch (error: any) {
       console.log(error.code);
       console.log(error.message);
       switch (error.code) {
-        case 'auth/invalid-credential':
+        case errorAuth.invalidCredential:
           this.showToast(
             'Correo electronico o contraseña incorrecta. Intentelo de nuevo'
           );
-
           break;
       }
     }
@@ -114,4 +113,9 @@ export class LoginComponent implements OnInit {
 
     this.buttonText = 'Ingresar';
   }
+}
+
+enum errorAuth {
+  invalidCredential = 'auth/invalid-credential',
+  invalidEmail = 'auth/invalid-email',
 }

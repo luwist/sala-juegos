@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastComponent } from '@app/components';
-import { UserCredential } from '@app/models';
+import { User, UserCredential } from '@app/models';
 import { AuthService, UserService } from '@app/services';
 import { ButtonModule } from 'primeng/button';
 
@@ -63,14 +63,18 @@ export class RegisterComponent {
       this.registerForm.markAsPending();
 
       const credentials = this.registerForm.getRawValue() as UserCredential;
+      const user = {
+        username: 'TYU',
+        role: 'tester',
+      };
 
       this.buttonText = 'Cargando...';
 
       console.log(credentials);
 
-      await this._authService.login(credentials);
+      await this._authService.register(credentials, user);
 
-      this._router.navigateByUrl('/');
+      // this._router.navigateByUrl('/');
     } catch (error: any) {
       switch (error.code) {
         case 'auth/invalid-credential':
