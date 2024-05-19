@@ -20,6 +20,7 @@ import {
   ToastComponent,
 } from '@app/components';
 import { CommonModule } from '@angular/common';
+import { AuthError } from '@app/enums/auth-error.enum';
 
 @Component({
   selector: 'app-login',
@@ -91,12 +92,10 @@ export class LoginComponent implements OnInit {
 
       await this._authService.login(credentials);
 
-      // this._router.navigateByUrl('/');
+      this._router.navigateByUrl('/');
     } catch (error: any) {
-      console.log(error.code);
-      console.log(error.message);
       switch (error.code) {
-        case errorAuth.invalidCredential:
+        case AuthError.invalidCredential:
           this.showToast(
             'Correo electronico o contraseña incorrecta. Intentelo de nuevo'
           );
@@ -113,9 +112,4 @@ export class LoginComponent implements OnInit {
 
     this.buttonText = 'Ingresar';
   }
-}
-
-enum errorAuth {
-  invalidCredential = 'auth/invalid-credential',
-  invalidEmail = 'auth/invalid-email',
 }

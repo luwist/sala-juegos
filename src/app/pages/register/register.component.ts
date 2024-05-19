@@ -72,7 +72,7 @@ export class RegisterComponent {
 
       console.log(credentials);
 
-      await this._authService.register(credentials, user);
+      // await this._authService.register(credentials, user);
 
       // this._router.navigateByUrl('/');
     } catch (error: any) {

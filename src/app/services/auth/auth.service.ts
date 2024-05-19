@@ -15,17 +15,20 @@ import {
   setDoc,
 } from '@angular/fire/firestore';
 import { UserRepository } from '@app/repositories';
+import { Observable } from 'rxjs';
+import { IsLoggedIn } from '@app/models/is-logged-in.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private _auth: Auth,
-    private _userService: UserService,
-    private _userRepository: UserRepository,
-    private _firebase: Firestore
-  ) {}
+  private _currentUser!: IsLoggedIn;
+
+  constructor(private _auth: Auth, private _userRepository: UserRepository) {}
+
+  get currentUser(): IsLoggedIn {
+    return this._currentUser;
+  }
 
   async login(credential: UserCredential): Promise<void> {
     await signInWithEmailAndPassword(
@@ -35,22 +38,26 @@ export class AuthService {
     );
 
     onAuthStateChanged(this._auth, (user) => {
-      console.log(user);
+      const id = user?.uid as string;
+
+      const currentUser = this._userRepository.getUserById(id);
+
+      if (!currentUser) {
+        //   this._currentUser.subscribe(data => {
+        //     this.currentUser = {
+        //       user: data,
+        //       isLoggedIn: true
+        //     };
+        //   });
+      }
     });
   }
 
-  async register(credential: UserCredential, userAcc: User): Promise<void> {
+  async register(credential: UserCredential): Promise<void> {
     await createUserWithEmailAndPassword(
       this._auth,
       credential.email,
       credential.password
     );
-
-    onAuthStateChanged(this._auth, async (user) => {
-      const uid = user?.uid as string;
-      const userRef = await doc(this._firebase, 'users', uid);
-
-      await setDoc(userRef, userAcc);
-    });
   }
 }
