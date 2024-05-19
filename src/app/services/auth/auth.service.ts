@@ -6,16 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { User, UserCredential } from '@app/models';
-import { UserService } from '../user';
-import {
-  Firestore,
-  addDoc,
-  collection,
-  doc,
-  setDoc,
-} from '@angular/fire/firestore';
 import { UserRepository } from '@app/repositories';
-import { Observable } from 'rxjs';
 import { IsLoggedIn } from '@app/models/is-logged-in.interface';
 
 @Injectable({
@@ -42,14 +33,16 @@ export class AuthService {
 
       const currentUser = this._userRepository.getUserById(id);
 
-      if (!currentUser) {
-        //   this._currentUser.subscribe(data => {
-        //     this.currentUser = {
-        //       user: data,
-        //       isLoggedIn: true
-        //     };
-        //   });
-      }
+      currentUser.subscribe((data) => {
+        this._currentUser = {
+          user: data as User,
+          loggedIn: true,
+        };
+
+        console.log(this._currentUser);
+      });
+
+      console.log(this._currentUser);
     });
   }
 

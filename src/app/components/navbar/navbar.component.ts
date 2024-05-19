@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UserService } from '@app/services/user/user.service';
+import { AuthService } from '@app/services';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 
@@ -15,10 +15,10 @@ export class NavbarComponent implements OnInit {
   currentUser!: any;
   items!: Array<any>;
 
-  constructor(private _userService: UserService) {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {
-    this.currentUser = this._userService.currentUser;
+    this.currentUser = this._authService.currentUser;
 
     this.items = [
       {

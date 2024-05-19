@@ -38,6 +38,12 @@ p-divider
   position: relative;
   width: 960px;
   height: 540px;
+
+  .button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
 }
 
 .form-field {
@@ -73,7 +79,7 @@ p-divider
   }
 }
 
-.button {
+.button-submit {
   display: block;
   font-family: "Exo 2", sans-serif;
   height: 48px;

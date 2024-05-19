@@ -9,7 +9,6 @@ import {
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { User } from '@app/models';
-import { UserService } from '@app/services/user/user.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -25,16 +24,12 @@ export class ChatComponent implements OnInit {
   lastMessage!: string;
   currentUser!: User;
 
-  constructor(
-    private _userService: UserService,
-    private _firebase: Firestore
-  ) {}
+  constructor(private _firebase: Firestore) {}
 
   ngOnInit(): void {
-    this.currentUser = this._userService.currentUser as User;
-
-    const chats = collection(this._firebase, 'chats');
-    this.chats$ = collectionData(chats);
+    // this.currentUser = this._userService.currentUser as User;
+    // const chats = collection(this._firebase, 'chats');
+    // this.chats$ = collectionData(chats);
   }
 
   async sendMessage() {

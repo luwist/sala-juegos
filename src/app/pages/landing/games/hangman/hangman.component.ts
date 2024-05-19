@@ -1,273 +1,282 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { GameplayComponent } from './gameplay/gameplay.component';
+import { Scene } from './scene.enum';
 
 @Component({
   selector: 'app-hangman',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MainMenuComponent, GameplayComponent],
   templateUrl: './hangman.component.html',
   styleUrl: './hangman.component.scss',
 })
-export class HangmanComponent implements AfterViewInit {
-  lives = 7;
-  randomIndexAnswer!: number;
-  category = '';
-  answer = '';
-  score = 0;
+export class HangmanComponent {
+  currentScene: string = Scene.MainMenu;
 
-  answerArray: any[] = [];
-
-  answers = [
-    {
-      category: 'Animal',
-      answer: ['Elefante', 'Leon', 'Tigre', 'Jirafa', 'Hipopotamo'],
-    },
-    {
-      category: 'Pais',
-      answer: [
-        'Argentina',
-        'Francia',
-        'Japon',
-        'Australia',
-        'Brasil',
-        'Peru',
-        'Colombia',
-      ],
-    },
-    {
-      category: 'Fruta',
-      answer: ['Manzana', 'Banana', 'Naranja', 'Frutilla', 'Pera'],
-    },
-    {
-      category: 'Profesion',
-      answer: ['Doctor', 'Ingeniero', 'Maestro', 'Abogado', 'Cocinero'],
-    },
-    {
-      category: 'Color',
-      answer: ['Rojo', 'Azul', 'Verde', 'Negro', 'Blanco'],
-    },
-  ];
-
-  showPauseSettings: boolean = false;
-  keyboard = [
-    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'],
-    ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
-  ];
-
-  @ViewChild('mainMenu') private _mainMenu!: ElementRef;
-  @ViewChild('gameplay') private _gameplay!: ElementRef;
-  @ViewChild('keyboardd') private _keyboard!: ElementRef;
-  @ViewChild('gameEnd') private _gameEnd!: ElementRef;
-  @ViewChild('menu') private _menu!: ElementRef;
-
-  ngAfterViewInit(): void {
-    const gameplay = this._gameplay.nativeElement;
-
-    gameplay.style.display = 'none';
-
-    this.randomIndex();
+  onChangeScene(scene: string): void {
+    this.currentScene = scene;
   }
 
-  randomIndex(): void {
-    const random = Math.floor(Math.random() * (this.answers.length - 0) + 0);
+  // lives = 7;
+  // randomIndexAnswer!: number;
+  // category = '';
+  // answer = '';
+  // score = 0;
 
-    this.randomIndexAnswer = random;
-  }
+  // answerArray: any[] = [];
 
-  buttonPlay(): void {
-    const gameplay = this._gameplay.nativeElement;
-    const mainMenu = this._mainMenu.nativeElement;
-    const gameEnd = this._gameEnd.nativeElement;
+  // answers = [
+  //   {
+  //     category: 'Animal',
+  //     answer: ['Elefante', 'Leon', 'Tigre', 'Jirafa', 'Hipopotamo'],
+  //   },
+  //   {
+  //     category: 'Pais',
+  //     answer: [
+  //       'Argentina',
+  //       'Francia',
+  //       'Japon',
+  //       'Australia',
+  //       'Brasil',
+  //       'Peru',
+  //       'Colombia',
+  //     ],
+  //   },
+  //   {
+  //     category: 'Fruta',
+  //     answer: ['Manzana', 'Banana', 'Naranja', 'Frutilla', 'Pera'],
+  //   },
+  //   {
+  //     category: 'Profesion',
+  //     answer: ['Doctor', 'Ingeniero', 'Maestro', 'Abogado', 'Cocinero'],
+  //   },
+  //   {
+  //     category: 'Color',
+  //     answer: ['Rojo', 'Azul', 'Verde', 'Negro', 'Blanco'],
+  //   },
+  // ];
 
-    const menu = this._menu.nativeElement;
-    const keyboard = this._keyboard.nativeElement;
+  // showPauseSettings: boolean = false;
+  // keyboard = [
+  //   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+  //   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'],
+  //   ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+  // ];
 
-    menu.style.opacity = '1';
-    gameEnd.style.display = 'none';
-    keyboard.style.display = 'flex';
+  // @ViewChild('mainMenu') private _mainMenu!: ElementRef;
+  // @ViewChild('gameplay') private _gameplay!: ElementRef;
+  // @ViewChild('keyboardd') private _keyboard!: ElementRef;
+  // @ViewChild('gameEnd') private _gameEnd!: ElementRef;
+  // @ViewChild('menu') private _menu!: ElementRef;
 
-    this.category = this.randomCategory();
-    this.answerArray = this.randomAnswer();
-    this.resetKeyboardButton();
+  // ngAfterViewInit(): void {
+  //   const gameplay = this._gameplay.nativeElement;
 
-    mainMenu.style.display = 'none';
-    gameplay.style.display = 'block';
+  //   gameplay.style.display = 'none';
 
-    gameEnd.style.display = 'none';
-  }
+  //   this.randomIndex();
+  // }
 
-  buttonPause(): void {
-    const gameplay = this._gameplay.nativeElement;
-    const mainMenu = this._mainMenu.nativeElement;
+  // randomIndex(): void {
+  //   const random = Math.floor(Math.random() * (this.answers.length - 0) + 0);
 
-    mainMenu.style.display = 'none';
-    gameplay.style.display = 'block';
+  //   this.randomIndexAnswer = random;
+  // }
 
-    this.showPauseSettings = true;
-  }
+  // buttonPlay(): void {
+  //   const gameplay = this._gameplay.nativeElement;
+  //   const mainMenu = this._mainMenu.nativeElement;
+  //   const gameEnd = this._gameEnd.nativeElement;
 
-  buttonHome(): void {
-    const gameplay = this._gameplay.nativeElement;
-    const mainMenu = this._mainMenu.nativeElement;
+  //   const menu = this._menu.nativeElement;
+  //   const keyboard = this._keyboard.nativeElement;
 
-    mainMenu.style.display = 'flex';
-    gameplay.style.display = 'none';
+  //   menu.style.opacity = '1';
+  //   gameEnd.style.display = 'none';
+  //   keyboard.style.display = 'flex';
 
-    this.showPauseSettings = false;
-  }
+  //   this.category = this.randomCategory();
+  //   this.answerArray = this.randomAnswer();
+  //   this.resetKeyboardButton();
 
-  buttonRestart(): void {
-    const gameplay = this._gameplay.nativeElement;
-    const mainMenu = this._mainMenu.nativeElement;
+  //   mainMenu.style.display = 'none';
+  //   gameplay.style.display = 'block';
 
-    mainMenu.style.display = 'none';
-    gameplay.style.display = 'block';
+  //   gameEnd.style.display = 'none';
+  // }
 
-    this.showPauseSettings = false;
+  // buttonPause(): void {
+  //   const gameplay = this._gameplay.nativeElement;
+  //   const mainMenu = this._mainMenu.nativeElement;
 
-    this.randomIndex();
-    this.category = this.randomCategory();
-    this.answerArray = this.randomAnswer();
-    this.resetKeyboardButton();
+  //   mainMenu.style.display = 'none';
+  //   gameplay.style.display = 'block';
 
-    const menu = this._menu.nativeElement;
-    const keyboard = this._keyboard.nativeElement;
-    const gameEnd = this._gameEnd.nativeElement;
+  //   this.showPauseSettings = true;
+  // }
 
-    menu.style.opacity = '1';
-    gameEnd.style.display = 'none';
-    keyboard.style.display = 'flex';
+  // buttonHome(): void {
+  //   const gameplay = this._gameplay.nativeElement;
+  //   const mainMenu = this._mainMenu.nativeElement;
 
-    this.lives = 7;
-  }
+  //   mainMenu.style.display = 'flex';
+  //   gameplay.style.display = 'none';
 
-  keyboardButton(e: any): void {
-    const letter: string = e.target.dataset.letter;
+  //   this.showPauseSettings = false;
+  // }
 
-    if (letter !== undefined) {
-      const buttonElement = e.target as HTMLButtonElement;
-      const imageElement = buttonElement.children[0] as HTMLImageElement;
+  // buttonRestart(): void {
+  //   const gameplay = this._gameplay.nativeElement;
+  //   const mainMenu = this._mainMenu.nativeElement;
 
-      if (this.discoveredLetter(letter)) {
-        imageElement.src = 'assets/games/hangman/gameplay_letter_right.png';
+  //   mainMenu.style.display = 'none';
+  //   gameplay.style.display = 'block';
 
-        this.score += 10;
-      } else {
-        imageElement.src = 'assets/games/hangman/gameplay_letter_wrong.png';
+  //   this.showPauseSettings = false;
 
-        if (this.score > 0) {
-          this.score -= 10;
-        }
+  //   this.randomIndex();
+  //   this.category = this.randomCategory();
+  //   this.answerArray = this.randomAnswer();
+  //   this.resetKeyboardButton();
 
-        this.lives--;
-      }
+  //   const menu = this._menu.nativeElement;
+  //   const keyboard = this._keyboard.nativeElement;
+  //   const gameEnd = this._gameEnd.nativeElement;
 
-      if (this.checkWin()) {
-        const gameEnd = this._gameEnd.nativeElement as HTMLDivElement;
-        const gameEndBackground = gameEnd.children[0] as HTMLImageElement;
+  //   menu.style.opacity = '1';
+  //   gameEnd.style.display = 'none';
+  //   keyboard.style.display = 'flex';
 
-        gameEndBackground.src = 'assets/games/hangman/welldone_background.png';
-      }
+  //   this.lives = 7;
+  // }
 
-      if (this.lives <= 0) {
-        this.showEndgameBackground();
-        this.showAnswer();
+  // keyboardButton(e: any): void {
+  //   const letter: string = e.target.dataset.letter;
 
-        this.lives = 7;
-      }
-    }
-  }
+  //   if (letter !== undefined) {
+  //     const buttonElement = e.target as HTMLButtonElement;
+  //     const imageElement = buttonElement.children[0] as HTMLImageElement;
 
-  showEndgameBackground(): void {
-    const menu = this._menu.nativeElement;
-    const keyboard = this._keyboard.nativeElement;
-    const gameEnd = this._gameEnd.nativeElement;
+  //     if (this.discoveredLetter(letter)) {
+  //       imageElement.src = 'assets/games/hangman/gameplay_letter_right.png';
 
-    menu.style.opacity = '0';
-    gameEnd.style.display = 'block';
-    keyboard.style.display = 'none';
-  }
+  //       this.score += 10;
+  //     } else {
+  //       imageElement.src = 'assets/games/hangman/gameplay_letter_wrong.png';
 
-  showAnswer(): void {
-    for (let i = 0; i < this.answerArray.length; i++) {
-      this.answerArray[i].show = true;
-    }
-  }
+  //       if (this.score > 0) {
+  //         this.score -= 10;
+  //       }
 
-  discoveredLetter(letter: string): boolean {
-    let discoveredLetter = false;
+  //       this.lives--;
+  //     }
 
-    for (let i = 0; i < this.answerArray.length; i++) {
-      const letterKey: string = this.answerArray[i].letter;
+  //     if (this.checkWin()) {
+  //       const gameEnd = this._gameEnd.nativeElement as HTMLDivElement;
+  //       const gameEndBackground = gameEnd.children[0] as HTMLImageElement;
 
-      if (letterKey.toLowerCase() == letter.toLowerCase()) {
-        this.answerArray[i].show = true;
+  //       gameEndBackground.src = 'assets/games/hangman/welldone_background.png';
+  //     }
 
-        discoveredLetter = true;
-      }
-    }
+  //     if (this.lives <= 0) {
+  //       this.showEndgameBackground();
+  //       this.showAnswer();
 
-    return discoveredLetter;
-  }
+  //       this.lives = 7;
+  //     }
+  //   }
+  // }
 
-  endGame(): boolean {
-    return false;
-  }
+  // showEndgameBackground(): void {
+  //   const menu = this._menu.nativeElement;
+  //   const keyboard = this._keyboard.nativeElement;
+  //   const gameEnd = this._gameEnd.nativeElement;
 
-  isWin(): boolean {
-    return false;
-  }
+  //   menu.style.opacity = '0';
+  //   gameEnd.style.display = 'block';
+  //   keyboard.style.display = 'none';
+  // }
 
-  checkWin(): boolean {
-    let win = false;
-    let countLetter = 0;
+  // showAnswer(): void {
+  //   for (let i = 0; i < this.answerArray.length; i++) {
+  //     this.answerArray[i].show = true;
+  //   }
+  // }
 
-    for (let i = 0; i < this.answerArray.length; i++) {
-      const l: string = this.answerArray[i].show;
+  // discoveredLetter(letter: string): boolean {
+  //   let discoveredLetter = false;
 
-      if (l) {
-        countLetter++;
-      }
-    }
+  //   for (let i = 0; i < this.answerArray.length; i++) {
+  //     const letterKey: string = this.answerArray[i].letter;
 
-    if (this.answerArray.length == countLetter) {
-      win = true;
-    }
+  //     if (letterKey.toLowerCase() == letter.toLowerCase()) {
+  //       this.answerArray[i].show = true;
 
-    return win;
-  }
+  //       discoveredLetter = true;
+  //     }
+  //   }
 
-  resetKeyboardButton(): void {
-    const keyboard = this._keyboard.nativeElement;
+  //   return discoveredLetter;
+  // }
 
-    for (let i = 0; i < 3; i++) {
-      const row = keyboard.children[i];
+  // endGame(): boolean {
+  //   return false;
+  // }
 
-      for (let j = 0; j < row.children.length; j++) {
-        const letter = row.children[j].children[0];
+  // isWin(): boolean {
+  //   return false;
+  // }
 
-        letter.src = '';
-      }
-    }
-  }
+  // checkWin(): boolean {
+  //   let win = false;
+  //   let countLetter = 0;
 
-  randomCategory(): string {
-    return this.answers[this.randomIndexAnswer].category;
-  }
+  //   for (let i = 0; i < this.answerArray.length; i++) {
+  //     const l: string = this.answerArray[i].show;
 
-  randomAnswer(): any[] {
-    const random = Math.floor(Math.random() * (this.answers.length - 0) + 0);
-    const ans = this.answers[this.randomIndexAnswer].answer[random];
-    const newArray: any[] = [];
+  //     if (l) {
+  //       countLetter++;
+  //     }
+  //   }
 
-    for (let i = 0; i < ans.length; i++) {
-      newArray.push({
-        letter: ans[i],
-        show: false,
-      });
-    }
+  //   if (this.answerArray.length == countLetter) {
+  //     win = true;
+  //   }
 
-    return newArray;
-  }
+  //   return win;
+  // }
+
+  // resetKeyboardButton(): void {
+  //   const keyboard = this._keyboard.nativeElement;
+
+  //   for (let i = 0; i < 3; i++) {
+  //     const row = keyboard.children[i];
+
+  //     for (let j = 0; j < row.children.length; j++) {
+  //       const letter = row.children[j].children[0];
+
+  //       letter.src = '';
+  //     }
+  //   }
+  // }
+
+  // randomCategory(): string {
+  //   return this.answers[this.randomIndexAnswer].category;
+  // }
+
+  // randomAnswer(): any[] {
+  //   const random = Math.floor(Math.random() * (this.answers.length - 0) + 0);
+  //   const ans = this.answers[this.randomIndexAnswer].answer[random];
+  //   const newArray: any[] = [];
+
+  //   for (let i = 0; i < ans.length; i++) {
+  //     newArray.push({
+  //       letter: ans[i],
+  //       show: false,
+  //     });
+  //   }
+
+  //   return newArray;
+  // }
 }

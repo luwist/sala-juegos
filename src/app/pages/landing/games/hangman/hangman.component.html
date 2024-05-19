@@ -1,5 +1,11 @@
 <div class="game">
-  <div #mainMenu class="main-menu">
+  @switch (currentScene) { @case ('main-menu') {
+  <app-main-menu (initGameplay)="onChangeScene($event)" />
+  } @case ('gameplay') {
+  <app-gameplay (backMainMenu)="onChangeScene($event)" />
+  } }
+
+  <!-- <div #mainMenu class="main-menu">
     <img src="assets/games/hangman/general_logo_blue.png" alt="" class="logo" />
 
     <button class="button" (click)="buttonPlay()">
@@ -113,5 +119,5 @@
         <img src="assets/games/hangman/animation_gallow.png" alt="" />
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

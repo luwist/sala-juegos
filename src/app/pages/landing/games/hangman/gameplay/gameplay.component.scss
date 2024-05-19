@@ -1,0 +1,99 @@
+button,
+input {
+  font-family: "Caveat", cursive;
+}
+
+.gameplay {
+  position: relative;
+
+  .hud {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .diamond {
+      width: 71px;
+      height: 73px;
+
+      background-image: url("../media/gameplay_diamond.png");
+    }
+
+    .score {
+      width: 72px;
+      height: 73px;
+
+      background-image: url("../media/gameplay_check.png");
+    }
+
+    .button-home {
+      width: 73px;
+      height: 73px;
+
+      background-image: url("../media/general_home.png");
+      background-size: 73px 73px;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .game-area {
+    display: flex;
+
+    .keyboard {
+      margin-bottom: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .row {
+        display: flex;
+
+        .button-key {
+          position: relative;
+          width: 46px;
+          height: 52px;
+          font-size: 24px;
+          font-weight: 700;
+          color: #0568af;
+          display: grid;
+          place-content: center;
+          text-transform: capitalize;
+
+          &.right::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            pointer-events: none;
+
+            background-image: url("../media/gameplay_letter_right.png");
+          }
+
+          &.wrong::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            background-image: url("../media/gameplay_letter_wrong.png");
+            background-repeat: no-repeat;
+            background-position: center;
+
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  .button-hint {
+    position: absolute;
+  }
+}

@@ -17,7 +17,7 @@
       <ng-template pTemplate="selectedItem">
         @if (selectedAccount) {
         <div class="user">
-          <img src="{{ selectedAccount.avatar }}" class="avatar" />
+          <img src="{{ selectedAccount.pictureUrl }}" class="avatar" />
           <div class="content">
             <p class="username">{{ selectedAccount.username }}</p>
             <p class="role">{{ selectedAccount.role }}</p>
@@ -67,7 +67,7 @@
 
       <button
         [disabled]="(loginForm.statusChanges | async) !== 'VALID'"
-        class="button"
+        class="button-submit"
         type="submit"
       >
         {{ buttonText }}

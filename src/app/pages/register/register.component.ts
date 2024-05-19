@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastComponent } from '@app/components';
 import { User, UserCredential } from '@app/models';
-import { AuthService, UserService } from '@app/services';
+import { AuthService } from '@app/services';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -39,7 +39,6 @@ export class RegisterComponent {
 
   constructor(
     private _authService: AuthService,
-    private _userService: UserService,
     private _router: Router,
     private _viewContainerRef: ViewContainerRef
   ) {}

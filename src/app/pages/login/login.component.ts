@@ -13,7 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 import { Account, UserCredential } from '@app/models';
-import { AuthService, UserService } from '@app/services';
+import { AuthService } from '@app/services';
 import {
   DropdownComponent,
   SelectComponent,
@@ -21,6 +21,7 @@ import {
 } from '@app/components';
 import { CommonModule } from '@angular/common';
 import { AuthError } from '@app/enums/auth-error.enum';
+import { Role } from '@app/enums';
 
 @Component({
   selector: 'app-login',
@@ -41,8 +42,37 @@ import { AuthError } from '@app/enums/auth-error.enum';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
-  accounts: Account[] = [];
+export class LoginComponent {
+  accounts: Account[] = [
+    {
+      pictureUrl: 'assets/images/avatar-luwist.png',
+      username: 'Luwist',
+      email: 'luwist@test.com',
+      password: 'admin123',
+      role: Role.Administrator,
+    },
+    {
+      pictureUrl: 'assets/images/avatar-strogebest.png',
+      username: 'StrogeBest',
+      email: 'strogebest@test.com',
+      password: 'strogebest',
+      role: Role.User,
+    },
+    {
+      pictureUrl: 'assets/images/avatar-kwess.png',
+      username: 'Kwess',
+      email: 'kwess@test.com',
+      password: 'qwerty123456',
+      role: Role.User,
+    },
+    {
+      pictureUrl: 'assets/images/avatar-chesseto.png',
+      username: 'ChesseTo',
+      email: 'chesseto@test.com',
+      password: 'contraseña',
+      role: Role.Tester,
+    },
+  ];
 
   selectedAccount!: Account;
 
@@ -57,14 +87,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
-    private _userService: UserService,
     private _router: Router,
     private _viewContainerRef: ViewContainerRef
   ) {}
-
-  ngOnInit(): void {
-    this.accounts = this._userService.accounts;
-  }
 
   get emailControl(): FormControl {
     return this.loginForm.get('email') as FormControl;
