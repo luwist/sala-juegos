@@ -5,6 +5,7 @@ input {
 
 .gameplay {
   position: relative;
+  height: 100%;
 
   .hud {
     padding: 10px;
@@ -12,18 +13,8 @@ input {
     align-items: center;
     justify-content: space-between;
 
-    .diamond {
-      width: 71px;
-      height: 73px;
-
-      background-image: url("../media/gameplay_diamond.png");
-    }
-
-    .score {
-      width: 72px;
-      height: 73px;
-
-      background-image: url("../media/gameplay_check.png");
+    &.hide {
+      opacity: 0;
     }
 
     .button-home {
@@ -36,64 +27,207 @@ input {
     }
   }
 
-  .game-area {
+  .diamond {
+    width: 71px;
+    height: 73px;
+
+    background-image: url("../media/gameplay_diamond.png");
+  }
+
+  .item {
     display: flex;
 
-    .keyboard {
-      margin-bottom: 68px;
+    .icon {
+      width: 72px;
+      height: 73px;
+
+      &.score {
+        background-image: url("../media/gameplay_check.png");
+      }
+
+      &.diamon {
+        background-image: url("../media/gameplay_diamond.png");
+      }
+    }
+
+    .point {
+      font-size: 60px;
+    }
+  }
+
+  .game-area {
+    height: calc(100% - 96px);
+    display: flex;
+    padding: 0 9px;
+    padding-bottom: 50px;
+
+    .content {
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
 
-      .row {
+      .top {
         display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        .button-key {
-          position: relative;
-          width: 46px;
-          height: 52px;
-          font-size: 24px;
-          font-weight: 700;
-          color: #0568af;
+        .clueframe {
+          width: 284px;
+          height: 53px;
+
+          background-image: url("../media/gameplay_clueframe.png");
+          background-repeat: no-repeat;
+
           display: grid;
           place-content: center;
-          text-transform: capitalize;
+          font-size: 32px;
 
-          &.right::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+          margin-bottom: 20px;
+        }
+
+        .answer {
+          display: flex;
+          gap: 8px;
+
+          .letter {
+            width: 44px;
+            height: 55px;
+            text-transform: uppercase;
+            display: grid;
+            place-content: center;
+            font-size: 44px;
+            background-image: url("../media/answer_sheet.png");
             background-repeat: no-repeat;
-            background-position: center;
-
-            pointer-events: none;
-
-            background-image: url("../media/gameplay_letter_right.png");
-          }
-
-          &.wrong::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            background-image: url("../media/gameplay_letter_wrong.png");
-            background-repeat: no-repeat;
-            background-position: center;
-
-            pointer-events: none;
+            background-position: bottom left;
           }
         }
       }
+
+      .keyboard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &.hide {
+          opacity: 0;
+        }
+
+        .row {
+          display: flex;
+          gap: 8px;
+
+          .button-key {
+            position: relative;
+            width: 46px;
+            height: 52px;
+            font-size: 44px;
+            color: #0568af;
+            display: grid;
+            place-content: center;
+            text-transform: capitalize;
+
+            &.right::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-repeat: no-repeat;
+              background-position: center;
+
+              pointer-events: none;
+
+              background-image: url("../media/gameplay_letter_right.png");
+            }
+
+            &.wrong::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+
+              background-image: url("../media/gameplay_letter_wrong.png");
+              background-repeat: no-repeat;
+              background-position: center;
+
+              pointer-events: none;
+            }
+          }
+        }
+      }
+    }
+
+    .gallow {
+      align-self: flex-end;
+      width: 303px;
+      height: 305px;
+
+      background-image: url("../media/animation_gallow.png");
+      background-repeat: no-repeat;
     }
   }
 
   .button-hint {
     position: absolute;
+  }
+
+  .gameover {
+    position: absolute;
+    width: 500px;
+    height: 295px;
+    bottom: 5px;
+    left: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    &.hide {
+      display: none;
+    }
+
+    &.welldone {
+      background-image: url("../media/welldone_background.png");
+    }
+
+    &.lose {
+      background-image: url("../media/gameover_background.png");
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 272px;
+      margin-bottom: 18px;
+    }
+
+    .container-point {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 7px;
+    }
+
+    .container-buttons {
+      display: flex;
+      gap: 50px;
+
+      .button-home {
+        width: 97px;
+        height: 97px;
+        background-image: url("../media/general_home.png");
+      }
+
+      .button-replay {
+        width: 97px;
+        height: 97px;
+        background-image: url("../media/general_restart.png");
+      }
+    }
   }
 }

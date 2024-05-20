@@ -1,19 +1,33 @@
 <div class="gameplay">
-  <div class="hud">
-    <div class="diamond"></div>
+  <div #hud class="hud">
+    <div class="item">
+      <span class="icon diamond"></span>
+      <span class="point">0</span>
+    </div>
 
-    <div class="score"></div>
+    <div class="item">
+      <span class="icon score"></span>
+      <span class="point">0</span>
+    </div>
 
     <button class="button button-home" (click)="onBackMainMenu()"></button>
   </div>
 
   <div class="game-area">
-    <div>
-      <div class="answer">
-        
+    <div class="content">
+      <div class="top">
+        <div class="clueframe">Animal</div>
+        <div class="answer">
+          @for (letter of word; track $index) { @if
+          (usedLetters.includes(letter)) {
+          <span class="letter">{{ letter }}</span>
+          } @else {
+          <span class="letter"></span>
+          } }
+        </div>
       </div>
 
-      <div class="keyboard">
+      <div #keyboardRef class="keyboard">
         @for (row of keyboard; track $index) {
         <div class="row">
           @for (key of row; track $index) {
@@ -34,4 +48,24 @@
   </div>
 
   <button class="button hint-button"></button>
+
+  <div #gameover class="gameover hide">
+    <div class="container">
+      <div class="container-point">
+        <div class="item">
+          <span class="icon diamond"></span>
+          <span class="point">0</span>
+        </div>
+
+        <div class="item">
+          <span class="icon score"></span>
+          <span class="point">0</span>
+        </div>
+      </div>
+      <div class="container-buttons">
+        <button class="button button-home" (click)="onBackMainMenu()"></button>
+        <button class="button button-replay"></button>
+      </div>
+    </div>
+  </div>
 </div>

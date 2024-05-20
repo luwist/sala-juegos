@@ -1,4 +1,13 @@
 <div class="game">
+  @switch (currentScene) { @case ('MainMenu') {
+  <app-main-menu />
+  } @case ('Gameplay') {
+  <app-gameplay />
+  } @case ('GameOver') {
+  <app-game-over />
+  } }
+</div>
+<!-- <div class="game">
   <div class="main-menu">
     <h2>Aritmetica</h2>
     <button type="button" (click)="tryAgain()">
@@ -6,7 +15,7 @@
     </button>
   </div>
 
-  <!-- <div #gameplay class="gameplay">
+  <div #gameplay class="gameplay">
     <header class="header">
       <div #timeBar class="time-bar">
         <img
@@ -37,5 +46,5 @@
     <button type="button" (click)="tryAgain()">
       <img src="assets/games/arithmetic/try_again.png" alt="" />
     </button>
-  </div> -->
-</div>
+  </div>
+</div> -->
