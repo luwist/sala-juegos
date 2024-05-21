@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Scene } from './scene.enum';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { GameplayComponent } from './gameplay/gameplay.component';
@@ -19,6 +13,10 @@ import { GameOverComponent } from './game-over/game-over.component';
 })
 export class ArithmeticComponent {
   currentScene: string = Scene.MainMenu;
+
+  onChangeScene(scene: string): void {
+    this.currentScene = scene;
+  }
 
   // @ViewChild('timeBar') private _timeBar!: ElementRef;
   // @ViewChild('containerOptions') private _containerOptions!: ElementRef;

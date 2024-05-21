@@ -1,10 +1,13 @@
 <div class="game">
   @switch (currentScene) { @case ('MainMenu') {
-  <app-main-menu />
+  <app-main-menu (initGameplay)="onChangeScene($event)" />
   } @case ('Gameplay') {
-  <app-gameplay />
+  <app-gameplay (changeScene)="onChangeScene($event)" />
   } @case ('GameOver') {
-  <app-game-over />
+  <app-game-over
+    (backMainMenu)="onChangeScene($event)"
+    (replay)="onChangeScene($event)"
+  />
   } }
 </div>
 <!-- <div class="game">

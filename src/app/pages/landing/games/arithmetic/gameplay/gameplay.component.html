@@ -1,1 +1,31 @@
-<p>gameplay works!</p>
+<div #countdown class="countdown"></div>
+
+<div #gameplay class="gameplay">
+  <div class="hud">
+    <div class="progress-container">
+      <img
+        src="assets/games/arithmetic/time_bar_outline.png"
+        class="outline"
+        alt=""
+      />
+      <div #progressBar class="progress-bar">
+        <img src="assets/games/arithmetic/time_bar.png" class="bar" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="game-area">
+    <div class="stars">
+      <span class="icon"></span>
+      <span class="icon"></span>
+      <span class="icon"></span>
+      <span class="icon"></span>
+      <span class="icon"></span>
+    </div>
+    <div class="answer">1 + 1 = ?</div>
+    <div class="options">
+      <button class="button button-option">2</button>
+      <button class="button button-option">4</button>
+    </div>
+  </div>
+</div>

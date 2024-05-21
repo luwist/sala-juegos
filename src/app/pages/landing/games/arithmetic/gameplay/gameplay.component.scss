@@ -1,0 +1,97 @@
+button {
+  font-family: "cool-crayon";
+}
+
+.countdown {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 72px;
+  color: white;
+}
+
+.gameplay {
+  height: 100%;
+  padding-top: 30px;
+}
+
+.options {
+  display: flex;
+  gap: 40px;
+}
+
+.stars {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+
+    background-image: url("../media/starOutline.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .progress-container {
+    position: relative;
+    width: 422px;
+    height: 43px;
+  }
+
+  .outline {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .progress-bar {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bar {
+    position: absolute;
+    width: 422px;
+    height: 100%;
+  }
+}
+
+.answer {
+  font-size: 68px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 44px;
+}
+
+.button-option {
+  width: 96px;
+  height: 96px;
+
+  display: grid;
+  place-content: center;
+
+  border-radius: 50px;
+
+  font-size: 36px;
+  color: white;
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
