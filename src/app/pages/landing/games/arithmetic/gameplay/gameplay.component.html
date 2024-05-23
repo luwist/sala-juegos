@@ -22,10 +22,16 @@
       <span class="icon"></span>
       <span class="icon"></span>
     </div>
-    <div class="answer">1 + 1 = ?</div>
-    <div class="options">
-      <button class="button button-option">2</button>
-      <button class="button button-option">4</button>
+    <div class="answer">{{ question.question }}</div>
+    <div #options class="options">
+      @for (option of question.options; track $index) {
+      <button
+        class="button button-option"
+        (click)="selectedNumber(option, $event)"
+      >
+        {{ option }}
+      </button>
+      }
     </div>
   </div>
 </div>

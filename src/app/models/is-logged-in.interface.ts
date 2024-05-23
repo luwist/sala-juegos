@@ -1,6 +1,6 @@
 import { User } from './user.interface';
 
 export interface IsLoggedIn {
-  user: User;
-  loggedIn: boolean;
+  user: User | null;
+  isAuth: boolean;
 }

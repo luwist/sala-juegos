@@ -5,12 +5,8 @@ html {
   font-family: "Exo 2", sans-serif;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
+body {
   margin: 0;
-  padding: 0;
 }
 
 p-password.custom-password .p-password.p-component.p-inputwrapper {
@@ -87,6 +83,7 @@ p-divider
   border: 0;
   background-color: hsl(207, 90%, 54%);
   color: white;
+  margin-top: 40px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;

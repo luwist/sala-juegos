@@ -27,20 +27,19 @@ export class ChatComponent implements OnInit {
   constructor(private _firebase: Firestore) {}
 
   ngOnInit(): void {
-    // this.currentUser = this._userService.currentUser as User;
-    // const chats = collection(this._firebase, 'chats');
-    // this.chats$ = collectionData(chats);
-  }
-
-  async sendMessage() {
-    // const currentUser = this._userService.currentUser as User;
-    // const chats = collection(this._firebase, 'chats');
-    // await addDoc(chats, {
-    //   username: currentUser.username,
-    //   avatar: currentUser.avatar,
-    //   message: this.lastMessage,
-    // });
-    // this.lastMessage = '';
+    //   this.currentUser = this._userService.currentUser as User;
+    //   const chats = collection(this._firebase, 'chats');
+    //   this.chats$ = collectionData(chats);
+    // }
+    // async sendMessage() {
+    //   const currentUser = this._userService.currentUser as User;
+    //   const chats = collection(this._firebase, 'chats');
+    //   await addDoc(chats, {
+    //     username: currentUser.username,
+    //     avatar: currentUser.pictureUrl,
+    //     message: this.lastMessage,
+    //   });
+    //   this.lastMessage = '';
   }
 
   getKey(e: any): void {

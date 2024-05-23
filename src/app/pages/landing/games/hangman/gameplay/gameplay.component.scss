@@ -1,5 +1,4 @@
-button,
-input {
+button {
   font-family: "Caveat", cursive;
 }
 
@@ -22,7 +21,7 @@ input {
       height: 73px;
 
       background-image: url("../media/general_home.png");
-      background-size: 73px 73px;
+      background-size: contain;
       background-repeat: no-repeat;
     }
   }
@@ -163,12 +162,119 @@ input {
     }
 
     .gallow {
+      position: relative;
       align-self: flex-end;
       width: 303px;
       height: 305px;
 
       background-image: url("../media/animation_gallow.png");
       background-repeat: no-repeat;
+
+      .rope {
+        display: block;
+        width: 8px;
+        height: 47px;
+
+        position: absolute;
+        right: 108px;
+        top: 9px;
+
+        &.show {
+          background-image: url("../media/animation_rope.png");
+          background-repeat: no-repeat;
+          animation: ropeAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .head {
+        display: block;
+        width: 47px;
+        height: 48px;
+
+        position: absolute;
+        right: 88px;
+        top: 52px;
+
+        &.show {
+          background-image: url("../media/animation_head.png");
+          background-repeat: no-repeat;
+          animation: headAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .body {
+        display: block;
+        width: 9px;
+        height: 88px;
+
+        position: absolute;
+        right: 107px;
+        top: 98px;
+
+        &.show {
+          background-image: url("../media/animation_body.png");
+          background-repeat: no-repeat;
+          animation: bodyAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .hand-left,
+      .hand-right {
+        display: block;
+        width: 41px;
+        height: 60px;
+        position: absolute;
+        top: 98px;
+      }
+
+      .hand-left {
+        right: 72px;
+
+        &.show {
+          background-image: url("../media/animation_hand_left.png");
+          background-repeat: no-repeat;
+          animation: handAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .hand-right {
+        right: 109px;
+
+        &.show {
+          background-image: url("../media/animation_hand_right.png");
+          background-repeat: no-repeat;
+          animation: handAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .leg-left,
+      .leg-right {
+        display: block;
+        width: 41px;
+        height: 60px;
+        position: absolute;
+        top: 178px;
+      }
+
+      .leg-left {
+        right: 74px;
+
+        &.show {
+          background-repeat: no-repeat;
+          background-image: url("../media/animation_leg_left.png");
+          animation: legAnimation 250ms steps(2) forwards;
+        }
+      }
+
+      .leg-right {
+        right: 107px;
+
+        &.show {
+          background-repeat: no-repeat;
+          background-image: url("../media/animation_leg_right.png");
+          animation: legAnimation 250ms steps(2) forwards;
+        }
+      }
     }
   }
 
@@ -217,17 +323,49 @@ input {
       display: flex;
       gap: 50px;
 
-      .button-home {
+      .button-home,
+      .button-replay {
         width: 97px;
         height: 97px;
+      }
+
+      .button-home {
         background-image: url("../media/general_home.png");
       }
 
       .button-replay {
-        width: 97px;
-        height: 97px;
         background-image: url("../media/general_restart.png");
       }
     }
+  }
+}
+
+@keyframes ropeAnimation {
+  100% {
+    background-position-x: -16px;
+  }
+}
+
+@keyframes headAnimation {
+  100% {
+    background-position-x: -94px;
+  }
+}
+
+@keyframes bodyAnimation {
+  100% {
+    background-position-x: -18px;
+  }
+}
+
+@keyframes handAnimation {
+  100% {
+    background-position-x: -80px;
+  }
+}
+
+@keyframes legAnimation {
+  100% {
+    background-position-x: -75px;
   }
 }

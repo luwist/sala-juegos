@@ -25,35 +25,13 @@
     </ul>
   </div>
 
-  <p-menu #menu [model]="items" [popup]="true">
-    <ng-template pTemplate="item" let-item>
-      @if (!item?.url) {
-      <a
-        [attr.tabindex]="-1"
-        [attr.href]="item.url"
-        [routerLink]="item.routerLink"
-      >
-        <div [attr.tabindex]="-1" class="item">
-          <span [class]="item.icon"></span>
-          <span>{{ item.label }}</span>
-        </div>
-      </a>
-      } @if (item?.url) {
-      <a [attr.tabindex]="-1" [attr.href]="item.url">
-        <div class="item">
-          <span [class]="item.icon"></span>
-          <span>{{ item.label }}</span>
-        </div>
-      </a>
-      }
-    </ng-template>
-  </p-menu>
+  <p-menu #menu [model]="items" [popup]="true"></p-menu>
 
   <button type="button" class="avatar" (click)="menu.toggle($event)">
-    <img src="{{ currentUser.avatar }}" alt="" />
+    <img src="{{ (currentUser$ | async)?.user?.pictureUrl }}" alt="" />
     <div class="content">
-      <p class="username">{{ currentUser.username }}</p>
-      <p class="role">{{ currentUser.role }}</p>
+      <p class="username">{{ (currentUser$ | async)?.user?.username }}</p>
+      <p class="role">{{ (currentUser$ | async)?.user?.role }}</p>
     </div>
 
     <i class="pi pi-chevron-down" style="font-size: 16px"></i>

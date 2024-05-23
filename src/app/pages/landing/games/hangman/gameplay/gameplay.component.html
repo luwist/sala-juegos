@@ -16,7 +16,7 @@
   <div class="game-area">
     <div class="content">
       <div class="top">
-        <div class="clueframe">Animal</div>
+        <div class="clueframe">{{ category }}</div>
         <div class="answer">
           @for (letter of word; track $index) { @if
           (usedLetters.includes(letter)) {
@@ -44,7 +44,15 @@
       </div>
     </div>
 
-    <div class="gallow"></div>
+    <div #gallow class="gallow">
+      <span class="rope"></span>
+      <span class="head"></span>
+      <span class="body"></span>
+      <span class="hand-left"></span>
+      <span class="hand-right"></span>
+      <span class="leg-left"></span>
+      <span class="leg-right"></span>
+    </div>
   </div>
 
   <button class="button hint-button"></button>
@@ -64,7 +72,7 @@
       </div>
       <div class="container-buttons">
         <button class="button button-home" (click)="onBackMainMenu()"></button>
-        <button class="button button-replay"></button>
+        <button class="button button-replay" (click)="onReplay()"></button>
       </div>
     </div>
   </div>
