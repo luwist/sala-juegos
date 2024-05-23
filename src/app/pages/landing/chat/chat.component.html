@@ -24,13 +24,13 @@
           name=""
           placeholder="Escribe un mensaje"
           [(ngModel)]="lastMessage"
-          (keydown.enter)="getKey($event)"
+          (keydown.enter)="sendMessage()"
         ></textarea>
       </div>
 
-      <!-- <button type="button" class="button" (click)="sendMessage()">
+      <button type="button" class="button" (click)="sendMessage()">
         <i class="pi pi-send" style="font-size: 16px; color: white"></i>
-      </button> -->
+      </button>
     </div>
   </div>
 </main>

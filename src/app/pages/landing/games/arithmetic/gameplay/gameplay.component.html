@@ -22,7 +22,7 @@
       <span class="icon"></span>
       <span class="icon"></span>
     </div>
-    <div class="answer">{{ question.question }}</div>
+    <div #answer class="answer">{{ question.question }} = {{ result }}</div>
     <div #options class="options">
       @for (option of question.options; track $index) {
       <button

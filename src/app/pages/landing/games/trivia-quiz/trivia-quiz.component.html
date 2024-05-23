@@ -1,12 +1,15 @@
 <div class="game">
-  @if (showGameplay && !showGameOver) {
+  @switch (currentScene) { @case ('MainMenu') {
+  <app-main-menu (playEventEmitter)="onChangeScene($event)" />
+  } @case ('Gameplay') {
   <app-gameplay
-    (playEventEmitter)="play($event)"
-    (gameOverEventEmitter)="gameOver($event)"
+    (playEventEmitter)="onChangeScene($event)"
+    (gameOverEventEmitter)="onChangeScene($event)"
   />
-  } @if(!showGameplay && !showGameOver) {
-  <app-main-menu (playEventEmitter)="play($event)" />
-  } @if (showGameOver) {
-  <app-game-over />
-  }
+  } @case ('GameOver') {
+  <app-game-over
+    (playEventEmitter)="onChangeScene($event)"
+    (replay)="onChangeScene($event)"
+  />
+  } }
 </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { GameplayComponent } from './gameplay/gameplay.component';
 import { GameOverComponent } from './game-over/game-over.component';
+import { Scene } from './Scene.enum';
 
 @Component({
   selector: 'app-trivia-quiz',
@@ -11,14 +12,9 @@ import { GameOverComponent } from './game-over/game-over.component';
   styleUrl: './trivia-quiz.component.scss',
 })
 export class TriviaQuizComponent {
-  showGameplay: boolean = false;
-  showGameOver: boolean = false;
+  currentScene: string = Scene.MainMenu;
 
-  play(e: boolean) {
-    this.showGameplay = e;
-  }
-
-  gameOver(e: boolean) {
-    this.showGameOver = e;
+  onChangeScene(scene: string): void {
+    this.currentScene = scene;
   }
 }

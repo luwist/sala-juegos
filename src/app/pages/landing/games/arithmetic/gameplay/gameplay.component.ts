@@ -23,6 +23,7 @@ export class GameplayComponent implements OnInit, AfterViewInit {
   @ViewChild('countdown') private _countdownRef!: ElementRef;
   @ViewChild('gameplay') private _gameplayRef!: ElementRef;
   @ViewChild('options') private _optionsRef!: ElementRef;
+  @ViewChild('answer') private _answerRef!: ElementRef;
 
   data = [
     {
@@ -158,6 +159,7 @@ export class GameplayComponent implements OnInit, AfterViewInit {
   countdownTimer: any;
   gameTimer: any;
   question: any;
+  result = '?';
 
   ngOnInit(): void {
     this.selectQuestion();
@@ -232,6 +234,7 @@ export class GameplayComponent implements OnInit, AfterViewInit {
 
   clearButtons(): void {
     const optionsElement = this._optionsRef.nativeElement as HTMLDivElement;
+    const answerElement = this._answerRef.nativeElement as HTMLButtonElement;
 
     for (let i = 0; i < optionsElement.children.length; i++) {
       const buttonElement = optionsElement.children[i] as HTMLButtonElement;
@@ -239,10 +242,14 @@ export class GameplayComponent implements OnInit, AfterViewInit {
       buttonElement.classList.remove('wrong');
       buttonElement.classList.remove('right');
     }
+
+    answerElement.classList.remove('right');
+    this.result = '?';
   }
 
   selectedNumber(number: number, e: any) {
     const buttonElement = e.target as HTMLButtonElement;
+    const answerElement = this._answerRef.nativeElement as HTMLButtonElement;
 
     if (this.question.answer != number) {
       buttonElement.classList.add('wrong');
@@ -250,6 +257,9 @@ export class GameplayComponent implements OnInit, AfterViewInit {
       this.progressPercentage -= 10;
     } else {
       buttonElement.classList.add('right');
+
+      answerElement.classList.add('right');
+      this.result = number.toString();
 
       this.progressPercentage += 10;
 

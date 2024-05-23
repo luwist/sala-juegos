@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Scene } from '../Scene.enum';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,9 +9,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './main-menu.component.scss',
 })
 export class MainMenuComponent {
-  @Output() playEventEmitter = new EventEmitter<boolean>();
+  @Output() playEventEmitter = new EventEmitter<string>();
 
   play(): void {
-    this.playEventEmitter.emit(true);
+    this.playEventEmitter.emit(Scene.Gameplay);
   }
 }

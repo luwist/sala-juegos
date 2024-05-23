@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Scene } from '../Scene.enum';
 
 @Component({
   selector: 'app-gameplay',
@@ -18,8 +19,8 @@ import {
 export class GameplayComponent implements OnInit {
   numberQuestion = 0;
   country: any;
-  @Output() playEventEmitter = new EventEmitter<boolean>();
-  @Output() gameOverEventEmitter = new EventEmitter<boolean>();
+  @Output() playEventEmitter = new EventEmitter<string>();
+  @Output() gameOverEventEmitter = new EventEmitter<string>();
   @ViewChild('answersDiv') private _answersDiv!: ElementRef;
 
   questionNumber = 15;
@@ -184,7 +185,7 @@ export class GameplayComponent implements OnInit {
   }
 
   home(): void {
-    this.playEventEmitter.emit(false);
+    this.playEventEmitter.emit(Scene.MainMenu);
   }
 
   answerClick(e: any, option: string): void {
@@ -215,7 +216,7 @@ export class GameplayComponent implements OnInit {
     }, 500);
 
     if (this.questionNumber <= 0) {
-      this.gameOverEventEmitter.emit(true);
+      this.gameOverEventEmitter.emit(Scene.GameOver);
     }
   }
 
