@@ -23,12 +23,22 @@
   </div> -->
   <div>
     <div class="container-card">
-      <div #card class="card"></div>
+      <!-- <div #card class="card"></div> -->
+      <div class="card">
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
       <div class="card-back"></div>
     </div>
-    <div class="container-buttons">
-      <button class="button higher" (click)="higherSelected()">Mayor</button>
-      <button class="button lower" (click)="lowerSelected()">Menor</button>
+    <div #containerButtons class="container-buttons">
+      <button class="button button-option">
+        <!-- <button class="button button-option" (click)="higherSelected($event)"> -->
+        Mayor
+      </button>
+      <button class="button button-option">
+        <!-- <button class="button button-option" (click)="lowerSelected($event)"> -->
+        Menor
+      </button>
     </div>
   </div>
 </div>
