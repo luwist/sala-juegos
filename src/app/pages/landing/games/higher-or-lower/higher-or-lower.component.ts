@@ -15,88 +15,81 @@ import {
   styleUrl: './higher-or-lower.component.scss',
 })
 export class HigherOrLowerComponent implements AfterViewInit {
-  // @ViewChild('card') private _cardElement!: ElementRef;
+  @ViewChild('card') private _cardRef!: ElementRef;
+  @ViewChild('cardShowed') private _cardShowedRef!: ElementRef;
   // @ViewChild('game') private _gameElement!: ElementRef;
 
   // @ViewChild('gameplay') private _gameplay!: ElementRef;
   // @ViewChild('endgame') private _endgame!: ElementRef;
-  // @ViewChild('containerButtons') private _containerButtons!: ElementRef;
+  @ViewChild('containerButtons') private _containerButtons!: ElementRef;
 
-  // private _currentCard!: number;
+  private _currentCard!: number;
   // totalCard = 48;
 
   ngAfterViewInit(): void {
-    // this._currentCard = this.randomCard();
+    this._currentCard = this.nextCard();
   }
 
-  // higherSelected(e: any): void {
-  //   const buttonElement = e.target as HTMLButtonElement;
-  //   console.log(e);
-  //   console.log(e.target);
-  //   console.log(buttonElement);
+  nextCard(): number {
+    const cardShowedElement = this._cardShowedRef
+      .nativeElement as HTMLDivElement;
+    const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+    const cardFrontElement = cardElement.children[0] as HTMLDivElement;
 
-  //   const card = this.randomCard();
+    let randomCard = Math.floor(Math.random() * 13 - 0 + 0);
+    let x = randomCard * 92;
+    let y = randomCard * 128;
 
-  //   if (this._currentCard < card) {
-  //     buttonElement.classList.add('right');
+    cardFrontElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-  //     // this.showEnd('welldone', '¡Ganaste!');
-  //   } else {
-  //     buttonElement.classList.add('wrong');
+    cardElement.classList.add('show-animation', 'show');
 
-  //     // this.showEnd('gameover', 'Perdiste');
-  //   }
+    setTimeout(() => {
+      cardElement.classList.remove('show-animation', 'show');
 
-  //   setTimeout(() => {
-  //     this.resetButtons();
-  //   }, 500);
-  // }
+      cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-  // lowerSelected(e: any): void {
-  //   const buttonElement = e.target as HTMLButtonElement;
+      this.resetButtons();
+    }, 1000);
 
-  //   const card = this.randomCard();
+    return randomCard;
+  }
 
-  //   if (this._currentCard > card) {
-  //     buttonElement.classList.add('right');
-  //   } else {
-  //     buttonElement.classList.add('wrong');
-  //   }
+  high(e: Event): void {
+    const buttonElement = e.target as HTMLButtonElement;
+    const card = this.nextCard();
 
-  //   setTimeout(() => {
-  //     this.resetButtons();
-  //   }, 500);
-  // }
+    if (this._currentCard < card) {
+      buttonElement.classList.add('right');
+    } else {
+      buttonElement.classList.add('wrong');
+    }
 
-  // resetButtons(): void {
-  //   const containerButtons = this._containerButtons
-  //     .nativeElement as HTMLDivElement;
+    this._currentCard = card;
+  }
 
-  //   for (let i = 0; i < containerButtons.children.length; i++) {
-  //     const buttonElement = containerButtons.children[i] as HTMLButtonElement;
+  low(e: Event): void {
+    const buttonElement = e.target as HTMLButtonElement;
+    const card = this.nextCard();
 
-  //     buttonElement.classList.remove('right');
-  //     buttonElement.classList.remove('wrong');
-  //   }
-  // }
+    if (this._currentCard > card) {
+      buttonElement.classList.add('right');
+    } else {
+      buttonElement.classList.add('wrong');
+    }
 
-  // private showEnd(className: string, message: string): void {
-  //   const element = this._gameElement.nativeElement;
+    this._currentCard = card;
+  }
 
-  //   element.classList.add('show');
-  //   element.childNodes[0].classList.add(className);
-  //   element.childNodes[0].childNodes[0].innerText = message;
-  // }
+  resetButtons(): void {
+    const containerButtons = this._containerButtons
+      .nativeElement as HTMLDivElement;
 
-  // private randomCard(): number {
-  //   const element = this._cardElement.nativeElement;
+    for (let i = 0; i < containerButtons.children.length; i++) {
+      const buttonElement = containerButtons.children[i] as HTMLButtonElement;
 
-  //   let randomCard = Math.floor(Math.random() * 13 - 0 + 0);
-  //   let x = randomCard * 92;
-  //   let y = randomCard * 128;
-
-  //   element.style.backgroundPosition = `-${x}px ${y}px`;
-
-  //   return randomCard;
-  // }
+      buttonElement.classList.remove('right');
+      buttonElement.classList.remove('wrong');
+    }
+  }
 }

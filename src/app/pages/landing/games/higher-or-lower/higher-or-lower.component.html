@@ -23,19 +23,19 @@
   </div> -->
   <div>
     <div class="container-card">
-      <!-- <div #card class="card"></div> -->
-      <div class="card">
+      <div #cardShowed class="card-showed"></div>
+      <div #card class="card">
         <div class="front"></div>
         <div class="back"></div>
       </div>
       <div class="card-back"></div>
     </div>
     <div #containerButtons class="container-buttons">
-      <button class="button button-option">
+      <button class="button button-option" (click)="high($event)">
         <!-- <button class="button button-option" (click)="higherSelected($event)"> -->
         Mayor
       </button>
-      <button class="button button-option">
+      <button class="button button-option" (click)="low($event)">
         <!-- <button class="button button-option" (click)="lowerSelected($event)"> -->
         Menor
       </button>
