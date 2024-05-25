@@ -1,7 +1,3 @@
-button {
-  font-family: "cool-crayon";
-}
-
 .countdown {
   height: 100%;
   display: flex;
@@ -53,25 +49,27 @@ button {
     position: relative;
     width: 422px;
     height: 43px;
-  }
 
-  .outline {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+    .outline {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      outline-style: none;
+    }
 
-  .progress-bar {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  }
+    .progress-bar {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
 
-  .bar {
-    position: absolute;
-    width: 422px;
-    height: 100%;
+      .bar {
+        position: absolute;
+        max-width: 414px;
+        width: 422px;
+        height: 100%;
+      }
+    }
   }
 }
 
@@ -93,6 +91,7 @@ button {
 
   display: grid;
   place-content: center;
+  font-family: "cool-crayon";
 
   border-radius: 50px;
 

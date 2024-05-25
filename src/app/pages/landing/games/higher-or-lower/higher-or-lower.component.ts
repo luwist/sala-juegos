@@ -17,24 +17,32 @@ import {
 export class HigherOrLowerComponent implements AfterViewInit {
   @ViewChild('card') private _cardRef!: ElementRef;
   @ViewChild('cardShowed') private _cardShowedRef!: ElementRef;
+  @ViewChild('cardBack') private _cardBackRef!: ElementRef;
   // @ViewChild('game') private _gameElement!: ElementRef;
 
   // @ViewChild('gameplay') private _gameplay!: ElementRef;
-  // @ViewChild('endgame') private _endgame!: ElementRef;
+  @ViewChild('endgame') private _endgameRef!: ElementRef;
   @ViewChild('containerButtons') private _containerButtons!: ElementRef;
 
   private _currentCard!: number;
-  // totalCard = 48;
+  totalCard = 5;
 
   ngAfterViewInit(): void {
     this._currentCard = this.nextCard();
+
+    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
+
+    cardEndgameElement.style.display = 'none';
   }
 
   nextCard(): number {
     const cardShowedElement = this._cardShowedRef
       .nativeElement as HTMLDivElement;
     const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
     const cardFrontElement = cardElement.children[0] as HTMLDivElement;
+
+    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
 
     let randomCard = Math.floor(Math.random() * 13 - 0 + 0);
     let x = randomCard * 92;
@@ -42,17 +50,52 @@ export class HigherOrLowerComponent implements AfterViewInit {
 
     cardFrontElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-    cardElement.classList.add('show-animation', 'show');
+    this.totalCard--;
 
-    setTimeout(() => {
-      cardElement.classList.remove('show-animation', 'show');
+    if (this.totalCard <= 0) {
+      cardElement.classList.add('show-animation', 'show');
 
-      cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
+      cardBackElement.style.opacity = '0';
 
-      this.resetButtons();
-    }, 1000);
+      setTimeout(() => {
+        cardElement.style.opacity = '0';
+
+        cardElement.classList.remove('show-animation', 'show');
+
+        cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
+
+        this.resetButtons();
+
+        cardEndgameElement.style.display = 'flex';
+      }, 1000);
+    } else {
+      cardElement.classList.add('show-animation', 'show');
+
+      setTimeout(() => {
+        cardElement.classList.remove('show-animation', 'show');
+
+        cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
+
+        this.resetButtons();
+      }, 1000);
+    }
 
     return randomCard;
+  }
+
+  replay(): void {
+    const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
+    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
+
+    cardEndgameElement.style.display = 'none';
+
+    cardBackElement.style.opacity = '1';
+    cardElement.style.opacity = '1';
+
+    this.totalCard = 5;
+
+    this._currentCard = this.nextCard();
   }
 
   high(e: Event): void {
