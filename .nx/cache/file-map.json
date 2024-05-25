@@ -1,0 +1,1440 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.1.0",
+  "deps": {
+    "@angular/animations": "^17.0.0",
+    "@angular/cdk": "17.3.0",
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.3.0",
+    "@angular/fire": "^17.0.1",
+    "@angular/forms": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "@angular/router": "^17.0.0",
+    "@spartan-ng/ui-core": "0.0.1-alpha.348",
+    "class-variance-authority": "^0.6.0",
+    "clsx": "^1.2.1",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.14.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2",
+    "@angular-devkit/build-angular": "^17.0.6",
+    "@angular/cli": "^17.0.6",
+    "@angular/compiler-cli": "^17.0.0",
+    "@spartan-ng/cli": "^0.0.1-alpha.351",
+    "@types/jasmine": "~5.1.0",
+    "autoprefixer": "^10.4.19",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.38",
+    "schematics-scss-migrate": "^2.3.17",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.6",
+    "typescript": "~5.2.2"
+  },
+  "pathMappings": {
+    "@spartan-ng/ui-button-helm": [
+      ".\\src/app/components/ui/ui-button-helm/src/index.ts"
+    ],
+    "@*": [
+      "./src/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "sala-juegos": [
+        {
+          "file": ".editorconfig",
+          "hash": "17241496168097493888"
+        },
+        {
+          "file": ".firebaserc",
+          "hash": "9469924008767126746"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "12077188875443594914"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "11934160580685414355"
+        },
+        {
+          "file": ".vscode/launch.json",
+          "hash": "17406702432687230417"
+        },
+        {
+          "file": ".vscode/tasks.json",
+          "hash": "10093397977228577162"
+        },
+        {
+          "file": "README.md",
+          "hash": "6777129903728874762"
+        },
+        {
+          "file": "angular.json",
+          "hash": "6917581293882264579"
+        },
+        {
+          "file": "firebase.json",
+          "hash": "13344042458869292333"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "4089251110180409209"
+        },
+        {
+          "file": "package.json",
+          "hash": "13545251600602375511",
+          "deps": [
+            "npm:@angular/animations",
+            "npm:@angular/cdk",
+            "npm:@angular/common",
+            "npm:@angular/compiler",
+            "npm:@angular/core",
+            "npm:@angular/fire",
+            "npm:@angular/forms",
+            "npm:@angular/platform-browser",
+            "npm:@angular/platform-browser-dynamic",
+            "npm:@angular/router",
+            "npm:@spartan-ng/ui-core",
+            "npm:class-variance-authority",
+            "npm:clsx",
+            "npm:primeicons",
+            "npm:primeng",
+            "npm:rxjs",
+            "npm:tslib",
+            "npm:zone.js",
+            "npm:@angular-devkit/build-angular",
+            "npm:@angular/cli",
+            "npm:@angular/compiler-cli",
+            "npm:@spartan-ng/cli",
+            "npm:@types/jasmine",
+            "npm:autoprefixer",
+            "npm:jasmine-core",
+            "npm:karma",
+            "npm:karma-chrome-launcher",
+            "npm:karma-coverage",
+            "npm:karma-jasmine",
+            "npm:karma-jasmine-html-reporter",
+            "npm:postcss",
+            "npm:schematics-scss-migrate",
+            "npm:tailwind-merge",
+            "npm:tailwindcss",
+            "npm:tailwindcss-animate",
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "src/app/app.component.html",
+          "hash": "11958735616642380711"
+        },
+        {
+          "file": "src/app/app.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/app.component.spec.ts",
+          "hash": "901272343611591524"
+        },
+        {
+          "file": "src/app/app.component.ts",
+          "hash": "16886624080546738809"
+        },
+        {
+          "file": "src/app/app.config.ts",
+          "hash": "2801443133440178650"
+        },
+        {
+          "file": "src/app/app.routes.ts",
+          "hash": "9936043033368053005"
+        },
+        {
+          "file": "src/app/components/game-card/game-card.component.html",
+          "hash": "14984901169139380404"
+        },
+        {
+          "file": "src/app/components/game-card/game-card.component.scss",
+          "hash": "4458392228434269734"
+        },
+        {
+          "file": "src/app/components/game-card/game-card.component.spec.ts",
+          "hash": "15881513274807417177"
+        },
+        {
+          "file": "src/app/components/game-card/game-card.component.ts",
+          "hash": "4508402153462704996"
+        },
+        {
+          "file": "src/app/components/game-card/index.ts",
+          "hash": "11855953064167788005"
+        },
+        {
+          "file": "src/app/components/index.ts",
+          "hash": "8473267614314148363"
+        },
+        {
+          "file": "src/app/components/navbar/index.ts",
+          "hash": "17657112427061985916"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.component.html",
+          "hash": "4551871569729176459"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.component.scss",
+          "hash": "17715000480845560850"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.component.spec.ts",
+          "hash": "14914762329701169219"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.component.ts",
+          "hash": "9791612498099963802"
+        },
+        {
+          "file": "src/app/components/ui/dropdown/dropdown.component.html",
+          "hash": "5796691422637044580"
+        },
+        {
+          "file": "src/app/components/ui/dropdown/dropdown.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/components/ui/dropdown/dropdown.component.spec.ts",
+          "hash": "6513485046603155046"
+        },
+        {
+          "file": "src/app/components/ui/dropdown/dropdown.component.ts",
+          "hash": "5010031860554252340"
+        },
+        {
+          "file": "src/app/components/ui/dropdown/index.ts",
+          "hash": "15533327314829886204"
+        },
+        {
+          "file": "src/app/components/ui/index.ts",
+          "hash": "13515948032780895654"
+        },
+        {
+          "file": "src/app/components/ui/select/index.ts",
+          "hash": "12169899226630854483"
+        },
+        {
+          "file": "src/app/components/ui/select/select.component.html",
+          "hash": "15586852944160682783"
+        },
+        {
+          "file": "src/app/components/ui/select/select.component.scss",
+          "hash": "11592359925861770290"
+        },
+        {
+          "file": "src/app/components/ui/select/select.component.spec.ts",
+          "hash": "17294205013732496613"
+        },
+        {
+          "file": "src/app/components/ui/select/select.component.ts",
+          "hash": "12768107383442828868"
+        },
+        {
+          "file": "src/app/components/ui/toast/index.ts",
+          "hash": "10086033045319086360"
+        },
+        {
+          "file": "src/app/components/ui/toast/toast.component.html",
+          "hash": "2773062514304521371"
+        },
+        {
+          "file": "src/app/components/ui/toast/toast.component.scss",
+          "hash": "8572604635424475822"
+        },
+        {
+          "file": "src/app/components/ui/toast/toast.component.spec.ts",
+          "hash": "11921906936647097001"
+        },
+        {
+          "file": "src/app/components/ui/toast/toast.component.ts",
+          "hash": "12705873192020907964"
+        },
+        {
+          "file": "src/app/components/ui/ui-button-helm/src/index.ts",
+          "hash": "8982221364966377158"
+        },
+        {
+          "file": "src/app/components/ui/ui-button-helm/src/lib/hlm-button.directive.ts",
+          "hash": "13293548268568403578"
+        },
+        {
+          "file": "src/app/enums/auth-error.enum.ts",
+          "hash": "18393279855681435003"
+        },
+        {
+          "file": "src/app/enums/index.ts",
+          "hash": "15775899055455337995"
+        },
+        {
+          "file": "src/app/enums/role.enum.ts",
+          "hash": "4901128025259741184"
+        },
+        {
+          "file": "src/app/guards/index.ts",
+          "hash": "7671069199213122388"
+        },
+        {
+          "file": "src/app/guards/is-logged/index.ts",
+          "hash": "10011416756430041074"
+        },
+        {
+          "file": "src/app/guards/is-logged/is-logged.guard.spec.ts",
+          "hash": "14949857558417569926"
+        },
+        {
+          "file": "src/app/guards/is-logged/is-logged.guard.ts",
+          "hash": "420461943411178502"
+        },
+        {
+          "file": "src/app/models/account.interface.ts",
+          "hash": "12614556662993849734"
+        },
+        {
+          "file": "src/app/models/chat.interface.ts",
+          "hash": "12864817298830670478"
+        },
+        {
+          "file": "src/app/models/index.ts",
+          "hash": "11350442172075719547"
+        },
+        {
+          "file": "src/app/models/is-logged-in.interface.ts",
+          "hash": "17098644238520736739"
+        },
+        {
+          "file": "src/app/models/role.interface.ts",
+          "hash": "14055090872293551990"
+        },
+        {
+          "file": "src/app/models/user-credential.interface.ts",
+          "hash": "15831575374895115439"
+        },
+        {
+          "file": "src/app/models/user-github.interface.ts",
+          "hash": "6739006122931430393"
+        },
+        {
+          "file": "src/app/models/user.interface.ts",
+          "hash": "8515571207144370666"
+        },
+        {
+          "file": "src/app/pages/landing/chat/chat.component.html",
+          "hash": "9727818889902408730"
+        },
+        {
+          "file": "src/app/pages/landing/chat/chat.component.scss",
+          "hash": "3859453266969867808"
+        },
+        {
+          "file": "src/app/pages/landing/chat/chat.component.spec.ts",
+          "hash": "12265143317969434437"
+        },
+        {
+          "file": "src/app/pages/landing/chat/chat.component.ts",
+          "hash": "1532163989301270120"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/arithmetic.component.html",
+          "hash": "938448723710761744"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/arithmetic.component.scss",
+          "hash": "6588373307030248501"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/arithmetic.component.spec.ts",
+          "hash": "13650732622811492986"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/arithmetic.component.ts",
+          "hash": "5046991404513178148"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/game-over/game-over.component.html",
+          "hash": "12624944792250597935"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/game-over/game-over.component.scss",
+          "hash": "16090687505878622313"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/game-over/game-over.component.spec.ts",
+          "hash": "1683947926983169042"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/game-over/game-over.component.ts",
+          "hash": "5037085890013994704"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/gameplay/gameplay.component.html",
+          "hash": "16616658961734464512"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/gameplay/gameplay.component.scss",
+          "hash": "6744659644350526736"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/gameplay/gameplay.component.spec.ts",
+          "hash": "5293244911441652810"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/gameplay/gameplay.component.ts",
+          "hash": "13844051335170977661"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/main-menu/main-menu.component.html",
+          "hash": "8580670597332322409"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/main-menu/main-menu.component.scss",
+          "hash": "16665726436428167753"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/main-menu/main-menu.component.spec.ts",
+          "hash": "11818595755842146372"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/main-menu/main-menu.component.ts",
+          "hash": "16125180468294392678"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/DK Cool Crayon.ttf",
+          "hash": "14887495127643036018"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/background.jpg",
+          "hash": "11787242823468786558"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/cross.png",
+          "hash": "15006101249884380859"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/home.png",
+          "hash": "10615429393861368941"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/operation_1.png",
+          "hash": "15483869093543007569"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/operation_2.png",
+          "hash": "5908318176046551726"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/play.png",
+          "hash": "12588528866973280339"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/star.png",
+          "hash": "6987025722357546995"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/starOutline.png",
+          "hash": "12931207242767724897"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/tick.png",
+          "hash": "17919280434307968251"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/media/try_again.png",
+          "hash": "10330992951106029920"
+        },
+        {
+          "file": "src/app/pages/landing/games/arithmetic/scene.enum.ts",
+          "hash": "4347952253622678278"
+        },
+        {
+          "file": "src/app/pages/landing/games/games.component.html",
+          "hash": "4584411459554858832"
+        },
+        {
+          "file": "src/app/pages/landing/games/games.component.scss",
+          "hash": "18298154135207187574"
+        },
+        {
+          "file": "src/app/pages/landing/games/games.component.spec.ts",
+          "hash": "7987160812276805404"
+        },
+        {
+          "file": "src/app/pages/landing/games/games.component.ts",
+          "hash": "10426395081298922014"
+        },
+        {
+          "file": "src/app/pages/landing/games/games.routes.ts",
+          "hash": "5007781564576667750"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/gameplay/gameplay.component.html",
+          "hash": "12376055258455682565"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/gameplay/gameplay.component.scss",
+          "hash": "10782690267100625698"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/gameplay/gameplay.component.spec.ts",
+          "hash": "5293244911441652810"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/gameplay/gameplay.component.ts",
+          "hash": "3364366962897143648"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/hangman.component.html",
+          "hash": "1906443287162703951"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/hangman.component.scss",
+          "hash": "17848270839602215866"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/hangman.component.ts",
+          "hash": "10178580895175680526"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/main-menu/main-menu.component.html",
+          "hash": "9634847699046356286"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/main-menu/main-menu.component.scss",
+          "hash": "7011107006761795815"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/main-menu/main-menu.component.spec.ts",
+          "hash": "11818595755842146372"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/main-menu/main-menu.component.ts",
+          "hash": "12740879541629841981"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_body.png",
+          "hash": "15138342109225941948"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_gallow.png",
+          "hash": "4292208353306727911"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_hand_left.png",
+          "hash": "16370810389060668494"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_hand_right.png",
+          "hash": "14479882360123235304"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_head.png",
+          "hash": "7892077727713297137"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_leg_left.png",
+          "hash": "3440295181666580878"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_leg_right.png",
+          "hash": "12269467708682837761"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/animation_rope.png",
+          "hash": "11357346880805681050"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/answer_sheet.png",
+          "hash": "3936093944268849003"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameover_background.png",
+          "hash": "5285750047946576295"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_check.png",
+          "hash": "12342405864177750541"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_clueframe.png",
+          "hash": "2551698899118434189"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_diamond.png",
+          "hash": "1601683641588695588"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_letter_right.png",
+          "hash": "344759735973215419"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_letter_wrong.png",
+          "hash": "16830819901563091093"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/gameplay_pause.png",
+          "hash": "1484772380005655169"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/general_background_horizontal.png",
+          "hash": "6451834242712991844"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/general_home.png",
+          "hash": "14361848725858687747"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/general_logo_blue.png",
+          "hash": "4843132228384575946"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/general_restart.png",
+          "hash": "319534376096272083"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/hint.png",
+          "hash": "3002045713303484073"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/lose.png",
+          "hash": "4723105553117820567"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/main_menu_play.png",
+          "hash": "17906777945671112480"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/pause_settings_background.png",
+          "hash": "4078961847831545272"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/welldone_background.png",
+          "hash": "6980877135365628848"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/media/win.png",
+          "hash": "6252676837112805756"
+        },
+        {
+          "file": "src/app/pages/landing/games/hangman/scene.enum.ts",
+          "hash": "4610017071383393357"
+        },
+        {
+          "file": "src/app/pages/landing/games/higher-or-lower/higher-or-lower.component.html",
+          "hash": "13013714773671323308"
+        },
+        {
+          "file": "src/app/pages/landing/games/higher-or-lower/higher-or-lower.component.scss",
+          "hash": "15706353130332584355"
+        },
+        {
+          "file": "src/app/pages/landing/games/higher-or-lower/higher-or-lower.component.spec.ts",
+          "hash": "14012222950486475109"
+        },
+        {
+          "file": "src/app/pages/landing/games/higher-or-lower/higher-or-lower.component.ts",
+          "hash": "12992518524146615625"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/Scene.enum.ts",
+          "hash": "4347952253622678278"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/game-over/game-over.component.html",
+          "hash": "17611928032152910778"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/game-over/game-over.component.scss",
+          "hash": "14666507853887993192"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/game-over/game-over.component.spec.ts",
+          "hash": "1683947926983169042"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/game-over/game-over.component.ts",
+          "hash": "2854439561289990780"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/gameplay/gameplay.component.html",
+          "hash": "4828483642040813321"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/gameplay/gameplay.component.scss",
+          "hash": "5804682427979310112"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/gameplay/gameplay.component.spec.ts",
+          "hash": "5293244911441652810"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/gameplay/gameplay.component.ts",
+          "hash": "6916979425825435922"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/main-menu/main-menu.component.html",
+          "hash": "14460389209714654309"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/main-menu/main-menu.component.scss",
+          "hash": "7430735563276614899"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/main-menu/main-menu.component.spec.ts",
+          "hash": "11818595755842146372"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/main-menu/main-menu.component.ts",
+          "hash": "5572202343870703354"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/trivia-quiz.component.html",
+          "hash": "2734419034791790500"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/trivia-quiz.component.scss",
+          "hash": "14384171263941634366"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/trivia-quiz.component.spec.ts",
+          "hash": "2442444558525645882"
+        },
+        {
+          "file": "src/app/pages/landing/games/trivia-quiz/trivia-quiz.component.ts",
+          "hash": "10923183569713792719"
+        },
+        {
+          "file": "src/app/pages/landing/home/home.component.html",
+          "hash": "17273677874521987689"
+        },
+        {
+          "file": "src/app/pages/landing/home/home.component.scss",
+          "hash": "5162086739485657306"
+        },
+        {
+          "file": "src/app/pages/landing/home/home.component.spec.ts",
+          "hash": "15313914607240537942"
+        },
+        {
+          "file": "src/app/pages/landing/home/home.component.ts",
+          "hash": "2587178259183014112"
+        },
+        {
+          "file": "src/app/pages/landing/landing.component.html",
+          "hash": "4319627103373226143"
+        },
+        {
+          "file": "src/app/pages/landing/landing.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/pages/landing/landing.component.spec.ts",
+          "hash": "3522767209607591448"
+        },
+        {
+          "file": "src/app/pages/landing/landing.component.ts",
+          "hash": "6916286784465427205"
+        },
+        {
+          "file": "src/app/pages/landing/landing.routes.ts",
+          "hash": "6975845605092695465"
+        },
+        {
+          "file": "src/app/pages/landing/who-i-am/who-i-am.component.html",
+          "hash": "3754279894392229241"
+        },
+        {
+          "file": "src/app/pages/landing/who-i-am/who-i-am.component.scss",
+          "hash": "11300680305655371263"
+        },
+        {
+          "file": "src/app/pages/landing/who-i-am/who-i-am.component.spec.ts",
+          "hash": "9727891549738623020"
+        },
+        {
+          "file": "src/app/pages/landing/who-i-am/who-i-am.component.ts",
+          "hash": "11160840485086993115"
+        },
+        {
+          "file": "src/app/pages/layout/layout.component.html",
+          "hash": "4319627103373226143"
+        },
+        {
+          "file": "src/app/pages/layout/layout.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/pages/layout/layout.component.spec.ts",
+          "hash": "12081593042144840889"
+        },
+        {
+          "file": "src/app/pages/layout/layout.component.ts",
+          "hash": "18073640616342121290"
+        },
+        {
+          "file": "src/app/pages/layout/layout.routes.ts",
+          "hash": "809736233805555256"
+        },
+        {
+          "file": "src/app/pages/login/login.component.html",
+          "hash": "15152653410527445143"
+        },
+        {
+          "file": "src/app/pages/login/login.component.scss",
+          "hash": "11117089166834864497"
+        },
+        {
+          "file": "src/app/pages/login/login.component.spec.ts",
+          "hash": "6185592977640098781"
+        },
+        {
+          "file": "src/app/pages/login/login.component.ts",
+          "hash": "6948978111282993671"
+        },
+        {
+          "file": "src/app/pages/register/register.component.html",
+          "hash": "8974990760248021389"
+        },
+        {
+          "file": "src/app/pages/register/register.component.scss",
+          "hash": "1622998678651552032"
+        },
+        {
+          "file": "src/app/pages/register/register.component.spec.ts",
+          "hash": "8717394991776004070"
+        },
+        {
+          "file": "src/app/pages/register/register.component.ts",
+          "hash": "12594514924269386664"
+        },
+        {
+          "file": "src/app/repositories/index.ts",
+          "hash": "2162633509020121657"
+        },
+        {
+          "file": "src/app/repositories/user.repository.ts",
+          "hash": "14589791597210363695"
+        },
+        {
+          "file": "src/app/services/auth/auth.service.spec.ts",
+          "hash": "6927655796975040699"
+        },
+        {
+          "file": "src/app/services/auth/auth.service.ts",
+          "hash": "4845694608798119825"
+        },
+        {
+          "file": "src/app/services/auth/index.ts",
+          "hash": "14012245040563415432"
+        },
+        {
+          "file": "src/app/services/github/github.service.spec.ts",
+          "hash": "3734179802996039090"
+        },
+        {
+          "file": "src/app/services/github/github.service.ts",
+          "hash": "18401338853297553096"
+        },
+        {
+          "file": "src/app/services/github/index.ts",
+          "hash": "10656539882041030972"
+        },
+        {
+          "file": "src/app/services/index.ts",
+          "hash": "14455734568786641614"
+        },
+        {
+          "file": "src/app/services/message/index.ts",
+          "hash": "1606250320553836643"
+        },
+        {
+          "file": "src/app/services/message/message.service.spec.ts",
+          "hash": "372667071105035724"
+        },
+        {
+          "file": "src/app/services/message/message.service.ts",
+          "hash": "2335758231207952655"
+        },
+        {
+          "file": "src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/assets/games/arithmetic/time_bar.png",
+          "hash": "15767501411329614423"
+        },
+        {
+          "file": "src/assets/games/arithmetic/time_bar_outline.png",
+          "hash": "12846571239010889527"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/big-tab-bust.png",
+          "hash": "40105475753075347"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/big-tab-win.png",
+          "hash": "8245232900234844818"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/button-in.png",
+          "hash": "100318384112544880"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/card-back.png",
+          "hash": "6204827380150327533"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/cards.png",
+          "hash": "4825062749838256920"
+        },
+        {
+          "file": "src/assets/games/higher-or-lower/icons.png",
+          "hash": "11227430737964642353"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/ban_questionnumber.png",
+          "hash": "731283362413373258"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/bg_title.png",
+          "hash": "17648613529604730785"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/btn-empty.png",
+          "hash": "1971150918696535401"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/btn-home.png",
+          "hash": "5534725286167093281"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/btn-retry.png",
+          "hash": "7351042922349112115"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/game-over.png",
+          "hash": "13317750346682095982"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/game_tv.png",
+          "hash": "13797826541397235248"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/mark.png",
+          "hash": "16323310536461685054"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/pic-logo.png",
+          "hash": "17314365025042849258"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/score_holder_result.png",
+          "hash": "11705442978142223033"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/star.png",
+          "hash": "16958115737193203537"
+        },
+        {
+          "file": "src/assets/games/trivia-quiz/win.png",
+          "hash": "10912096164205066226"
+        },
+        {
+          "file": "src/assets/images/arithmetic-logo.png",
+          "hash": "2400967057807131124"
+        },
+        {
+          "file": "src/assets/images/avatar-chesseto.png",
+          "hash": "9894907882584448573"
+        },
+        {
+          "file": "src/assets/images/avatar-kwess.png",
+          "hash": "17192413339224388273"
+        },
+        {
+          "file": "src/assets/images/avatar-luwist.png",
+          "hash": "14931376155952360506"
+        },
+        {
+          "file": "src/assets/images/avatar-strogebest.png",
+          "hash": "9367062734623190278"
+        },
+        {
+          "file": "src/assets/images/hangman-logo.png",
+          "hash": "2738601290586198270"
+        },
+        {
+          "file": "src/assets/images/higher-or-lower-logo.png",
+          "hash": "14468942690517011825"
+        },
+        {
+          "file": "src/assets/images/trivia-quiz-logo.png",
+          "hash": "12435876137457813955"
+        },
+        {
+          "file": "src/assets/theme-base/_colors.scss",
+          "hash": "8222877574164944354"
+        },
+        {
+          "file": "src/assets/theme-base/_common.scss",
+          "hash": "13381864955048726742"
+        },
+        {
+          "file": "src/assets/theme-base/_components.scss",
+          "hash": "3074178387578870141"
+        },
+        {
+          "file": "src/assets/theme-base/_mixins.scss",
+          "hash": "17986267290525631157"
+        },
+        {
+          "file": "src/assets/theme-base/components/button/_button.scss",
+          "hash": "6645452047989897382"
+        },
+        {
+          "file": "src/assets/theme-base/components/button/_speeddial.scss",
+          "hash": "6548481338925208425"
+        },
+        {
+          "file": "src/assets/theme-base/components/button/_splitbutton.scss",
+          "hash": "632278079963393001"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_carousel.scss",
+          "hash": "10991904945729227416"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_datatable.scss",
+          "hash": "14294481068345776993"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_dataview.scss",
+          "hash": "7324128300348195141"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_filter.scss",
+          "hash": "8595749799372949388"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_orderlist.scss",
+          "hash": "12530437982889666229"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_organizationchart.scss",
+          "hash": "2820368395383357799"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_paginator.scss",
+          "hash": "4760890421835984160"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_picklist.scss",
+          "hash": "10815987559095276303"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_timeline.scss",
+          "hash": "13931863889229155823"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_tree.scss",
+          "hash": "17774718699894696278"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_treetable.scss",
+          "hash": "7508438457118003197"
+        },
+        {
+          "file": "src/assets/theme-base/components/data/_virtualscroller.scss",
+          "hash": "3807447095538798344"
+        },
+        {
+          "file": "src/assets/theme-base/components/file/_fileupload.scss",
+          "hash": "15455081858540701192"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_autocomplete.scss",
+          "hash": "12581229241875311206"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_calendar.scss",
+          "hash": "14288435967000795826"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_cascadeselect.scss",
+          "hash": "7402311244861443148"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_checkbox.scss",
+          "hash": "990610230009500583"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_chips.scss",
+          "hash": "5902475260735465169"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_colorpicker.scss",
+          "hash": "9064612969076643494"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_dropdown.scss",
+          "hash": "16222321144798566099"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_editor.scss",
+          "hash": "4352464748685135673"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_iconfield.scss",
+          "hash": "4722109098332238511"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputgroup.scss",
+          "hash": "980846954270159399"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputicon.scss",
+          "hash": "15657395004902531716"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputmask.scss",
+          "hash": "12453645697219723654"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputnumber.scss",
+          "hash": "10787311182892627887"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputotp.scss",
+          "hash": "7353123747024467069"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputswitch.scss",
+          "hash": "1776959476337282731"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_inputtext.scss",
+          "hash": "9114171332605815456"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_listbox.scss",
+          "hash": "12066123676278553573"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_multiselect.scss",
+          "hash": "13516237033319169604"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_password.scss",
+          "hash": "17332807032670471420"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_radiobutton.scss",
+          "hash": "2595125118554474439"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_rating.scss",
+          "hash": "6469636505311513208"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_selectbutton.scss",
+          "hash": "15829427950712102552"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_slider.scss",
+          "hash": "4107312509549441808"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_togglebutton.scss",
+          "hash": "17194973729425207326"
+        },
+        {
+          "file": "src/assets/theme-base/components/input/_treeselect.scss",
+          "hash": "15728172406226024322"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_breadcrumb.scss",
+          "hash": "1219684835329638442"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_contextmenu.scss",
+          "hash": "11599784114595511093"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_dock.scss",
+          "hash": "11876540351137464788"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_megamenu.scss",
+          "hash": "755887638749573091"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_menu.scss",
+          "hash": "7134825047337773663"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_menubar.scss",
+          "hash": "17187494124449941452"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_panelmenu.scss",
+          "hash": "15566970817298038008"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_slidemenu.scss",
+          "hash": "970586955858629427"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_steps.scss",
+          "hash": "10521359228215262029"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_tabmenu.scss",
+          "hash": "8228709176365017828"
+        },
+        {
+          "file": "src/assets/theme-base/components/menu/_tieredmenu.scss",
+          "hash": "1416325146609829346"
+        },
+        {
+          "file": "src/assets/theme-base/components/messages/_inlinemessage.scss",
+          "hash": "15135539746432666998"
+        },
+        {
+          "file": "src/assets/theme-base/components/messages/_message.scss",
+          "hash": "13158277831779272650"
+        },
+        {
+          "file": "src/assets/theme-base/components/messages/_toast.scss",
+          "hash": "6323532212088048845"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_avatar.scss",
+          "hash": "4941655092443527458"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_badge.scss",
+          "hash": "12360202391461653124"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_blockui.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_chip.scss",
+          "hash": "15506847228249829320"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_inplace.scss",
+          "hash": "15270949246128608210"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_metergroup.scss",
+          "hash": "12501838486810610212"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_progressbar.scss",
+          "hash": "4890048599442655513"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_scrolltop.scss",
+          "hash": "8922756213528592580"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_skeleton.scss",
+          "hash": "2341518338002452565"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_tag.scss",
+          "hash": "2293658099600143075"
+        },
+        {
+          "file": "src/assets/theme-base/components/misc/_terminal.scss",
+          "hash": "6639531065568581298"
+        },
+        {
+          "file": "src/assets/theme-base/components/multimedia/_galleria.scss",
+          "hash": "6071814046425447167"
+        },
+        {
+          "file": "src/assets/theme-base/components/multimedia/_image.scss",
+          "hash": "8821157323764776939"
+        },
+        {
+          "file": "src/assets/theme-base/components/overlay/_confirmpopup.scss",
+          "hash": "5002444004330225341"
+        },
+        {
+          "file": "src/assets/theme-base/components/overlay/_dialog.scss",
+          "hash": "1689711604190650525"
+        },
+        {
+          "file": "src/assets/theme-base/components/overlay/_overlaypanel.scss",
+          "hash": "9551721522016052595"
+        },
+        {
+          "file": "src/assets/theme-base/components/overlay/_sidebar.scss",
+          "hash": "5357021841586192328"
+        },
+        {
+          "file": "src/assets/theme-base/components/overlay/_tooltip.scss",
+          "hash": "12122488376704862280"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_accordion.scss",
+          "hash": "12343580234871897147"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_card.scss",
+          "hash": "5996836475313793800"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_divider.scss",
+          "hash": "17321244491307309205"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_fieldset.scss",
+          "hash": "2994380077689447916"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_panel.scss",
+          "hash": "12272563995809034326"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_scrollpanel.scss",
+          "hash": "17932881823623225035"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_splitter.scss",
+          "hash": "2221356702072053046"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_stepper.scss",
+          "hash": "2237246276185795193"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_tabview.scss",
+          "hash": "18116411849084622619"
+        },
+        {
+          "file": "src/assets/theme-base/components/panel/_toolbar.scss",
+          "hash": "5572751404284491439"
+        },
+        {
+          "file": "src/assets/theme/_extensions.scss",
+          "hash": "550851771143784"
+        },
+        {
+          "file": "src/assets/theme/_fonts.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/assets/theme/_variables.scss",
+          "hash": "5874607834124479577"
+        },
+        {
+          "file": "src/assets/theme/theme.scss",
+          "hash": "5917311117737202299"
+        },
+        {
+          "file": "src/assets/theme/variables/_button.scss",
+          "hash": "5879518440006546923"
+        },
+        {
+          "file": "src/assets/theme/variables/_data.scss",
+          "hash": "5286382004716840822"
+        },
+        {
+          "file": "src/assets/theme/variables/_form.scss",
+          "hash": "11166891851854258251"
+        },
+        {
+          "file": "src/assets/theme/variables/_general.scss",
+          "hash": "10712582300974330263"
+        },
+        {
+          "file": "src/assets/theme/variables/_media.scss",
+          "hash": "12789744877365253734"
+        },
+        {
+          "file": "src/assets/theme/variables/_menu.scss",
+          "hash": "15304255215949457056"
+        },
+        {
+          "file": "src/assets/theme/variables/_message.scss",
+          "hash": "12313914918993560443"
+        },
+        {
+          "file": "src/assets/theme/variables/_misc.scss",
+          "hash": "16278070470379686746"
+        },
+        {
+          "file": "src/assets/theme/variables/_overlay.scss",
+          "hash": "6750406000822413604"
+        },
+        {
+          "file": "src/assets/theme/variables/_panel.scss",
+          "hash": "5902226451722605845"
+        },
+        {
+          "file": "src/favicon.ico",
+          "hash": "11695519395969932449"
+        },
+        {
+          "file": "src/index.html",
+          "hash": "10188736072725305824"
+        },
+        {
+          "file": "src/main.ts",
+          "hash": "4169901790405087765"
+        },
+        {
+          "file": "src/scss/components/button.scss",
+          "hash": "11385756633092883595"
+        },
+        {
+          "file": "src/scss/components/dropdown.scss",
+          "hash": "17309630728975545791"
+        },
+        {
+          "file": "src/scss/components/input.scss",
+          "hash": "7124859019166060112"
+        },
+        {
+          "file": "src/scss/modern-normalize.scss",
+          "hash": "5056661194729166788"
+        },
+        {
+          "file": "src/styles.scss",
+          "hash": "4522635557627363188"
+        },
+        {
+          "file": "tailwind.config.js",
+          "hash": "16714566030289293894"
+        },
+        {
+          "file": "tsconfig.app.json",
+          "hash": "13119632651406065538"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "17490208683300782203"
+        }
+      ]
+    },
+    "nonProjectFiles": []
+  }
+}

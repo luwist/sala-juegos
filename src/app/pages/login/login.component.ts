@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -22,6 +22,13 @@ import {
 import { CommonModule } from '@angular/common';
 import { AuthError } from '@app/enums/auth-error.enum';
 import { Role } from '@app/enums';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnSelectImports } from '@spartan-ng/ui-select-brain';
+import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
+import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
+import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +45,16 @@ import { Role } from '@app/enums';
     ReactiveFormsModule,
     DropdownComponent,
     SelectComponent,
+
+    HlmButtonDirective,
+    HlmInputDirective,
+    HlmLabelDirective,
+    HlmSeparatorDirective,
+
+    BrnSelectImports,
+    HlmSelectImports,
+
+    BrnSeparatorComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -74,8 +91,6 @@ export class LoginComponent {
     },
   ];
 
-  selectedAccount!: Account;
-
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
@@ -85,11 +100,7 @@ export class LoginComponent {
   showError: boolean = false;
   messageError!: string;
 
-  constructor(
-    private _authService: AuthService,
-    private _router: Router,
-    private _viewContainerRef: ViewContainerRef
-  ) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   get emailControl(): FormControl {
     return this.loginForm.get('email') as FormControl;
@@ -99,10 +110,10 @@ export class LoginComponent {
     return this.loginForm.get('password') as FormControl;
   }
 
-  onSelectedAccount(): void {
-    const credential = this.selectedAccount as UserCredential;
+  onSelectedAccount(account: Account): void {
+    const userCredential = account as UserCredential;
 
-    this.loginForm.patchValue(credential);
+    this.loginForm.patchValue(userCredential);
   }
 
   async login(e: Event): Promise<void> {
@@ -121,20 +132,8 @@ export class LoginComponent {
     } catch (error: any) {
       switch (error.code) {
         case AuthError.invalidCredential:
-          this.showToast(
-            'Correo electronico o contraseña incorrecta. Intentelo de nuevo'
-          );
           break;
       }
     }
-  }
-
-  showToast(message: string): void {
-    const dinamicComponent =
-      this._viewContainerRef.createComponent(ToastComponent);
-
-    dinamicComponent.instance.message = message;
-
-    this.buttonText = 'Ingresar';
   }
 }

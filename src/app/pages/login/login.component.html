@@ -1,74 +1,74 @@
 <main class="main">
-  @if (showError) {
-  <app-toast message="{{ messageError }}" />
-  }
   <div>
     <h1 class="title">Iniciar Sesion</h1>
 
-    <p-dropdown
-      [options]="accounts"
-      [(ngModel)]="selectedAccount"
-      optionLabel="name"
-      name="user"
-      (click)="onSelectedAccount()"
-      placeholder="Elige tu cuenta"
-      class="custom-dropdown"
-    >
-      <ng-template pTemplate="selectedItem">
-        @if (selectedAccount) {
-        <div class="user">
-          <img src="{{ selectedAccount.pictureUrl }}" class="avatar" />
-          <div class="content">
-            <p class="username">{{ selectedAccount.username }}</p>
-            <p class="role">{{ selectedAccount.role }}</p>
+    <brn-select placeholder="Elige tu cuenta">
+      <hlm-select-trigger class="w-full h-12">
+        <hlm-select-value />
+      </hlm-select-trigger>
+      <hlm-select-content>
+        @for (account of accounts; track $index) {
+        <hlm-option
+          value="{{ account.username }}"
+          (click)="onSelectedAccount(account)"
+        >
+          <div class="flex items-center gap-3 py-2">
+            <img
+              src="{{ account.pictureUrl }}"
+              class="w-12 h-12 rounded-full"
+            />
+            <div>
+              <p class="text-base font-bold">
+                {{ account.username }}
+              </p>
+              <p class="text-sm text-gray-600 font-medium capitalize">
+                {{ account.role }}
+              </p>
+            </div>
           </div>
-        </div>
+        </hlm-option>
         }
-      </ng-template>
-      <ng-template let-user pTemplate="user">
-        <div class="user" style="padding: 12px">
-          <img src="{{ user.pictureUrl }}" class="avatar" />
-          <div class="content">
-            <p class="username">{{ user.username }}</p>
-            <p class="role">{{ user.role }}</p>
-          </div>
-        </div>
-      </ng-template>
-    </p-dropdown>
+      </hlm-select-content>
+    </brn-select>
 
-    <p-divider align="center" type="solid">
-      <b>O</b>
-    </p-divider>
+    <brn-separator hlmSeparator class="my-4" />
+
     <form class="form" (submit)="login($event)" [formGroup]="loginForm">
-      <div class="form-field">
-        <label class="label">Correo Electronico</label>
-        <input placeholder="Correo Electronico" formControlName="email" />
-        @if (emailControl.invalid && (emailControl.touched ||
-        emailControl.dirty)) { @if (emailControl.hasError('required')) {
-        <p class="error">El correo electronico no puede estar vacio</p>
-        } @if (emailControl.hasError('email')) {
-        <p class="error">Ingrese un correo electronico valido</p>
-        } }
-      </div>
-
-      <div class="form-field">
-        <label class="label">Contraseña</label>
+      <label hlmLabel>
+        Correo Electronico
         <input
+          hlmInput
+          type="email"
+          placeholder="Correo Electronico"
+          formControlName="email"
+        />
+      </label>
+      @if (emailControl.invalid && (emailControl.touched || emailControl.dirty))
+      { @if (emailControl.hasError('required')) {
+      <p class="error">El correo electronico no puede estar vacio</p>
+      } @if (emailControl.hasError('email')) {
+      <p class="error">Ingrese un correo electronico valido</p>
+      } }
+
+      <label hlmLabel>
+        Contraseña
+        <input
+          hlmInput
           type="password"
           placeholder="Contraseña"
           formControlName="password"
         />
-
-        @if (passwordControl.invalid && (passwordControl.touched ||
-        passwordControl.dirty)) {
-        <p class="error">La contraseña no puede estar vacia</p>
-        }
-      </div>
+      </label>
+      @if (passwordControl.invalid && (passwordControl.touched ||
+      passwordControl.dirty)) {
+      <p class="error">La contraseña no puede estar vacia</p>
+      }
 
       <button
         [disabled]="(loginForm.statusChanges | async) !== 'VALID'"
-        class="button-submit"
+        hlmBtn
         type="submit"
+        class="mt-10"
       >
         {{ buttonText }}
       </button>
