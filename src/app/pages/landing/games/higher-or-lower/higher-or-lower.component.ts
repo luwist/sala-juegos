@@ -6,133 +6,144 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { GameplayComponent } from './gameplay/gameplay.component';
+import { GameOverComponent } from './game-over/game-over.component';
+import { Scene } from '@app/enums/scene.enum';
 
 @Component({
   selector: 'app-higher-or-lower',
   standalone: true,
-  imports: [],
+  imports: [GameplayComponent, GameOverComponent],
   templateUrl: './higher-or-lower.component.html',
   styleUrl: './higher-or-lower.component.scss',
 })
-export class HigherOrLowerComponent implements AfterViewInit {
-  @ViewChild('card') private _cardRef!: ElementRef;
-  @ViewChild('cardShowed') private _cardShowedRef!: ElementRef;
-  @ViewChild('cardBack') private _cardBackRef!: ElementRef;
-  // @ViewChild('game') private _gameElement!: ElementRef;
+export class HigherOrLowerComponent {
+  currentScene: string = Scene.Gameplay;
 
-  // @ViewChild('gameplay') private _gameplay!: ElementRef;
-  @ViewChild('endgame') private _endgameRef!: ElementRef;
-  @ViewChild('containerButtons') private _containerButtons!: ElementRef;
+  // @ViewChild('card') private _cardRef!: ElementRef;
+  // @ViewChild('cardShowed') private _cardShowedRef!: ElementRef;
+  // @ViewChild('cardBack') private _cardBackRef!: ElementRef;
+  // // @ViewChild('game') private _gameElement!: ElementRef;
 
-  private _currentCard!: number;
-  totalCard = 5;
+  // // @ViewChild('gameplay') private _gameplay!: ElementRef;
+  // @ViewChild('endgame') private _endgameRef!: ElementRef;
+  // @ViewChild('containerButtons') private _containerButtons!: ElementRef;
 
-  ngAfterViewInit(): void {
-    this._currentCard = this.nextCard();
+  // private _currentCard!: number;
+  // totalCard = 5;
 
-    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
+  // ngAfterViewInit(): void {
+  //   this._currentCard = this.nextCard();
 
-    cardEndgameElement.style.display = 'none';
-  }
+  //   const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
 
-  nextCard(): number {
-    const cardShowedElement = this._cardShowedRef
-      .nativeElement as HTMLDivElement;
-    const cardElement = this._cardRef.nativeElement as HTMLDivElement;
-    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
-    const cardFrontElement = cardElement.children[0] as HTMLDivElement;
+  //   cardEndgameElement.style.display = 'none';
+  // }
 
-    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
+  // onChangeScene(scene: string): void {
+  //   this.currentScene = scene;
+  // }
 
-    let randomCard = Math.floor(Math.random() * 13 - 0 + 0);
-    let x = randomCard * 92;
-    let y = randomCard * 128;
+  // startGame(): void {}
 
-    cardFrontElement.style.backgroundPosition = `-${x}px ${y}px`;
+  // nextCard(): number {
+  //   const cardShowedElement = this._cardShowedRef
+  //     .nativeElement as HTMLDivElement;
+  //   const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+  //   const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
+  //   const cardFrontElement = cardElement.children[0] as HTMLDivElement;
 
-    this.totalCard--;
+  //   const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
 
-    if (this.totalCard <= 0) {
-      cardElement.classList.add('show-animation', 'show');
+  //   let randomCard = Math.floor(Math.random() * 13 - 0 + 0);
+  //   let x = randomCard * 92;
+  //   let y = randomCard * 128;
 
-      cardBackElement.style.opacity = '0';
+  //   cardFrontElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-      setTimeout(() => {
-        cardElement.style.opacity = '0';
+  //   this.totalCard--;
 
-        cardElement.classList.remove('show-animation', 'show');
+  //   if (this.totalCard <= 0) {
+  //     cardElement.classList.add('show-animation', 'show');
 
-        cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
+  //     cardBackElement.style.opacity = '0';
 
-        this.resetButtons();
+  //     setTimeout(() => {
+  //       cardElement.style.opacity = '0';
 
-        cardEndgameElement.style.display = 'flex';
-      }, 1000);
-    } else {
-      cardElement.classList.add('show-animation', 'show');
+  //       cardElement.classList.remove('show-animation', 'show');
 
-      setTimeout(() => {
-        cardElement.classList.remove('show-animation', 'show');
+  //       cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-        cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
+  //       this.resetButtons();
 
-        this.resetButtons();
-      }, 1000);
-    }
+  //       cardEndgameElement.style.display = 'flex';
+  //     }, 1000);
+  //   } else {
+  //     cardElement.classList.add('show-animation', 'show');
 
-    return randomCard;
-  }
+  //     setTimeout(() => {
+  //       cardElement.classList.remove('show-animation', 'show');
 
-  replay(): void {
-    const cardElement = this._cardRef.nativeElement as HTMLDivElement;
-    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
-    const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
+  //       cardShowedElement.style.backgroundPosition = `-${x}px ${y}px`;
 
-    cardEndgameElement.style.display = 'none';
+  //       this.resetButtons();
+  //     }, 1000);
+  //   }
 
-    cardBackElement.style.opacity = '1';
-    cardElement.style.opacity = '1';
+  //   return randomCard;
+  // }
 
-    this.totalCard = 5;
+  // replay(): void {
+  //   const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+  //   const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
+  //   const cardEndgameElement = this._endgameRef.nativeElement as HTMLDivElement;
 
-    this._currentCard = this.nextCard();
-  }
+  //   cardEndgameElement.style.display = 'none';
 
-  high(e: Event): void {
-    const buttonElement = e.target as HTMLButtonElement;
-    const card = this.nextCard();
+  //   cardBackElement.style.opacity = '1';
+  //   cardElement.style.opacity = '1';
 
-    if (this._currentCard < card) {
-      buttonElement.classList.add('right');
-    } else {
-      buttonElement.classList.add('wrong');
-    }
+  //   this.totalCard = 5;
 
-    this._currentCard = card;
-  }
+  //   this._currentCard = this.nextCard();
+  // }
 
-  low(e: Event): void {
-    const buttonElement = e.target as HTMLButtonElement;
-    const card = this.nextCard();
+  // high(e: Event): void {
+  //   const buttonElement = e.target as HTMLButtonElement;
+  //   const card = this.nextCard();
 
-    if (this._currentCard > card) {
-      buttonElement.classList.add('right');
-    } else {
-      buttonElement.classList.add('wrong');
-    }
+  //   if (this._currentCard < card) {
+  //     buttonElement.classList.add('right');
+  //   } else {
+  //     buttonElement.classList.add('wrong');
+  //   }
 
-    this._currentCard = card;
-  }
+  //   this._currentCard = card;
+  // }
 
-  resetButtons(): void {
-    const containerButtons = this._containerButtons
-      .nativeElement as HTMLDivElement;
+  // low(e: Event): void {
+  //   const buttonElement = e.target as HTMLButtonElement;
+  //   const card = this.nextCard();
 
-    for (let i = 0; i < containerButtons.children.length; i++) {
-      const buttonElement = containerButtons.children[i] as HTMLButtonElement;
+  //   if (this._currentCard > card) {
+  //     buttonElement.classList.add('right');
+  //   } else {
+  //     buttonElement.classList.add('wrong');
+  //   }
 
-      buttonElement.classList.remove('right');
-      buttonElement.classList.remove('wrong');
-    }
-  }
+  //   this._currentCard = card;
+  // }
+
+  // resetButtons(): void {
+  //   const containerButtons = this._containerButtons
+  //     .nativeElement as HTMLDivElement;
+
+  //   for (let i = 0; i < containerButtons.children.length; i++) {
+  //     const buttonElement = containerButtons.children[i] as HTMLButtonElement;
+
+  //     buttonElement.classList.remove('right');
+  //     buttonElement.classList.remove('wrong');
+  //   }
+  // }
 }

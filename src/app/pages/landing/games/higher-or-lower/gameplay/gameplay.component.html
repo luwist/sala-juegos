@@ -1,1 +1,18 @@
-<p>gameplay works!</p>
+<div class="h-full flex flex-col items-center justify-center">
+  <div class="relative w-[198px] mb-10 flex justify-between">
+    <div #card class="card"></div>
+
+    <div #cardAnimation class="card-animation">
+      <div class="front"></div>
+      <div class="back"></div>
+    </div>
+
+    <div #cardBack class="card-back"></div>
+  </div>
+
+  <div class="flex gap-14">
+    <button class="button-option" (click)="onHigher($event)">Mayor</button>
+
+    <button class="button-option" (click)="onLower($event)">Menor</button>
+  </div>
+</div>

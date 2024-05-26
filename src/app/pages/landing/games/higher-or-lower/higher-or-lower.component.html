@@ -1,5 +1,10 @@
 <div class="game">
-  <div #endgame class="endgame">
+  @switch (currentScene) { @case ('Gameplay') {
+  <app-gameplay />
+  } @case ('GameOver') {
+  <app-game-over />
+  } }
+  <!-- <div #endgame class="endgame">
     <div class="tab">
       <img src="assets/games/higher-or-lower/big-tab-win.png" alt="" />
       <span class="text">¡GANASTE!</span>
@@ -23,5 +28,5 @@
       <button class="button button-option" (click)="high($event)">Mayor</button>
       <button class="button button-option" (click)="low($event)">Menor</button>
     </div>
-  </div>
+  </div> -->
 </div>
