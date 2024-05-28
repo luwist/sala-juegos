@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Scene } from '../Scene.enum';
 
 @Component({
@@ -9,6 +9,8 @@ import { Scene } from '../Scene.enum';
   styleUrl: './game-over.component.scss',
 })
 export class GameOverComponent {
+  @Input() hits!: number;
+
   @Output() playEventEmitter = new EventEmitter<string>();
   @Output() replay = new EventEmitter<string>();
 

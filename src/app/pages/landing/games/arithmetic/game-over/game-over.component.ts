@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Scene } from '../scene.enum';
 
 @Component({
@@ -11,6 +11,8 @@ import { Scene } from '../scene.enum';
 export class GameOverComponent {
   @Output() replay = new EventEmitter<string>();
   @Output() backMainMenu = new EventEmitter<string>();
+
+  @Input() score!: number;
 
   onBackMainMenu(): void {
     this.backMainMenu.emit(Scene.MainMenu);

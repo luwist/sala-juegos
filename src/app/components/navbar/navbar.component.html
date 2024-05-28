@@ -25,15 +25,32 @@
     </ul>
   </div>
 
-  <p-menu #menu [model]="items" [popup]="true"></p-menu>
+  <div>
+    <button [brnMenuTriggerFor]="menu" class="flex items-center gap-3">
+      <img
+        src="{{ currentUser.user?.pictureUrl }}"
+        alt=""
+        class="w-12 h-12 rounded-full"
+      />
 
-  <button type="button" class="avatar" (click)="menu.toggle($event)">
-    <img src="{{ (currentUser$ | async)?.user?.pictureUrl }}" alt="" />
-    <div class="content">
-      <p class="username">{{ (currentUser$ | async)?.user?.username }}</p>
-      <p class="role">{{ (currentUser$ | async)?.user?.role }}</p>
-    </div>
+      <div>
+        <p class="capitalize text-start text-base font-bold">
+          {{ currentUser.user?.username }}
+        </p>
+        <p class="capitalize text-start text-sm font-medium text-gray-500">
+          {{ currentUser.user?.role }}
+        </p>
+      </div>
 
-    <i class="pi pi-chevron-down" style="font-size: 16px"></i>
-  </button>
+      <hlm-icon size="sm" name="lucideChevronDown" />
+    </button>
+  </div>
+  <ng-template #menu>
+    <hlm-menu class="w-56">
+      <button hlmMenuItem (click)="logout()">
+        <hlm-icon size="sm" name="lucideLogOut" hlmMenuIcon />
+        <span>Cerrar Sesion</span>
+      </button>
+    </hlm-menu>
+  </ng-template>
 </header>

@@ -4,48 +4,49 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
-import { User, UserCredential } from '@app/models';
+import { Account, User, UserCredential } from '@app/models';
 import { UserRepository } from '@app/repositories';
 import { IsLoggedIn } from '@app/models/is-logged-in.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _currentUser = new BehaviorSubject<IsLoggedIn>({
+  private _currentUser: IsLoggedIn = {
     user: null,
     isAuth: false,
-  });
+  };
 
   constructor(private _auth: Auth, private _userRepository: UserRepository) {}
 
-  get currentUser(): Observable<IsLoggedIn> {
-    return this._currentUser.asObservable();
+  get currentUser(): IsLoggedIn {
+    return this._currentUser;
   }
 
-  async login(credential: UserCredential): Promise<void> {
-    const userCredential = await signInWithEmailAndPassword(
+  async login(credential: UserCredential, account: Account): Promise<void> {
+    await signInWithEmailAndPassword(
       this._auth,
       credential.email,
       credential.password
     );
 
-    const id = userCredential.user.uid;
-
-    this._userRepository.getUserById(id).subscribe((data) => {
-      this._currentUser.next({
-        user: data,
+    if (this._currentUser == undefined) {
+      this._currentUser = {
+        user: account as User,
         isAuth: true,
-      });
-    });
+      };
+    } else {
+
+    }
   }
 
-  async register(credential: UserCredential): Promise<void> {
-    await createUserWithEmailAndPassword(
+  async register(registerRequest: any): Promise<void> {
+    const user = await createUserWithEmailAndPassword(
       this._auth,
-      credential.email,
-      credential.password
+      registerRequest.email,
+      registerRequest.password
     );
+
+    await this._userRepository.add(registerRequest, user.user.uid);
   }
 }

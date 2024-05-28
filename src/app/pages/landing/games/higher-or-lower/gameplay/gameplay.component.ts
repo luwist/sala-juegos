@@ -23,16 +23,19 @@ export class GameplayComponent implements AfterViewInit {
   @ViewChild('cardAnimation') private _cardAnimationRef!: ElementRef;
   @ViewChild('cardBack') private _cardBackRef!: ElementRef;
   @ViewChild('card') private _cardRef!: ElementRef;
+  @ViewChild('endgame') private _endgameRef!: ElementRef;
 
-  totalCard: number = 52;
+  totalCard: number = 10;
   currentNumberCard!: number;
+  disabledButton: boolean = true;
+  hits: number = 0;
 
-  ngAfterViewInit(): void {
-    this.startGame();
+  async ngAfterViewInit(): Promise<void> {
+    await this.startGame();
   }
 
   startGame(): void {
-    this.currentNumberCard = this.nextCard();
+    this.currentNumberCard = this.firstCard();
   }
 
   randomCardPosition(): Position {
@@ -48,68 +51,118 @@ export class GameplayComponent implements AfterViewInit {
     };
   }
 
-  nextCard(): number {
+  firstCard(): number {
     const cardElement = this._cardRef.nativeElement as HTMLDivElement;
-    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
-    const cardAnimationElement = this._cardAnimationRef
-      .nativeElement as HTMLDivElement;
-
-    const cardFront = cardAnimationElement.children[0] as HTMLDivElement;
-
     const positionCard = this.randomCardPosition();
 
+    cardElement.style.opacity = '0';
+
+    setTimeout(async () => {
+      await this.animateCard(positionCard);
+
+      cardElement.style.opacity = '1';
+      cardElement.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
+
+      this.disabledButton = false;
+    }, 1000);
+
     this.totalCard--;
-
-    if (this.totalCard <= 0) {
-      cardFront.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
-
-      cardAnimationElement.classList.add('show-animation', 'show');
-
-      cardBackElement.style.opacity = '0';
-
-      setTimeout(() => {
-        cardAnimationElement.classList.remove('show-animation', 'show');
-
-        cardElement.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
-      }, 1000);
-    } else {
-      cardFront.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
-
-      cardAnimationElement.classList.add('show-animation', 'show');
-
-      setTimeout(() => {
-        cardAnimationElement.classList.remove('show-animation', 'show');
-
-        cardElement.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
-      }, 1000);
-    }
 
     return positionCard.x / 92;
   }
 
-  checkDeck(): void {
+  animateCard(position: Position): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const cardAnimationElement = this._cardAnimationRef
+        .nativeElement as HTMLDivElement;
+      const cardFront = cardAnimationElement.children[0] as HTMLDivElement;
+
+      cardFront.style.backgroundPosition = `-${position.x}px ${position.y}px`;
+
+      cardAnimationElement.classList.add('show-animation', 'show');
+
+      setTimeout(() => {
+        cardAnimationElement.classList.remove('show-animation', 'show');
+
+        resolve();
+      }, 500);
+    });
+  }
+
+  async nextCard(): Promise<number> {
+    const cardElement = this._cardRef.nativeElement as HTMLDivElement;
+    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
+    const cardEndGameElement = this._endgameRef.nativeElement as HTMLDivElement;
+    const cardAnimationElement = this._cardAnimationRef
+      .nativeElement as HTMLDivElement;
+
+    const positionCard = this.randomCardPosition();
+
     if (this.totalCard <= 0) {
+      cardBackElement.style.opacity = '0';
+
+      await this.animateCard(positionCard);
+
+      cardAnimationElement.style.opacity = '0';
+
+      cardEndGameElement.classList.remove('hide');
+    } else {
+      await this.animateCard(positionCard);
     }
+
+    cardElement.style.backgroundPosition = `-${positionCard.x}px ${positionCard.y}px`;
+
+    return positionCard.x / 92;
   }
 
-  onHigher(e: Event): void {
-    const card = this.nextCard();
+  onReplay(): void {
+    const cardBackElement = this._cardBackRef.nativeElement as HTMLDivElement;
+    const cardEndGameElement = this._endgameRef.nativeElement as HTMLDivElement;
+    const cardAnimationElement = this._cardAnimationRef
+      .nativeElement as HTMLDivElement;
 
-    card > this.currentNumberCard
-      ? this.toggleState(e, 'right')
-      : this.toggleState(e, 'wrong');
+    cardEndGameElement.classList.add('hide');
 
-    this.currentNumberCard = card;
+    cardBackElement.style.opacity = '1';
+    cardAnimationElement.style.opacity = '1';
+
+    this.disabledButton = true;
+
+    this.startGame();
+
+    this.totalCard = 10;
   }
 
-  onLower(e: Event): void {
-    const card = this.nextCard();
+  async onHigher(e: Event): Promise<void> {
+    const card = await this.nextCard();
 
-    card < this.currentNumberCard
-      ? this.toggleState(e, 'right')
-      : this.toggleState(e, 'wrong');
+    if (card > this.currentNumberCard) {
+      this.toggleState(e, 'right');
+
+      this.hits++;
+    } else {
+      this.toggleState(e, 'wrong');
+    }
 
     this.currentNumberCard = card;
+
+    this.totalCard--;
+  }
+
+  async onLower(e: Event): Promise<void> {
+    const card = await this.nextCard();
+
+    if (card < this.currentNumberCard) {
+      this.toggleState(e, 'right');
+
+      this.hits++;
+    } else {
+      this.toggleState(e, 'wrong');
+    }
+
+    this.currentNumberCard = card;
+
+    this.totalCard--;
   }
 
   toggleState(e: Event, state: string): void {
@@ -119,6 +172,6 @@ export class GameplayComponent implements AfterViewInit {
 
     setTimeout(() => {
       buttonElement.classList.toggle(state);
-    }, 1000);
+    }, 500);
   }
 }

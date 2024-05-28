@@ -18,6 +18,7 @@ import { Scene } from '../scene.enum';
 })
 export class GameplayComponent implements OnInit, AfterViewInit {
   @Output() changeScene = new EventEmitter<string>();
+  @Output() scoreEmitter = new EventEmitter<number>();
 
   @ViewChild('progressBar') private _progressBarRef!: ElementRef;
   @ViewChild('countdown') private _countdownRef!: ElementRef;
@@ -160,6 +161,7 @@ export class GameplayComponent implements OnInit, AfterViewInit {
   gameTimer: any;
   question: any;
   result = '?';
+  score: number = 0;
 
   ngOnInit(): void {
     this.selectQuestion();
@@ -198,6 +200,7 @@ export class GameplayComponent implements OnInit, AfterViewInit {
 
       if (this.progressPercentage <= 1) {
         this.changeScene.emit(Scene.GameOver);
+        this.scoreEmitter.emit(this.score);
       }
     }, 120);
   }
@@ -257,11 +260,13 @@ export class GameplayComponent implements OnInit, AfterViewInit {
       this.progressPercentage -= 10;
     } else {
       buttonElement.classList.add('right');
-
       answerElement.classList.add('right');
+
       this.result = number.toString();
 
       this.progressPercentage += 10;
+
+      this.score += 1;
 
       this.nextQuestion();
     }

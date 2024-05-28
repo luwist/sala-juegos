@@ -13,8 +13,13 @@ import { Scene } from './Scene.enum';
 })
 export class TriviaQuizComponent {
   currentScene: string = Scene.MainMenu;
+  hits: number = 0;
 
   onChangeScene(scene: string): void {
     this.currentScene = scene;
+  }
+
+  onUpdateHits(hits: number): void {
+    this.hits = hits;
   }
 }

@@ -13,8 +13,13 @@ import { GameOverComponent } from './game-over/game-over.component';
 })
 export class ArithmeticComponent {
   currentScene: string = Scene.MainMenu;
+  score: number = 0;
 
   onChangeScene(scene: string): void {
     this.currentScene = scene;
+  }
+
+  onScore(score: number): void {
+    this.score = score;
   }
 }

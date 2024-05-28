@@ -1,4 +1,16 @@
 <div class="h-full flex flex-col items-center justify-center">
+  <div #endgame class="endgame hide">
+    <div class="tab">
+      <span class="text">Game Over</span>
+    </div>
+
+    <p class="text-white">Correctas: {{ hits }}</p>
+
+    <button class="button button-option" (click)="onReplay()">
+      Jugar de nuevo
+    </button>
+  </div>
+
   <div class="relative w-[198px] mb-10 flex justify-between">
     <div #card class="card"></div>
 
@@ -11,8 +23,22 @@
   </div>
 
   <div class="flex gap-14">
-    <button class="button-option" (click)="onHigher($event)">Mayor</button>
+    <button
+      #button
+      class="button-option"
+      [disabled]="disabledButton"
+      (click)="onHigher($event)"
+    >
+      Mayor
+    </button>
 
-    <button class="button-option" (click)="onLower($event)">Menor</button>
+    <button
+      #button
+      class="button-option"
+      [disabled]="disabledButton"
+      (click)="onLower($event)"
+    >
+      Menor
+    </button>
   </div>
 </div>

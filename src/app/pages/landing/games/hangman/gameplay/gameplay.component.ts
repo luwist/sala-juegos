@@ -119,6 +119,8 @@ export class GameplayComponent implements OnInit {
       this.usedLetters.push(key);
 
       buttonElement.classList.add('right');
+
+      this.score += 10;
     } else {
       gallowElement.children[this.attempt].classList.add('show');
 

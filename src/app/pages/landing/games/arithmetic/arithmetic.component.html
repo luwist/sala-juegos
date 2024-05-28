@@ -2,52 +2,12 @@
   @switch (currentScene) { @case ('MainMenu') {
   <app-main-menu (initGameplay)="onChangeScene($event)" />
   } @case ('Gameplay') {
-  <app-gameplay (changeScene)="onChangeScene($event)" />
+  <app-gameplay (changeScene)="onChangeScene($event)" (scoreEmitter)="onScore($event)" />
   } @case ('GameOver') {
   <app-game-over
     (backMainMenu)="onChangeScene($event)"
     (replay)="onChangeScene($event)"
+    [score]="score"
   />
   } }
 </div>
-<!-- <div class="game">
-  <div class="main-menu">
-    <h2>Aritmetica</h2>
-    <button type="button" (click)="tryAgain()">
-      <img src="assets/games/arithmetic/play.png" alt="" />
-    </button>
-  </div>
-
-  <div #gameplay class="gameplay">
-    <header class="header">
-      <div #timeBar class="time-bar">
-        <img
-          src="assets/games/arithmetic/time_bar_outline.png"
-          alt=""
-          class="outline"
-        />
-        <img src="assets/games/arithmetic/time_bar.png" alt="" class="bar" />
-      </div>
-    </header>
-
-    <div #questionDiv class="question">
-      {{ question.question }} = {{ answer }}
-    </div>
-
-    <div #containerOptions class="option-container">
-      @for (option of question.options; track $index) {
-      <span class="option" (click)="selectedNumber(option, $event)">
-        {{ option }}
-        <img src="" alt="" class="hidden" />
-      </span>
-      }
-    </div>
-  </div>
-
-  <div #endgame class="endgame">
-    <h2>Game Over</h2>
-    <button type="button" (click)="tryAgain()">
-      <img src="assets/games/arithmetic/try_again.png" alt="" />
-    </button>
-  </div>
-</div> -->

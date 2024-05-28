@@ -13,6 +13,10 @@ import { User, UserCredential } from '@app/models';
 import { AuthService } from '@app/services';
 import { ButtonModule } from 'primeng/button';
 
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -22,6 +26,10 @@ import { ButtonModule } from 'primeng/button';
     ButtonModule,
     ToastComponent,
     ReactiveFormsModule,
+
+    HlmButtonDirective,
+    HlmInputDirective,
+    HlmLabelDirective,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -61,19 +69,13 @@ export class RegisterComponent {
 
       this.registerForm.markAsPending();
 
-      const credentials = this.registerForm.getRawValue() as UserCredential;
-      const user = {
-        username: 'TYU',
-        role: 'tester',
-      };
+      const registerRequest = this.registerForm.getRawValue();
 
       this.buttonText = 'Cargando...';
 
-      console.log(credentials);
+      await this._authService.register(registerRequest);
 
-      // await this._authService.register(credentials, user);
-
-      // this._router.navigateByUrl('/');
+      this._router.navigateByUrl('/');
     } catch (error: any) {
       switch (error.code) {
         case 'auth/invalid-credential':

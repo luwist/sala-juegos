@@ -91,6 +91,8 @@ export class LoginComponent {
     },
   ];
 
+  account!: Account;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
@@ -112,8 +114,9 @@ export class LoginComponent {
 
   onSelectedAccount(account: Account): void {
     const userCredential = account as UserCredential;
-
+    
     this.loginForm.patchValue(userCredential);
+    this.account = account;
   }
 
   async login(e: Event): Promise<void> {
@@ -126,7 +129,7 @@ export class LoginComponent {
 
       this.buttonText = 'Cargando...';
 
-      await this._authService.login(credentials);
+      await this._authService.login(credentials, this.account);
 
       this._router.navigateByUrl('/');
     } catch (error: any) {

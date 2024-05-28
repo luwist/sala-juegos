@@ -1,7 +1,7 @@
 <main class="main">
   <div class="chat">
     <div class="content">
-      @for (item of chats$ | async; track $index) {
+      @for (item of chats; track $index) {
       <div
         class="message"
         [ngClass]="{ 'my-message': currentUser.username == item.username }"
@@ -12,7 +12,7 @@
             {{ item.username }}
           </div>
           <p class="message-content">
-            {{ item.message }}
+            {{ item.content }}
           </p>
         </div>
       </div>

@@ -17,16 +17,18 @@ import { Scene } from '../Scene.enum';
   styleUrl: './gameplay.component.scss',
 })
 export class GameplayComponent implements OnInit {
-  numberQuestion = 0;
-  country: any;
   @Output() playEventEmitter = new EventEmitter<string>();
   @Output() gameOverEventEmitter = new EventEmitter<string>();
+  @Output() hitsEventEmitter = new EventEmitter<number>();
+
   @ViewChild('answersDiv') private _answersDiv!: ElementRef;
 
   questionNumber = 15;
-
+  numberQuestion = 0;
+  country: any;
   question: any;
   urlImage!: string;
+  hits: number = 0;
 
   data = [
     {
@@ -195,6 +197,8 @@ export class GameplayComponent implements OnInit {
       answerDiv.classList.add('wrong');
     } else {
       answerDiv.classList.add('right');
+
+      this.hits++;
     }
 
     this.questionNumber--;
@@ -216,6 +220,8 @@ export class GameplayComponent implements OnInit {
     }, 500);
 
     if (this.questionNumber <= 0) {
+      this.hitsEventEmitter.emit(this.hits);
+
       this.gameOverEventEmitter.emit(Scene.GameOver);
     }
   }
