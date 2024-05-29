@@ -1,35 +1,39 @@
 <main class="main">
+  <p-toast />
+
   <div>
     <h1 class="title">Iniciar Sesion</h1>
 
-    <brn-select placeholder="Elige tu cuenta">
-      <hlm-select-trigger class="w-full h-12">
-        <hlm-select-value />
-      </hlm-select-trigger>
-      <hlm-select-content>
-        @for (account of accounts; track $index) {
-        <hlm-option
-          value="{{ account.username }}"
-          (click)="onSelectedAccount(account)"
-        >
-          <div class="flex items-center gap-3 py-2">
-            <img
-              src="{{ account.pictureUrl }}"
-              class="w-12 h-12 rounded-full"
-            />
-            <div>
-              <p class="text-base font-bold">
-                {{ account.username }}
-              </p>
-              <p class="text-sm text-gray-600 font-medium capitalize">
-                {{ account.role }}
-              </p>
-            </div>
+    <p-dropdown
+      [options]="accounts"
+      [(ngModel)]="selectedAccount"
+      optionLabel="name"
+      name="user"
+      (click)="onSelectedAccount()"
+      placeholder="Elige tu cuenta"
+      class="custom-dropdown"
+    >
+      <ng-template pTemplate="selectedItem">
+        @if (selectedAccount) {
+        <div class="user">
+          <img src="{{ selectedAccount.pictureUrl }}" class="avatar" />
+          <div class="content">
+            <p class="username">{{ selectedAccount.username }}</p>
+            <p class="role">{{ selectedAccount.role }}</p>
           </div>
-        </hlm-option>
+        </div>
         }
-      </hlm-select-content>
-    </brn-select>
+      </ng-template>
+      <ng-template let-user pTemplate="user">
+        <div class="user" style="padding: 12px">
+          <img src="{{ user.pictureUrl }}" class="avatar" />
+          <div class="content">
+            <p class="username">{{ user.username }}</p>
+            <p class="role">{{ user.role }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </p-dropdown>
 
     <brn-separator hlmSeparator class="my-4" />
 

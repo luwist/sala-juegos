@@ -14,11 +14,7 @@ import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 import { Account, UserCredential } from '@app/models';
 import { AuthService } from '@app/services';
-import {
-  DropdownComponent,
-  SelectComponent,
-  ToastComponent,
-} from '@app/components';
+import { DropdownComponent, SelectComponent } from '@app/components';
 import { CommonModule } from '@angular/common';
 import { AuthError } from '@app/enums/auth-error.enum';
 import { Role } from '@app/enums';
@@ -30,6 +26,9 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
 import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
 
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -40,8 +39,8 @@ import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
     PasswordModule,
     ButtonModule,
     DropdownModule,
+    ToastModule,
     DividerModule,
-    ToastComponent,
     ReactiveFormsModule,
     DropdownComponent,
     SelectComponent,
@@ -58,6 +57,7 @@ import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  providers: [MessageService],
 })
 export class LoginComponent {
   accounts: Account[] = [
@@ -92,6 +92,7 @@ export class LoginComponent {
   ];
 
   account!: Account;
+  selectedAccount!: Account;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -102,7 +103,11 @@ export class LoginComponent {
   showError: boolean = false;
   messageError!: string;
 
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    private messageService: MessageService
+  ) {}
 
   get emailControl(): FormControl {
     return this.loginForm.get('email') as FormControl;
@@ -112,11 +117,10 @@ export class LoginComponent {
     return this.loginForm.get('password') as FormControl;
   }
 
-  onSelectedAccount(account: Account): void {
-    const userCredential = account as UserCredential;
-    
+  onSelectedAccount(): void {
+    const userCredential = this.selectedAccount as UserCredential;
+
     this.loginForm.patchValue(userCredential);
-    this.account = account;
   }
 
   async login(e: Event): Promise<void> {
@@ -133,10 +137,17 @@ export class LoginComponent {
 
       this._router.navigateByUrl('/');
     } catch (error: any) {
-      switch (error.code) {
-        case AuthError.invalidCredential:
-          break;
-      }
+      this.show();
     }
+  }
+
+  show() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Ha ocurrido un error',
+      detail: 'Correo o contraseña incorrectas. Intentelo de nuevo',
+    });
+
+    this.buttonText = 'Ingresar';
   }
 }
